@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 545);
+/******/ 	return __webpack_require__(__webpack_require__.s = 547);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10420,108 +10420,183 @@ module.exports = self.fetch.bind(self);
 /* 389 */,
 /* 390 */,
 /* 391 */,
-/* 392 */
+/* 392 */,
+/* 393 */,
+/* 394 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+ * JavaScript Cookie v2.2.0
+ * https://github.com/js-cookie/js-cookie
+ *
+ * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
+ * Released under the MIT license
+ */
+;(function (factory) {
+	var registeredInModuleLoader = false;
+	if (true) {
+		!(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		registeredInModuleLoader = true;
+	}
+	if (true) {
+		module.exports = factory();
+		registeredInModuleLoader = true;
+	}
+	if (!registeredInModuleLoader) {
+		var OldCookies = window.Cookies;
+		var api = window.Cookies = factory();
+		api.noConflict = function () {
+			window.Cookies = OldCookies;
+			return api;
+		};
+	}
+}(function () {
+	function extend () {
+		var i = 0;
+		var result = {};
+		for (; i < arguments.length; i++) {
+			var attributes = arguments[ i ];
+			for (var key in attributes) {
+				result[key] = attributes[key];
+			}
+		}
+		return result;
+	}
 
+	function init (converter) {
+		function api (key, value, attributes) {
+			var result;
+			if (typeof document === 'undefined') {
+				return;
+			}
 
-var theme = "light";
-var sfmap = L.map('sfmap').setView([37.77, -122.42], 12);
-var url = 'https://api.mapbox.com/styles/v1/mapbox/' + theme + '-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}';
-var token = 'pk.eyJ1IjoicHNyYyIsImEiOiJjaXFmc2UxanMwM3F6ZnJtMWp3MjBvZHNrIn0._Dmske9er0ounTbBmdRrRQ';
-var attribution = '<a href="http://openstreetmap.org">OpenStreetMap</a> | ' + '<a href="http://mapbox.com">Mapbox</a>';
-L.tileLayer(url, {
-  attribution: attribution,
-  maxZoom: 18,
-  accessToken: token
-}).addTo(sfmap);
+			// Write
 
-var dark_styles = { normal: { "color": "#ff7800", "weight": 4, "opacity": 1.0 },
-  selected: { "color": "#39f", "weight": 5, "opacity": 1.0 },
-  popup: { "color": "#33f", "weight": 10, "opacity": 1.0 }
-};
+			if (arguments.length > 1) {
+				attributes = extend({
+					path: '/'
+				}, api.defaults, attributes);
 
-var light_styles = { normal: { "color": "#3c6", "weight": 4, "opacity": 1.0 },
-  selected: { "color": "#39f", "weight": 5, "opacity": 1.0 },
-  popup: { "color": "#33f", "weight": 10, "opacity": 1.0 }
-};
-var styles = theme === 'dark' ? dark_styles : light_styles;
+				if (typeof attributes.expires === 'number') {
+					var expires = new Date();
+					expires.setMilliseconds(expires.getMilliseconds() + attributes.expires * 864e+5);
+					attributes.expires = expires;
+				}
 
-var iconOrig = L.AwesomeMarkers.icon({
-  prefix: 'ion',
-  icon: 'star',
-  markerColor: 'green'
-});
+				// We're using "expires" because "max-age" is not supported by IE
+				attributes.expires = attributes.expires ? attributes.expires.toUTCString() : '';
 
-var iconDest = L.AwesomeMarkers.icon({
-  prefix: 'ion',
-  icon: 'flag',
-  markerColor: 'red'
-});
+				try {
+					result = JSON.stringify(value);
+					if (/^[\{\[]/.test(result)) {
+						value = result;
+					}
+				} catch (e) {}
 
-function getDistColor(d) {
-  return d > 50 ? '#d73027' : d > 20 ? '#fc8d59' : d > 5 ? '#fee08b' : d > 1 ? '#ffffbf' : d > 0.5 ? '#d9ef8b' : d > .25 ? '#91cf60' : d > 0 ? '#1a9850' : '#ccc';
-}
+				if (!converter.write) {
+					value = encodeURIComponent(String(value))
+						.replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
+				} else {
+					value = converter.write(value, key);
+				}
 
-function getColorByBin(x, bins, colors) {
-  for (var i = 0; i < bins.length; i++) {
-    if (x <= bins[i]) return colors[i];
-  }
-  return colors[i];
-}
+				key = encodeURIComponent(String(key));
+				key = key.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent);
+				key = key.replace(/[\(\)]/g, escape);
 
-function getColorFromVal(x, vals, colors) {
-  var bins = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
+				var stringifiedAttributes = '';
 
-  if (x == null) return null;
+				for (var attributeName in attributes) {
+					if (!attributes[attributeName]) {
+						continue;
+					}
+					stringifiedAttributes += '; ' + attributeName;
+					if (attributes[attributeName] === true) {
+						continue;
+					}
+					stringifiedAttributes += '=' + attributes[attributeName];
+				}
+				return (document.cookie = key + '=' + value + stringifiedAttributes);
+			}
 
-  if (bins) {
-    for (var i = 0; i < vals.length; i++) {
-      if (x <= vals[i]) return colors[i];
-    }
-    return colors[i];
-  } else {
-    return colors[vals.indexOf(x)];
-  }
-}
+			// Read
 
-function getLegHTML(vals, colors) {
-  var bins = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-  var postunits = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
+			if (!key) {
+				result = {};
+			}
 
-  var ret = '';
-  if (bins) {
-    // loop through our bin intervals and generate a label with a colored square for each interval
-    for (var i = 0; i < vals.length; i++) {
-      ret += '<p class="legend-row"><i style="background:' + colors[i + 1] + '"></i> ' + vals[i] + postunits + (vals[i + 1] ? ' &ndash; ' + vals[i + 1] + postunits + '<br>' : '+') + '</p>';
-    }
-  } else {
-    for (var i = 0; i < vals.length; i++) {
-      ret += '<p class="legend-row"><i style="background:' + colors[i] + '"></i> ' + vals[i] + postunits + (vals[i + 1] ? '<br>' : '') + '</p>';
-    }
-  }
-  return ret;
-}
+			// To prevent the for loop in the first place assign an empty array
+			// in case there are no cookies at all. Also prevents odd result when
+			// calling "get()"
+			var cookies = document.cookie ? document.cookie.split('; ') : [];
+			var rdecode = /(%[0-9A-Z]{2})+/g;
+			var i = 0;
 
-var colorFunc = {
-  'distance': getDistColor
-};
+			for (; i < cookies.length; i++) {
+				var parts = cookies[i].split('=');
+				var cookie = parts.slice(1).join('=');
 
-module.exports = {
-  sfmap: sfmap,
-  iconOrig: iconOrig,
-  iconDest: iconDest,
-  styles: styles,
-  colorFunc: colorFunc,
-  getColorByBin: getColorByBin,
-  getColorFromVal: getColorFromVal,
-  getLegHTML: getLegHTML
-};
+				if (!this.json && cookie.charAt(0) === '"') {
+					cookie = cookie.slice(1, -1);
+				}
+
+				try {
+					var name = parts[0].replace(rdecode, decodeURIComponent);
+					cookie = converter.read ?
+						converter.read(cookie, name) : converter(cookie, name) ||
+						cookie.replace(rdecode, decodeURIComponent);
+
+					if (this.json) {
+						try {
+							cookie = JSON.parse(cookie);
+						} catch (e) {}
+					}
+
+					if (key === name) {
+						result = cookie;
+						break;
+					}
+
+					if (!key) {
+						result[name] = cookie;
+					}
+				} catch (e) {}
+			}
+
+			return result;
+		}
+
+		api.set = api;
+		api.get = function (key) {
+			return api.call(api, key);
+		};
+		api.getJSON = function () {
+			return api.apply({
+				json: true
+			}, [].slice.call(arguments));
+		};
+		api.defaults = {};
+
+		api.remove = function (key, attributes) {
+			api(key, '', extend(attributes, {
+				expires: -1
+			}));
+		};
+
+		api.withConverter = init;
+
+		return api;
+	}
+
+	return init(function () {});
+}));
+
 
 /***/ }),
-/* 393 */,
-/* 394 */,
 /* 395 */,
 /* 396 */,
 /* 397 */,
@@ -10575,7 +10650,9 @@ module.exports = {
 /* 445 */,
 /* 446 */,
 /* 447 */,
-/* 448 */
+/* 448 */,
+/* 449 */,
+/* 450 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10785,42 +10862,50 @@ var _vueSliderComponent = __webpack_require__(384);
 
 var _vueSliderComponent2 = _interopRequireDefault(_vueSliderComponent);
 
+var _jsCookie = __webpack_require__(394);
+
+var _jsCookie2 = _interopRequireDefault(_jsCookie);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var api_server = 'http://api.sfcta.org/api/';
-var data_view = 'cmp_auto';
+var api_server = 'http://api.sfcta.org/api/switrs_viz';
 
-var segmentLayer = void 0;
-var selectedSegment = void 0,
-    popupSegment = void 0,
-    hoverColor = void 0,
-    popupColor = void 0;
-var speedCache = {};
+// add the SF Map using Leafleft and MapBox
+var mymap = L.map('sfmap').setView([37.78, -122.415], 14);
+var url = 'https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}';
+var token = 'pk.eyJ1IjoicHNyYyIsImEiOiJjaXFmc2UxanMwM3F6ZnJtMWp3MjBvZHNrIn0._Dmske9er0ounTbBmdRrRQ';
+var attribution = '<a href="http://openstreetmap.org">OpenStreetMap</a> | ' + '<a href="http://mapbox.com">Mapbox</a>';
+L.tileLayer(url, {
+  attribution: attribution,
+  maxZoom: 18,
+  accessToken: token
+}).addTo(mymap);
 
-var losColor = { 'A': '#060', 'B': '#9f0', 'C': '#ff3', 'D': '#f90', 'E': '#f60', 'F': '#c00' };
-var MISSING_COLOR = '#ccc';
-var LOS_VALS = ['A', 'B', 'C', 'D', 'E', 'F'];
-var LOS_COLORS = ['#060', '#9f0', '#ff3', '#f90', '#f60', '#c00'];
+var incColor = { 'Killed Pedestrian': "#280f34", 'Killed Bicyclist': "#cb0101",
+  'Injured Pedestrian': "#11cbd7", 'Injured Bicyclist': "#ff5200", 'Uninjured Pedestrian': "#ff0099",
+  'Uninjured Bicyclist': "#1bc644" };
+var incOpacity = { 'Killed Pedestrian': 0.5, 'Killed Bicyclist': 0.5, 'Injured Pedestrian': 0.15,
+  'Injured Bicyclist': 0.15, 'Uninjured Pedestrian': 0.5, 'Uninjured Bicyclist': 0.5 };
+var missingColor = '#ccc';
 
-var maplib = __webpack_require__(392);
-var mymap = maplib.sfmap;
-var styles = maplib.styles;
-var getLegHTML = maplib.getLegHTML;
+var collisionLayer = void 0;
+var mapLegend = void 0;
+var segmentLos = {};
 
-function addSegmentLayer(segments) {
-  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+// add SWITRS layer
+function addSWITRSLayer(collisions) {
+  //TODO: figure out why PostGIS geojson isn't in exactly the right format.
 
-  // TODO: figure out why PostGIS geojson isn't in exactly the right format.
   var _iteratorNormalCompletion = true;
   var _didIteratorError = false;
   var _iteratorError = undefined;
 
   try {
-    for (var _iterator = (0, _getIterator3.default)(segments), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      var segment = _step.value;
+    for (var _iterator = (0, _getIterator3.default)(collisions), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var collision = _step.value;
 
-      segment["type"] = "Feature";
-      segment["geometry"] = JSON.parse(segment.geometry);
+      collision["type"] = "Feature";
+      collision["geometry"] = JSON.parse(collision.st_asgeojson);
     }
   } catch (err) {
     _didIteratorError = true;
@@ -10837,255 +10922,193 @@ function addSegmentLayer(segments) {
     }
   }
 
-  segmentLayer = L.geoJSON(segments, {
-    style: styleByLosColor,
+  if (mapLegend) mymap.removeControl(mapLegend);
+  if (collisionLayer) mymap.removeLayer(collisionLayer);
+
+  collisionLayer = L.geoJSON(collisions, {
+    style: styleByIncidentColor,
+    pointToLayer: function pointToLayer(feature, latlng) {
+      if (feature['pedkill'] > 0 || feature['bickill'] > 0) {
+        return new L.CircleMarker(latlng, { radius: 5, fillOpacity: 0.5 });
+      } else if (feature['pedinj'] > 0 || feature['bicinj'] > 0) {
+        return new L.CircleMarker(latlng, { radius: 5, fillOpacity: 0.2 });
+      } else if (chosenSeverity != 'Fatal') {
+        return new L.CircleMarker(latlng, { radius: 5, fillOpacity: 0.5 });
+      }
+    },
     onEachFeature: function onEachFeature(feature, layer) {
-      layer.on({ mouseover: hoverOnSegment,
+      layer.on({
         click: clickedOnSegment
       });
     }
   });
+  collisionLayer.addTo(mymap);
 
-  if (mymap.segmentLayer) {
-    selectedSegment = popupSegment = hoverColor = popupColor = null;
-    mymap.removeLayer(segmentLayer);
-    segmentLayer = null;
+  mapLegend = L.control({ position: 'bottomright' });
+
+  mapLegend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = ['Killed Pedestrian', 'Killed Bicyclist', 'Injured Pedestrian', 'Injured Bicyclist', 'Uninjured Pedestrian', 'Uninjured Bicyclist'],
+        labels = [];
+
+    div.innerHTML = '<h4>Incident Category</h4>';
+    for (var i = 0; i < grades.length; i++) {
+      div.innerHTML += '<i style="background:' + incColor[grades[i]] + '"></i>' + grades[i] + '<br>';
+    }return div;
+  };
+
+  mapLegend.addTo(mymap);
+};
+
+function styleByIncidentColor(collision) {
+  if (collision['pedkill'] > 0) {
+    return { "color": incColor['Killed Pedestrian'], "weight": 0.1,
+      "opacity": incOpacity['Killed Pedestrian'] };
+  } else if (collision['bickill'] > 0) {
+    return { "color": incColor['Killed Bicyclist'], "weight": 0.1,
+      "opacity": incOpacity['Killed Bicyclist'] };
+  } else if (collision['pedinj'] > 0) {
+    return { "color": incColor['Injured Pedestrian'], "weight": 0.1,
+      "opacity": incOpacity['Injured Pedestrian'] };
+  } else if (collision['bicinj'] > 0) {
+    return { "color": incColor['Injured Bicyclist'], "weight": 0.1,
+      "opacity": incOpacity['Injured Bicyclist'] };
+  } else if (collision['pedcol'] == 'Y') {
+    return { "color": incColor['Uninjured Pedestrian'], "weight": 0.1,
+      "opacity": incOpacity['Uninjured Pedestrian'] };
+  } else {
+    return { "color": incColor['Uninjured Bicyclist'], "weight": 0.1,
+      "opacity": incOpacity['Uninjured Bicyclist'] };
   }
-  segmentLayer.addTo(mymap);
+
+  var color = incColor[incType];
+  var opac = incOpacity[incType];
+
+  return { "color": color, "weight": 0.1, "opacity": opac };
 }
 
-function styleByLosColor(segment) {
-  var cmp_id = segment.cmp_segid;
-  var los = segmentLos[cmp_id];
-  var color = losColor[los];
-  if (!color) color = MISSING_COLOR;
-  return { color: color, weight: 4, opacity: 1.0 };
+function getSWITRSinfo() {
+
+  var url = api_server + '?select=st_asgeojson,pedcol,biccol,year,time_,pedkill,pedinj,bickill,bicinj';
+  if (chosenIncidents == 'Both') var chosenCollisions = '';else if (chosenIncidents == 'Bike') var chosenCollisions = '&pedcol=eq.N';else if (chosenIncidents == 'Ped') var chosenCollisions = '&biccol=eq.N';
+  if (chosenSeverity == 'All') var chosenInjuries = '';else if (chosenSeverity == 'Fatal') var chosenInjuries = '&pedinj=eq.0&bicinj=eq.0';else if (chosenSeverity == 'Nonf') var chosenInjuries = '&pedkill=eq.0&bickill=eq.0';
+  var queryurl = url + '&period=eq.' + chosenPeriod + chosenCollisions + chosenInjuries + '&year=eq.' + app.sliderValue;
+
+  // Fetch the segments
+  fetch(queryurl).then(function (resp) {
+    return resp.json();
+  }).then(function (jsonData) {
+    addSWITRSLayer(jsonData);
+  }).catch(function (error) {
+    console.log("err: " + error);
+  });
 }
 
 function hoverOnSegment(e) {
-  // don't do anything if we just moused over the already-popped up segment
-  if (e.target == popupSegment) return;
-
-  var segment = e.target.feature;
-  var cmp_id = segment.cmp_segid;
-
-  // return previously-hovered segment to its original color
-  if (selectedSegment != popupSegment) {
-    if (selectedSegment) {
-      var _cmp_id = selectedSegment.feature.cmp_segid;
-      var color = losColor[segmentLos[_cmp_id]];
-      if (!color) color = MISSING_COLOR;
-      selectedSegment.setStyle({ color: color, weight: 4, opacity: 1.0 });
-    }
-  }
-
-  selectedSegment = e.target;
-  selectedSegment.setStyle(styles.selected);
-  selectedSegment.bringToFront();
-}
-
-function buildChartHtmlFromCmpData(json) {
-  var byYear = {};
-  var data = [];
-
-  var _iteratorNormalCompletion2 = true;
-  var _didIteratorError2 = false;
-  var _iteratorError2 = undefined;
-
-  try {
-    for (var _iterator2 = (0, _getIterator3.default)(json), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-      var entry = _step2.value;
-
-      var speed = Number(entry.avg_speed).toFixed(1);
-      if (speed === 'NaN') continue;
-      if (!byYear[entry.year]) byYear[entry.year] = {};
-      byYear[entry.year][entry.period] = speed;
-    }
-  } catch (err) {
-    _didIteratorError2 = true;
-    _iteratorError2 = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion2 && _iterator2.return) {
-        _iterator2.return();
-      }
-    } finally {
-      if (_didIteratorError2) {
-        throw _iteratorError2;
-      }
-    }
-  }
-
-  for (var year in byYear) {
-    data.push({ year: year, am: byYear[year]['AM'], pm: byYear[year]['PM'] });
-  }
-
-  new Morris.Line({
-    // ID of the element in which to draw the chart.
-    element: 'chart',
-    // Chart data records -- each entry in this array corresponds to a point on
-    // the chart.
-    data: data,
-    // The name of the data record attribute that contains x-values.
-    xkey: 'year',
-    // A list of names of data record attributes that contain y-values.
-    ykeys: ['am', 'pm'],
-    // Labels for the ykeys -- will be displayed when you hover over the
-    // chart.
-    labels: ['AM', 'PM'],
-    lineColors: ["#f66", "#44f"],
-    xLabels: "year",
-    xLabelAngle: 45
-  });
+  console.log("Hover!", e);
 }
 
 function clickedOnSegment(e) {
-  var segment = e.target.feature;
-  var cmp_id = segment.cmp_segid;
-
-  // highlight it
-  if (popupSegment) {
-    var _cmp_id2 = popupSegment.feature.cmp_segid;
-    var color = losColor[segmentLos[_cmp_id2]];
-    popupSegment.setStyle({ color: color, weight: 4, opacity: 1.0 });
-  }
-  e.target.setStyle(styles.popup);
-  popupSegment = e.target;
-
-  // delete old chart
-  document.getElementById("chart").innerHTML = "";
-
-  // fetch the CMP details
-  var finalUrl = api_server + 'cmp_auto?cmp_segid=eq.' + cmp_id;
-  fetch(finalUrl).then(function (resp) {
-    return resp.json();
-  }).then(function (jsonData) {
-    var popupText = "<b>" + segment.cmp_name + " " + segment.direction + "-bound</b><br/>" + segment.cmp_from + " to " + segment.cmp_to;
-
-    var popup = L.popup().setLatLng(e.latlng).setContent(popupText).openOn(mymap);
-
-    popup.on("remove", function (e) {
-      var cmp_id = popupSegment.feature.cmp_segid;
-      var color = losColor[segmentLos[cmp_id]];
-      popupSegment.setStyle({ color: color, weight: 4, opacity: 1.0 });
-      popupSegment = null;
-      document.getElementById("chart").innerHTML = "";
-    });
-
-    buildChartHtmlFromCmpData(jsonData);
-  }).catch(function (error) {
-    console.log("err: " + error);
-  });
-}
-
-var esc = encodeURIComponent;
-
-function queryServer() {
-  var url = api_server + 'cmp_segments_master?' + 'select=geometry,cmp_segid,cmp_name,cmp_from,cmp_to,direction,length';
-  // Fetch the segments
-  fetch(url).then(function (resp) {
-    return resp.json();
-  }).then(function (jsonData) {
-    var personJson = jsonData;
-    colorByLOS(personJson, app.sliderValue);
-  }).catch(function (error) {
-    console.log("err: " + error);
-  });
-}
-
-var segmentLos = {};
-
-function colorByLOS(personJson, year) {
-  var lookup = chosenPeriod + year;
-
-  // Don't re-fetch if we already have the color data
-  if (lookup in speedCache) {
-    segmentLos = speedCache[lookup];
-    segmentLayer.clearLayers();
-    addSegmentLayer(personJson);
-    return;
-  }
-
-  var url = api_server + 'cmp_auto?';
-  var params = 'year=eq.' + year + '&period=eq.' + chosenPeriod + '&select=cmp_segid,avg_speed,year,period,los_hcm85';
-
-  var finalUrl = url + params;
-
-  fetch(finalUrl).then(function (resp) {
-    return resp.json();
-  }).then(function (data) {
-    //console.log(data);
-    var losData = {};
-    for (var segment in data) {
-      var thing = data[segment];
-      losData[thing.cmp_segid] = thing.los_hcm85;
-    }
-    // save it for later
-    speedCache[chosenPeriod + year] = losData;
-    segmentLos = losData;
-
-    // add it to the map
-    if (segmentLayer) segmentLayer.clearLayers();
-    addSegmentLayer(personJson);
-  }).catch(function (error) {
-    console.log(error);
-  });
+  console.log("Click!", e);
 }
 
 var chosenPeriod = 'AM';
+var chosenIncidents = 'Both';
+var chosenSeverity = 'All';
 
 function pickAM(thing) {
   app.isAMactive = true;
   app.isPMactive = false;
   chosenPeriod = 'AM';
-  queryServer();
+  getSWITRSinfo();
 }
 
 function pickPM(thing) {
   app.isAMactive = false;
   app.isPMactive = true;
   chosenPeriod = 'PM';
-  queryServer();
+  getSWITRSinfo();
 }
 
-function updateLegend() {
-  var legend = L.control({ position: 'bottomright' });
-  legend.onAdd = function (map) {
-    var div = L.DomUtil.create('div', 'info legend');
-    div.innerHTML = getLegHTML(LOS_VALS, LOS_COLORS, false);
-    return div;
-  };
-  legend.addTo(mymap);
+function pickBoth(thing) {
+  app.isBikeactive = false;
+  app.isPedactive = false;
+  app.isBothactive = true;
+  chosenIncidents = 'Both';
+  getSWITRSinfo();
 }
 
-// SLIDER ----
-// fetch the year details in data
+function pickBike(thing) {
+  app.isBikeactive = true;
+  app.isPedactive = false;
+  app.isBothactive = false;
+  chosenIncidents = 'Bike';
+  getSWITRSinfo();
+}
+
+function pickPed(thing) {
+  app.isBikeactive = false;
+  app.isPedactive = true;
+  app.isBothactive = false;
+  chosenIncidents = 'Ped';
+  getSWITRSinfo();
+}
+
+function pickFatal(thing) {
+  app.isFatalactive = true;
+  app.isNonfactive = false;
+  app.isAllactive = false;
+  chosenSeverity = 'Fatal';
+  getSWITRSinfo();
+}
+
+function pickNonf(thing) {
+  app.isFatalactive = false;
+  app.isNonfactive = true;
+  app.isAllactive = false;
+  chosenSeverity = 'Nonf';
+  getSWITRSinfo();
+}
+
+function pickAll(thing) {
+  app.isFatalactive = false;
+  app.isNonfactive = false;
+  app.isAllactive = true;
+  chosenSeverity = 'All';
+  getSWITRSinfo();
+}
+
+function sliderChanged(thing) {
+  getSWITRSinfo();
+}
+
 function updateSliderData() {
   var yearlist = [];
-  fetch(api_server + data_view + '?select=year').then(function (resp) {
+  fetch(api_server + '?select=year').then(function (resp) {
     return resp.json();
   }).then(function (jsonData) {
-    var _iteratorNormalCompletion3 = true;
-    var _didIteratorError3 = false;
-    var _iteratorError3 = undefined;
+    var _iteratorNormalCompletion2 = true;
+    var _didIteratorError2 = false;
+    var _iteratorError2 = undefined;
 
     try {
-      for (var _iterator3 = (0, _getIterator3.default)(jsonData), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-        var entry = _step3.value;
+      for (var _iterator2 = (0, _getIterator3.default)(jsonData), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+        var entry = _step2.value;
 
         if (!yearlist.includes(entry.year)) yearlist.push(entry.year);
       }
     } catch (err) {
-      _didIteratorError3 = true;
-      _iteratorError3 = err;
+      _didIteratorError2 = true;
+      _iteratorError2 = err;
     } finally {
       try {
-        if (!_iteratorNormalCompletion3 && _iterator3.return) {
-          _iterator3.return();
+        if (!_iteratorNormalCompletion2 && _iterator2.return) {
+          _iterator2.return();
         }
       } finally {
-        if (_didIteratorError3) {
-          throw _iteratorError3;
+        if (_didIteratorError2) {
+          throw _iteratorError2;
         }
       }
     }
@@ -11099,12 +11122,12 @@ function updateSliderData() {
 var timeSlider = {
   data: [0],
   sliderValue: 0,
+  disabled: false,
   width: 'auto',
-  height: 6,
+  height: 3,
   direction: 'horizontal',
   dotSize: 16,
   eventType: 'auto',
-  disabled: false,
   show: true,
   realTime: false,
   tooltip: 'always',
@@ -11114,34 +11137,52 @@ var timeSlider = {
   piecewiseLabel: false,
   lazy: false,
   reverse: false,
-  labelActiveStyle: { "color": "#fff" },
+  speed: 0.25,
   piecewiseStyle: {
-    "backgroundColor": "#888",
+    "backgroundColor": "#ccc",
     "visibility": "visible",
-    "width": "14px",
-    "height": "14px"
-  }
+    "width": "6px",
+    "height": "6px"
+  },
+  piecewiseActiveStyle: {
+    "backgroundColor": "#ccc",
+    "visibility": "visible",
+    "width": "6px",
+    "height": "6px"
+  },
+  labelStyle: { "color": "#ccc" },
+  labelActiveStyle: { "color": "#ccc" },
+  processStyle: {
+    "backgroundColor": "#ffc"
+  },
+  style: { "marginTop": "0px", "marginBottom": "40px" }
 };
-// ------
-
-function sliderChanged(thing) {
-  mymap.closePopup();
-  // delete old chart
-  document.getElementById("chart").innerHTML = "";
-  queryServer();
-}
 
 var app = new Vue({
   el: '#panel',
+  delimiters: ['${', '}'],
   data: {
     isAMactive: true,
     isPMactive: false,
+    isBikeactive: false,
+    isPedactive: false,
+    isBothactive: true,
+    isFatalactive: false,
+    isNonfactive: false,
+    isAllactive: true,
     sliderValue: 0,
     timeSlider: timeSlider
   },
   methods: {
+    clickToggleHelp: clickToggleHelp,
     pickAM: pickAM,
-    pickPM: pickPM
+    pickPM: pickPM,
+    pickBike: pickBike,
+    pickPed: pickPed,
+    pickBoth: pickBoth,
+    pickFatal: pickFatal,
+    pickNonf: pickNonf,
+    pickAll: pickAll
   },
   watch: {
     sliderValue: sliderChanged
@@ -11150,13 +11191,40 @@ var app = new Vue({
     vueSlider: _vueSliderComponent2.default
   }
 });
+
+var cookieShowHelp = _jsCookie2.default.get('showHelp');
+function clickToggleHelp() {
+  helpPanel.showHelp = !helpPanel.showHelp;
+
+  // and save it for next time
+  if (helpPanel.showHelp) {
+    _jsCookie2.default.remove('showHelp');
+  } else {
+    _jsCookie2.default.set('showHelp', 'false', { expires: 365 });
+  }
+}
+
+var helpPanel = new Vue({
+  el: '#helpbox',
+  data: {
+    showHelp: cookieShowHelp == undefined
+  },
+  methods: {
+    clickToggleHelp: clickToggleHelp
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    document.addEventListener("keydown", function (e) {
+      if (_this.showHelp && e.keyCode == 27) {
+        clickToggleHelp();
+      }
+    });
+  } });
+// Ready to go! Read some data.
 updateSliderData();
-updateLegend();
-queryServer();
 
 /***/ }),
-/* 449 */,
-/* 450 */,
 /* 451 */,
 /* 452 */,
 /* 453 */,
@@ -11251,11 +11319,13 @@ queryServer();
 /* 542 */,
 /* 543 */,
 /* 544 */,
-/* 545 */
+/* 545 */,
+/* 546 */,
+/* 547 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(151);
-module.exports = __webpack_require__(448);
+module.exports = __webpack_require__(450);
 
 
 /***/ })

@@ -11851,7 +11851,7 @@ function buildChartHtmlFromCmpData() {
       xLabels: 'year',
       xLabelAngle: 45,
       ykeys: ykey_tmp,
-      ymax: app.selectedViz == 'TSPD' ? 60 : 'auto'
+      ymax: app.selectedViz == 'TSPD' ? 20 : 'auto'
     });
   }
 }

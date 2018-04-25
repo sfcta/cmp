@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 557);
+/******/ 	return __webpack_require__(__webpack_require__.s = 563);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10460,114 +10460,10 @@ module.exports = self.fetch.bind(self);
 
 
 /***/ }),
-/* 385 */
-/***/ (function(module, exports, __webpack_require__) {
-
-!function(t,e){ true?module.exports=e():"function"==typeof define&&define.amd?define("vue-slider-component",[],e):"object"==typeof exports?exports["vue-slider-component"]=e():t["vue-slider-component"]=e()}(this,function(){return function(t){function e(s){if(i[s])return i[s].exports;var r=i[s]={i:s,l:!1,exports:{}};return t[s].call(r.exports,r,r.exports,e),r.l=!0,r.exports}var i={};return e.m=t,e.c=i,e.i=function(t){return t},e.d=function(t,i,s){e.o(t,i)||Object.defineProperty(t,i,{configurable:!1,enumerable:!0,get:s})},e.n=function(t){var i=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(i,"a",i),i},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="",e(e.s=2)}([function(t,e,i){i(7);var s=i(5)(i(1),i(6),"data-v-4f2807ae",null);t.exports=s.exports},function(t,e,i){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.default={data:function(){return{flag:!1,size:0,currentValue:0,currentSlider:0}},props:{width:{type:[Number,String],default:"auto"},height:{type:[Number,String],default:6},data:{type:Array,default:null},dotSize:{type:Number,default:16},min:{type:Number,default:0},max:{type:Number,default:100},interval:{type:Number,default:1},show:{type:Boolean,default:!0},disabled:{type:Boolean,default:!1},piecewise:{type:Boolean,default:!1},tooltip:{type:[String,Boolean],default:"always"},eventType:{type:String,default:"auto"},direction:{type:String,default:"horizontal"},reverse:{type:Boolean,default:!1},lazy:{type:Boolean,default:!1},clickable:{type:Boolean,default:!0},speed:{type:Number,default:.5},realTime:{type:Boolean,default:!1},value:{type:[String,Number,Array],default:0},piecewiseLabel:{type:Boolean,default:!1},sliderStyle:[Array,Object],tooltipDir:[Array,String],formatter:[String,Function],piecewiseStyle:Object,piecewiseActiveStyle:Object,processStyle:Object,bgStyle:Object,tooltipStyle:[Array,Object],labelStyle:Object,labelActiveStyle:Object},computed:{flowDirection:function(){return"vue-slider-"+this.direction+(this.reverse?"-reverse":"")},tooltipDirection:function(){var t=this.tooltipDir||("vertical"===this.direction?"left":"top");return Array.isArray(t)?this.isRange?t:t[1]:this.isRange?[t,t]:t},tooltipStatus:function(){return"hover"===this.tooltip&&this.flag?"vue-slider-always":this.tooltip?"vue-slider-"+this.tooltip:""},tooltipClass:function(){return["vue-slider-tooltip-"+this.tooltipDirection,"vue-slider-tooltip"]},isMobile:function(){return"undefined"!=typeof navigator&&("touch"===this.eventType||"mouse"!==this.eventType&&/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od|ad)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(navigator.userAgent||navigator.vendor||window.opera))},isDisabled:function(){return"none"===this.eventType||this.disabled},disabledClass:function(){return this.disabled?"vue-slider-disabled":""},isRange:function(){return Array.isArray(this.value)},slider:function(){return this.isRange?[this.$refs.dot0,this.$refs.dot1]:this.$refs.dot},minimum:function(){return this.data?0:this.min},val:{get:function(){return this.data?this.isRange?[this.data[this.currentValue[0]],this.data[this.currentValue[1]]]:this.data[this.currentValue]:this.currentValue},set:function(t){if(this.data)if(this.isRange){var e=this.data.indexOf(t[0]),i=this.data.indexOf(t[1]);e>-1&&i>-1&&(this.currentValue=[e,i])}else{var s=this.data.indexOf(t);s>-1&&(this.currentValue=s)}else this.currentValue=t}},currentIndex:function(){return this.isRange?this.data?this.currentValue:[(this.currentValue[0]-this.minimum)/this.spacing,(this.currentValue[1]-this.minimum)/this.spacing]:(this.currentValue-this.minimum)/this.spacing},indexRange:function(){return this.isRange?this.currentIndex:[0,this.currentIndex]},maximum:function(){return this.data?this.data.length-1:this.max},multiple:function(){var t=(""+this.interval).split(".")[1];return t?Math.pow(10,t.length):1},spacing:function(){return this.data?1:this.interval},total:function(){return this.data?this.data.length-1:(~~((this.maximum-this.minimum)*this.multiple)%(this.interval*this.multiple)!=0&&console.error("[Vue-slider warn]: Prop[interval] is illegal, Please make sure that the interval can be divisible"),(this.maximum-this.minimum)/this.interval)},gap:function(){return this.size/this.total},position:function(){return this.isRange?[(this.currentValue[0]-this.minimum)/this.spacing*this.gap,(this.currentValue[1]-this.minimum)/this.spacing*this.gap]:(this.currentValue-this.minimum)/this.spacing*this.gap},limit:function(){return this.isRange?[[0,this.position[1]],[this.position[0],this.size]]:[0,this.size]},valueLimit:function(){return this.isRange?[[this.minimum,this.currentValue[1]],[this.currentValue[0],this.maximum]]:[this.minimum,this.maximum]},wrapStyles:function(){return"vertical"===this.direction?{height:"number"==typeof this.height?this.height+"px":this.height,padding:this.dotSize/2+"px"}:{width:"number"==typeof this.width?this.width+"px":this.width,padding:this.dotSize/2+"px"}},sliderStyles:function(){return Array.isArray(this.sliderStyle)?this.isRange?this.sliderStyle:this.sliderStyle[1]:this.isRange?[this.sliderStyle,this.sliderStyle]:this.sliderStyle},tooltipStyles:function(){return Array.isArray(this.tooltipStyle)?this.isRange?this.tooltipStyle:this.tooltipStyle[1]:this.isRange?[this.tooltipStyle,this.tooltipStyle]:this.tooltipStyle},elemStyles:function(){return"vertical"===this.direction?{width:this.width+"px",height:"100%"}:{height:this.height+"px"}},dotStyles:function(){return"vertical"===this.direction?{width:this.dotSize+"px",height:this.dotSize+"px",left:-(this.dotSize-this.width)/2+"px"}:{width:this.dotSize+"px",height:this.dotSize+"px",top:-(this.dotSize-this.height)/2+"px"}},piecewiseDotStyle:function(){return"vertical"===this.direction?{width:this.width+"px",height:this.width+"px"}:{width:this.height+"px",height:this.height+"px"}},piecewiseDotWrap:function(){if(!this.piecewise&&!this.piecewiseLabel)return!1;for(var t=[],e=0;e<=this.total;e++){var i="vertical"===this.direction?{bottom:this.gap*e-this.width/2+"px",left:0}:{left:this.gap*e-this.height/2+"px",top:0},s=this.reverse?this.total-e:e,r=this.data?this.data[s]:this.spacing*s+this.min;t.push({style:i,label:this.formatter?this.formatting(r):r,inRange:s>=this.indexRange[0]&&s<=this.indexRange[1]})}return t}},watch:{value:function(t){this.flag||this.setValue(t,!0)},max:function(t){var e=this.limitValue(this.val);!1!==e&&this.setValue(e),this.refresh()},min:function(t){var e=this.limitValue(this.val);!1!==e&&this.setValue(e),this.refresh()},show:function(t){var e=this;t&&!this.size&&this.$nextTick(function(){e.refresh()})}},methods:{bindEvents:function(){this.isMobile?(this.$refs.wrap.addEventListener("touchmove",this.moving),this.$refs.wrap.addEventListener("touchend",this.moveEnd)):(document.addEventListener("mousemove",this.moving),document.addEventListener("mouseup",this.moveEnd),document.addEventListener("mouseleave",this.moveEnd),window.addEventListener("resize",this.refresh))},unbindEvents:function(){window.removeEventListener("resize",this.refresh),this.isMobile?(this.$refs.wrap.removeEventListener("touchmove",this.moving),this.$refs.wrap.removeEventListener("touchend",this.moveEnd)):(document.removeEventListener("mousemove",this.moving),document.removeEventListener("mouseup",this.moveEnd),document.removeEventListener("mouseleave",this.moveEnd))},formatting:function(t){return"string"==typeof this.formatter?this.formatter.replace(/\{value\}/,t):this.formatter(t)},getPos:function(t){return this.realTime&&this.getStaticData(),"vertical"===this.direction?this.reverse?t.pageY-this.offset:this.size-(t.pageY-this.offset):this.reverse?this.size-(t.clientX-this.offset):t.clientX-this.offset},wrapClick:function(t){if(this.isDisabled||!this.clickable)return!1;var e=this.getPos(t);this.isRange&&(this.currentSlider=e>(this.position[1]-this.position[0])/2+this.position[0]?1:0),this.setValueOnPos(e)},moveStart:function(t){if(this.isDisabled)return!1;this.isRange&&(this.currentSlider=t),this.flag=!0,this.$emit("drag-start",this)},moving:function(t){if(!this.flag)return!1;t.preventDefault(),this.isMobile&&(t=t.targetTouches[0]),this.setValueOnPos(this.getPos(t),!0)},moveEnd:function(t){if(!this.flag)return!1;this.$emit("drag-end",this),this.lazy&&this.isDiff(this.val,this.value)&&this.syncValue(),this.flag=!1,this.setPosition()},setValueOnPos:function(t,e){var i=this.isRange?this.limit[this.currentSlider]:this.limit,s=this.isRange?this.valueLimit[this.currentSlider]:this.valueLimit;if(t>=i[0]&&t<=i[1]){this.setTransform(t);var r=(Math.round(t/this.gap)*(this.spacing*this.multiple)+this.minimum*this.multiple)/this.multiple;this.setCurrentValue(r,e)}else t<i[0]?(this.setTransform(i[0]),this.setCurrentValue(s[0]),1===this.currentSlider&&(this.currentSlider=0)):(this.setTransform(i[1]),this.setCurrentValue(s[1]),0===this.currentSlider&&(this.currentSlider=1))},isDiff:function(t,e){return Object.prototype.toString.call(t)!==Object.prototype.toString.call(e)||(Array.isArray(t)&&t.length===e.length?t.some(function(t,i){return t!==e[i]}):t!==e)},setCurrentValue:function(t,e){if(t<this.minimum||t>this.maximum)return!1;this.isRange?this.isDiff(this.currentValue[this.currentSlider],t)&&(this.currentValue.splice(this.currentSlider,1,t),this.lazy&&this.flag||this.syncValue()):this.isDiff(this.currentValue,t)&&(this.currentValue=t,this.lazy&&this.flag||this.syncValue()),e||this.setPosition()},setIndex:function(t){if(Array.isArray(t)&&this.isRange){var e=void 0;e=this.data?[this.data[t[0]],this.data[t[1]]]:[this.spacing*t[0]+this.minimum,this.spacing*t[1]+this.minimum],this.setValue(e)}else t=this.spacing*t+this.minimum,this.isRange&&(this.currentSlider=t>(this.currentValue[1]-this.currentValue[0])/2+this.currentValue[0]?1:0),this.setCurrentValue(t)},setValue:function(t,e,i){var s=this;if(this.isDiff(this.val,t)){var r=this.limitValue(t);this.val=!1!==r?this.isRange?r.concat():r:this.isRange?t.concat():t,this.syncValue(e)}this.$nextTick(function(){return s.setPosition(i)})},setPosition:function(t){this.flag||this.setTransitionTime(void 0===t?this.speed:t),this.isRange?(this.currentSlider=0,this.setTransform(this.position[this.currentSlider]),this.currentSlider=1,this.setTransform(this.position[this.currentSlider])):this.setTransform(this.position),this.flag||this.setTransitionTime(0)},setTransform:function(t){var e=("vertical"===this.direction?this.dotSize/2-t:t-this.dotSize/2)*(this.reverse?-1:1),i="vertical"===this.direction?"translateY("+e+"px)":"translateX("+e+"px)",s=(0===this.currentSlider?this.position[1]-t:t-this.position[0])+"px",r=(0===this.currentSlider?t:this.position[0])+"px";this.isRange?(this.slider[this.currentSlider].style.transform=i,this.slider[this.currentSlider].style.WebkitTransform=i,this.slider[this.currentSlider].style.msTransform=i,"vertical"===this.direction?(this.$refs.process.style.height=s,this.$refs.process.style[this.reverse?"top":"bottom"]=r):(this.$refs.process.style.width=s,this.$refs.process.style[this.reverse?"right":"left"]=r)):(this.slider.style.transform=i,this.slider.style.WebkitTransform=i,this.slider.style.msTransform=i,"vertical"===this.direction?(this.$refs.process.style.height=t+"px",this.$refs.process.style[this.reverse?"top":"bottom"]=0):(this.$refs.process.style.width=t+"px",this.$refs.process.style[this.reverse?"right":"left"]=0))},setTransitionTime:function(t){if(t||this.$refs.process.offsetWidth,this.isRange){for(var e=0;e<this.slider.length;e++)this.slider[e].style.transitionDuration=t+"s",this.slider[e].style.WebkitTransitionDuration=t+"s";this.$refs.process.style.transitionDuration=t+"s",this.$refs.process.style.WebkitTransitionDuration=t+"s"}else this.slider.style.transitionDuration=t+"s",this.slider.style.WebkitTransitionDuration=t+"s",this.$refs.process.style.transitionDuration=t+"s",this.$refs.process.style.WebkitTransitionDuration=t+"s"},limitValue:function(t){var e=this;if(this.data)return t;var i=!1;return this.isRange?t=t.map(function(t){return t<e.min?(i=!0,e.min):t>e.max?(i=!0,e.max):t}):t>this.max?(i=!0,t=this.max):t<this.min&&(i=!0,t=this.min),i&&t},syncValue:function(t){t||this.$emit("callback",this.val),this.$emit("input",this.isRange?this.val.concat():this.val)},getValue:function(){return this.val},getIndex:function(){return this.currentIndex},getStaticData:function(){this.$refs.elem&&(this.size="vertical"===this.direction?this.$refs.elem.offsetHeight:this.$refs.elem.offsetWidth,this.offset="vertical"===this.direction?this.$refs.elem.getBoundingClientRect().top+window.pageYOffset||document.documentElement.scrollTop:this.$refs.elem.getBoundingClientRect().left)},refresh:function(){this.$refs.elem&&(this.getStaticData(),this.setPosition())}},mounted:function(){var t=this;"undefined"!=typeof window&&"undefined"!=typeof document&&this.$nextTick(function(){t.getStaticData(),t.setValue(t.value,!0,0),t.bindEvents()})},beforeDestroy:function(){this.unbindEvents()}}},function(t,e,i){"use strict";var s=i(0);t.exports=s},function(t,e,i){e=t.exports=i(4)(),e.push([t.i,'.vue-slider-wrap[data-v-4f2807ae]{position:relative;box-sizing:border-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.vue-slider-wrap.vue-slider-disabled[data-v-4f2807ae]{opacity:.5;cursor:not-allowed}.vue-slider-wrap.vue-slider-has-label[data-v-4f2807ae]{margin-bottom:15px}.vue-slider-wrap.vue-slider-disabled .vue-slider-dot[data-v-4f2807ae]{cursor:not-allowed}.vue-slider-wrap .vue-slider[data-v-4f2807ae]{position:relative;display:block;border-radius:15px;background-color:#ccc}.vue-slider-wrap .vue-slider[data-v-4f2807ae]:after{content:"";position:absolute;left:0;top:0;width:100%;height:100%;z-index:2}.vue-slider-process[data-v-4f2807ae]{position:absolute;border-radius:15px;background-color:#3498db;transition:all 0s;z-index:1}.vue-slider-horizontal .vue-slider-process[data-v-4f2807ae]{width:0;height:100%;top:0;left:0;will-change:width}.vue-slider-vertical .vue-slider-process[data-v-4f2807ae]{width:100%;height:0;bottom:0;left:0;will-change:height}.vue-slider-horizontal-reverse .vue-slider-process[data-v-4f2807ae]{width:0;height:100%;top:0;right:0}.vue-slider-vertical-reverse .vue-slider-process[data-v-4f2807ae]{width:100%;height:0;top:0;left:0}.vue-slider-dot[data-v-4f2807ae]{position:absolute;border-radius:50%;background-color:#fff;box-shadow:.5px .5px 2px 1px rgba(0,0,0,.32);transition:all 0s;will-change:transform;cursor:pointer;z-index:3}.vue-slider-horizontal .vue-slider-dot[data-v-4f2807ae]{left:0}.vue-slider-vertical .vue-slider-dot[data-v-4f2807ae]{bottom:0}.vue-slider-horizontal-reverse .vue-slider-dot[data-v-4f2807ae]{right:0}.vue-slider-vertical-reverse .vue-slider-dot[data-v-4f2807ae]{top:0}.vue-slider-tooltip-wrap[data-v-4f2807ae]{display:none;position:absolute;z-index:9}.vue-slider-tooltip[data-v-4f2807ae]{display:block;font-size:14px;white-space:nowrap;padding:2px 5px;min-width:20px;text-align:center;color:#fff;border-radius:5px;border:1px solid #3498db;background-color:#3498db}.vue-slider-tooltip-wrap.vue-slider-tooltip-top[data-v-4f2807ae]{top:-9px;left:50%;transform:translate(-50%,-100%)}.vue-slider-tooltip-wrap.vue-slider-tooltip-bottom[data-v-4f2807ae]{bottom:-9px;left:50%;transform:translate(-50%,100%)}.vue-slider-tooltip-wrap.vue-slider-tooltip-left[data-v-4f2807ae]{top:50%;left:-9px;transform:translate(-100%,-50%)}.vue-slider-tooltip-wrap.vue-slider-tooltip-right[data-v-4f2807ae]{top:50%;right:-9px;transform:translate(100%,-50%)}.vue-slider-tooltip-wrap.vue-slider-tooltip-top .vue-slider-tooltip[data-v-4f2807ae]:before{content:"";position:absolute;bottom:-10px;left:50%;width:0;height:0;border:5px solid transparent;border:6px solid transparent\\0;border-top-color:inherit;transform:translate(-50%)}.vue-slider-tooltip-wrap.vue-slider-tooltip-bottom .vue-slider-tooltip[data-v-4f2807ae]:before{content:"";position:absolute;top:-10px;left:50%;width:0;height:0;border:5px solid transparent;border:6px solid transparent\\0;border-bottom-color:inherit;transform:translate(-50%)}.vue-slider-tooltip-wrap.vue-slider-tooltip-left .vue-slider-tooltip[data-v-4f2807ae]:before{content:"";position:absolute;top:50%;right:-10px;width:0;height:0;border:5px solid transparent;border:6px solid transparent\\0;border-left-color:inherit;transform:translateY(-50%)}.vue-slider-tooltip-wrap.vue-slider-tooltip-right .vue-slider-tooltip[data-v-4f2807ae]:before{content:"";position:absolute;top:50%;left:-10px;width:0;height:0;border:5px solid transparent;border:6px solid transparent\\0;border-right-color:inherit;transform:translateY(-50%)}.vue-slider-dot.vue-slider-hover:hover .vue-slider-tooltip-wrap[data-v-4f2807ae]{display:block}.vue-slider-dot.vue-slider-always .vue-slider-tooltip-wrap[data-v-4f2807ae]{display:block!important}.vue-slider-piecewise[data-v-4f2807ae]{position:absolute;width:100%;padding:0;margin:0;left:0;top:0;height:100%;list-style:none}.vue-slider-piecewise li[data-v-4f2807ae]{position:absolute;width:8px;height:8px}.vue-slider-piecewise .vue-slider-piecewise-dot[data-v-4f2807ae]{position:absolute;left:50%;top:50%;width:100%;height:100%;display:inline-block;background-color:rgba(0,0,0,.16);border-radius:50%;transform:translate(-50%,-50%);z-index:2;transition:all .3s}.vue-slider-piecewise li:first-child .vue-slider-piecewise-dot[data-v-4f2807ae],.vue-slider-piecewise li:last-child .vue-slider-piecewise-dot[data-v-4f2807ae]{visibility:hidden}.vue-slider-horizontal-reverse .vue-slider-piecewise-label[data-v-4f2807ae],.vue-slider-horizontal .vue-slider-piecewise-label[data-v-4f2807ae]{position:absolute;display:inline-block;top:100%;left:50%;white-space:nowrap;font-size:12px;color:#333;transform:translate(-50%,8px);visibility:visible}.vue-slider-vertical-reverse .vue-slider-piecewise-label[data-v-4f2807ae],.vue-slider-vertical .vue-slider-piecewise-label[data-v-4f2807ae]{position:absolute;display:inline-block;top:50%;left:100%;white-space:nowrap;font-size:12px;color:#333;transform:translate(8px,-50%);visibility:visible}.vue-slider-sr-only[data-v-4f2807ae]{clip:rect(1px,1px,1px,1px);height:1px;width:1px;overflow:hidden;position:absolute!important}',""])},function(t,e){t.exports=function(){var t=[];return t.toString=function(){for(var t=[],e=0;e<this.length;e++){var i=this[e];i[2]?t.push("@media "+i[2]+"{"+i[1]+"}"):t.push(i[1])}return t.join("")},t.i=function(e,i){"string"==typeof e&&(e=[[null,e,""]]);for(var s={},r=0;r<this.length;r++){var o=this[r][0];"number"==typeof o&&(s[o]=!0)}for(r=0;r<e.length;r++){var n=e[r];"number"==typeof n[0]&&s[n[0]]||(i&&!n[2]?n[2]=i:i&&(n[2]="("+n[2]+") and ("+i+")"),t.push(n))}},t}},function(t,e){t.exports=function(t,e,i,s){var r,o=t=t||{},n=typeof t.default;"object"!==n&&"function"!==n||(r=t,o=t.default);var a="function"==typeof o?o.options:o;if(e&&(a.render=e.render,a.staticRenderFns=e.staticRenderFns),i&&(a._scopeId=i),s){var l=Object.create(a.computed||null);Object.keys(s).forEach(function(t){var e=s[t];l[t]=function(){return e}}),a.computed=l}return{esModule:r,exports:o,options:a}}},function(t,e){t.exports={render:function(){var t=this,e=t.$createElement,i=t._self._c||e;return i("div",{directives:[{name:"show",rawName:"v-show",value:t.show,expression:"show"}],ref:"wrap",class:["vue-slider-wrap",t.flowDirection,t.disabledClass,{"vue-slider-has-label":t.piecewiseLabel}],style:t.wrapStyles,on:{click:t.wrapClick}},[i("div",{ref:"elem",staticClass:"vue-slider",style:[t.elemStyles,t.bgStyle],attrs:{"aria-hidden":"true"}},[t.isMobile?[t.isRange?[i("div",{ref:"dot0",class:[t.tooltipStatus,"vue-slider-dot"],style:[t.sliderStyles[0],t.dotStyles],on:{touchstart:function(e){t.moveStart(0)}}},[i("span",{class:["vue-slider-tooltip-"+t.tooltipDirection[0],"vue-slider-tooltip-wrap"]},[t._t("tooltip",[i("span",{staticClass:"vue-slider-tooltip",style:t.tooltipStyles[0]},[t._v(t._s(t.formatter?t.formatting(t.val[0]):t.val[0]))])],{value:t.val[0],index:0})],2)]),t._v(" "),i("div",{ref:"dot1",class:[t.tooltipStatus,"vue-slider-dot"],style:[t.sliderStyles[1],t.dotStyles],on:{touchstart:function(e){t.moveStart(1)}}},[i("span",{class:["vue-slider-tooltip-"+t.tooltipDirection[1],"vue-slider-tooltip-wrap"]},[t._t("tooltip",[i("span",{staticClass:"vue-slider-tooltip",style:t.tooltipStyles[1]},[t._v(t._s(t.formatter?t.formatting(t.val[1]):t.val[1]))])],{value:t.val[1],index:1})],2)])]:[i("div",{ref:"dot",class:[t.tooltipStatus,"vue-slider-dot"],style:[t.sliderStyles,t.dotStyles],on:{touchstart:t.moveStart}},[i("span",{class:["vue-slider-tooltip-"+t.tooltipDirection,"vue-slider-tooltip-wrap"]},[t._t("tooltip",[t._v("\n\t\t\t\t\t\t\t"+t._s(t.formatter?t.formatting(t.val):t.val)+"\n\t\t\t\t\t\t")],{value:t.val})],2)])]]:[t.isRange?[i("div",{ref:"dot0",class:[t.tooltipStatus,"vue-slider-dot"],style:[t.sliderStyles[0],t.dotStyles],on:{mousedown:function(e){t.moveStart(0)}}},[i("span",{class:["vue-slider-tooltip-"+t.tooltipDirection[0],"vue-slider-tooltip-wrap"]},[t._t("tooltip",[i("span",{staticClass:"vue-slider-tooltip",style:t.tooltipStyles[0]},[t._v(t._s(t.formatter?t.formatting(t.val[0]):t.val[0]))])],{value:t.val[0],index:0})],2)]),t._v(" "),i("div",{ref:"dot1",class:[t.tooltipStatus,"vue-slider-dot"],style:[t.sliderStyles[1],t.dotStyles],on:{mousedown:function(e){t.moveStart(1)}}},[i("span",{class:["vue-slider-tooltip-"+t.tooltipDirection[1],"vue-slider-tooltip-wrap"]},[t._t("tooltip",[i("span",{staticClass:"vue-slider-tooltip",style:t.tooltipStyles[1]},[t._v(t._s(t.formatter?t.formatting(t.val[1]):t.val[1]))])],{value:t.val[1],index:1})],2)])]:[i("div",{ref:"dot",class:[t.tooltipStatus,"vue-slider-dot"],style:[t.sliderStyles,t.dotStyles],on:{mousedown:t.moveStart}},[i("span",{class:["vue-slider-tooltip-"+t.tooltipDirection,"vue-slider-tooltip-wrap"]},[t._t("tooltip",[i("span",{staticClass:"vue-slider-tooltip",style:t.tooltipStyles},[t._v(t._s(t.formatter?t.formatting(t.val):t.val))])],{value:t.val})],2)])]],t._v(" "),[i("ul",{staticClass:"vue-slider-piecewise"},t._l(t.piecewiseDotWrap,function(e,s){return i("li",{style:[t.piecewiseDotStyle,e.style]},[t._t("piecewiseL",[t.piecewise?i("span",{staticClass:"vue-slider-piecewise-dot",style:[t.piecewiseStyle,e.inRange?t.piecewiseActiveStyle:null]}):t._e()],{label:e.label,index:s,first:0===s,last:s===t.piecewiseDotWrap.length-1}),t._v(" "),t._t("label",[t.piecewiseLabel?i("span",{staticClass:"vue-slider-piecewise-label",style:[t.labelStyle,e.inRange?t.labelActiveStyle:null]},[t._v("\n\t\t\t\t\t\t\t"+t._s(e.label)+"\n\t\t\t\t\t\t")]):t._e()],{label:e.label,index:s,first:0===s,last:s===t.piecewiseDotWrap.length-1})],2)}))],t._v(" "),i("div",{ref:"process",staticClass:"vue-slider-process",style:t.processStyle})],2),t._v(" "),t.isRange||t.data?t._e():i("input",{directives:[{name:"model",rawName:"v-model",value:t.val,expression:"val"}],staticClass:"vue-slider-sr-only",attrs:{type:"range",min:t.min,max:t.max},domProps:{value:t.val},on:{__r:function(e){t.val=e.target.value}}})])},staticRenderFns:[]}},function(t,e,i){var s=i(3);"string"==typeof s&&(s=[[t.i,s,""]]),s.locals&&(t.exports=s.locals);i(8)("3e13c911",s,!0)},function(t,e,i){function s(t){for(var e=0;e<t.length;e++){var i=t[e],s=d[i.id];if(s){s.refs++;for(var r=0;r<s.parts.length;r++)s.parts[r](i.parts[r]);for(;r<i.parts.length;r++)s.parts.push(o(i.parts[r]));s.parts.length>i.parts.length&&(s.parts.length=i.parts.length)}else{for(var n=[],r=0;r<i.parts.length;r++)n.push(o(i.parts[r]));d[i.id]={id:i.id,refs:1,parts:n}}}}function r(){var t=document.createElement("style");return t.type="text/css",h.appendChild(t),t}function o(t){var e,i,s=document.querySelector('style[data-vue-ssr-id~="'+t.id+'"]');if(s){if(f)return v;s.parentNode.removeChild(s)}if(m){var o=c++;s=p||(p=r()),e=n.bind(null,s,o,!1),i=n.bind(null,s,o,!0)}else s=r(),e=a.bind(null,s),i=function(){s.parentNode.removeChild(s)};return e(t),function(s){if(s){if(s.css===t.css&&s.media===t.media&&s.sourceMap===t.sourceMap)return;e(t=s)}else i()}}function n(t,e,i,s){var r=i?"":s.css;if(t.styleSheet)t.styleSheet.cssText=g(e,r);else{var o=document.createTextNode(r),n=t.childNodes;n[e]&&t.removeChild(n[e]),n.length?t.insertBefore(o,n[e]):t.appendChild(o)}}function a(t,e){var i=e.css,s=e.media,r=e.sourceMap;if(s&&t.setAttribute("media",s),r&&(i+="\n/*# sourceURL="+r.sources[0]+" */",i+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(r))))+" */"),t.styleSheet)t.styleSheet.cssText=i;else{for(;t.firstChild;)t.removeChild(t.firstChild);t.appendChild(document.createTextNode(i))}}var l="undefined"!=typeof document;if("undefined"!=typeof DEBUG&&DEBUG&&!l)throw new Error("vue-style-loader cannot be used in a non-browser environment. Use { target: 'node' } in your Webpack config to indicate a server-rendering environment.");var u=i(9),d={},h=l&&(document.head||document.getElementsByTagName("head")[0]),p=null,c=0,f=!1,v=function(){},m="undefined"!=typeof navigator&&/msie [6-9]\b/.test(navigator.userAgent.toLowerCase());t.exports=function(t,e,i){f=i;var r=u(t,e);return s(r),function(e){for(var i=[],o=0;o<r.length;o++){var n=r[o],a=d[n.id];a.refs--,i.push(a)}e?(r=u(t,e),s(r)):r=[];for(var o=0;o<i.length;o++){var a=i[o];if(0===a.refs){for(var l=0;l<a.parts.length;l++)a.parts[l]();delete d[a.id]}}}};var g=function(){var t=[];return function(e,i){return t[e]=i,t.filter(Boolean).join("\n")}}()},function(t,e){t.exports=function(t,e){for(var i=[],s={},r=0;r<e.length;r++){var o=e[r],n=o[0],a=o[1],l=o[2],u=o[3],d={id:t+":"+r,css:a,media:l,sourceMap:u};s[n]?s[n].parts.push(d):i.push(s[n]={id:n,parts:[d]})}return i}}])});
-
-/***/ }),
+/* 385 */,
 /* 386 */,
 /* 387 */,
-/* 388 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var theme = "light";
-var sfmap = L.map('sfmap').setView([37.77, -122.42], 12);
-var url = 'https://api.mapbox.com/styles/v1/mapbox/' + theme + '-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}';
-var token = 'pk.eyJ1IjoicHNyYyIsImEiOiJjaXFmc2UxanMwM3F6ZnJtMWp3MjBvZHNrIn0._Dmske9er0ounTbBmdRrRQ';
-var attribution = '<a href="http://openstreetmap.org">OpenStreetMap</a> | ' + '<a href="http://mapbox.com">Mapbox</a>';
-L.tileLayer(url, {
-  attribution: attribution,
-  maxZoom: 18,
-  accessToken: token
-}).addTo(sfmap);
-
-var dark_styles = { normal: { "color": "#ff7800", "weight": 4, "opacity": 1.0 },
-  selected: { "color": "#39f", "weight": 5, "opacity": 1.0 },
-  popup: { "color": "#33f", "weight": 10, "opacity": 1.0 }
-};
-
-var light_styles = { normal: { "color": "#3c6", "weight": 4, "opacity": 1.0 },
-  selected: { "color": "#39f", "weight": 5, "opacity": 1.0 },
-  popup: { "color": "#33f", "weight": 10, "opacity": 1.0 }
-};
-var styles = theme === 'dark' ? dark_styles : light_styles;
-
-var iconOrig = L.AwesomeMarkers.icon({
-  prefix: 'ion',
-  icon: 'star',
-  markerColor: 'green'
-});
-
-var iconDest = L.AwesomeMarkers.icon({
-  prefix: 'ion',
-  icon: 'flag',
-  markerColor: 'red'
-});
-
-function getDistColor(d) {
-  return d > 50 ? '#d73027' : d > 20 ? '#fc8d59' : d > 5 ? '#fee08b' : d > 1 ? '#ffffbf' : d > 0.5 ? '#d9ef8b' : d > .25 ? '#91cf60' : d > 0 ? '#1a9850' : '#ccc';
-}
-
-function getColorByBin(x, bins, colors) {
-  for (var i = 0; i < bins.length; i++) {
-    if (x <= bins[i]) return colors[i];
-  }
-  return colors[i];
-}
-
-function getColorFromVal(x, vals, colors) {
-  var bins = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
-
-  if (x == null) return null;
-
-  if (bins) {
-    for (var i = 0; i < vals.length; i++) {
-      if (x <= vals[i]) return colors[i];
-    }
-    return colors[i];
-  } else {
-    return colors[vals.indexOf(x)];
-  }
-}
-
-function getLegHTML(vals, colors) {
-  var bins = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-  var postunits = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
-
-  var ret = '';
-  if (bins) {
-    // loop through our bin intervals and generate a label with a colored square for each interval
-    for (var i = 0; i < vals.length; i++) {
-      ret += '<p class="legend-row"><i style="background:' + colors[i + 1] + '"></i> ' + vals[i] + postunits + (vals[i + 1] ? ' &ndash; ' + vals[i + 1] + postunits + '<br>' : '+') + '</p>';
-    }
-  } else {
-    for (var i = 0; i < vals.length; i++) {
-      ret += '<p class="legend-row"><i style="background:' + colors[i] + '"></i> ' + vals[i] + postunits + (vals[i + 1] ? '<br>' : '') + '</p>';
-    }
-  }
-  return ret;
-}
-
-var colorFunc = {
-  'distance': getDistColor
-};
-
-module.exports = {
-  sfmap: sfmap,
-  iconOrig: iconOrig,
-  iconDest: iconDest,
-  styles: styles,
-  colorFunc: colorFunc,
-  getColorByBin: getColorByBin,
-  getColorFromVal: getColorFromVal,
-  getLegHTML: getLegHTML
-};
-
-/***/ }),
+/* 388 */,
 /* 389 */,
 /* 390 */,
 /* 391 */,
@@ -10657,7 +10553,13 @@ module.exports = {
 /* 475 */,
 /* 476 */,
 /* 477 */,
-/* 478 */
+/* 478 */,
+/* 479 */,
+/* 480 */,
+/* 481 */,
+/* 482 */,
+/* 483 */,
+/* 484 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10863,46 +10765,46 @@ __webpack_require__(247);
 
 __webpack_require__(383);
 
-var _vueSliderComponent = __webpack_require__(385);
-
-var _vueSliderComponent2 = _interopRequireDefault(_vueSliderComponent);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var api_server = 'http://api.sfcta.org/api/';
-var data_view = 'cmp_auto';
+//import vueSlider from 'vue-slider-component';
 
-var segmentLayer = void 0;
-var selectedSegment = void 0,
-    popupSegment = void 0,
-    hoverColor = void 0,
-    popupColor = void 0;
-var speedCache = {};
+var api_server = 'http://api.sfcta.org/';
+
+// add the SF Map using Leafleft and MapBox
+var mymap = L.map('sfmap').setView([37.79, -122.44], 14);
+var url = 'https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}';
+var token = 'pk.eyJ1IjoicHNyYyIsImEiOiJjaXFmc2UxanMwM3F6ZnJtMWp3MjBvZHNrIn0._Dmske9er0ounTbBmdRrRQ';
+var attribution = '<a href="http://openstreetmap.org">OpenStreetMap</a> | ' + '<a href="http://mapbox.com">Mapbox</a>';
+L.tileLayer(url, {
+  attribution: attribution,
+  maxZoom: 18,
+  accessToken: token
+}).addTo(mymap);
+var intersectionLayer = void 0;
 
 var losColor = { 'A': '#060', 'B': '#9f0', 'C': '#ff3', 'D': '#f90', 'E': '#f60', 'F': '#c00' };
-var MISSING_COLOR = '#ccc';
-var LOS_VALS = ['A', 'B', 'C', 'D', 'E', 'F'];
-var LOS_COLORS = ['#060', '#9f0', '#ff3', '#f90', '#f60', '#c00'];
+var missingColor = '#ccc';
 
-var maplib = __webpack_require__(388);
-var mymap = maplib.sfmap;
-var styles = maplib.styles;
-var getLegHTML = maplib.getLegHTML;
+var osm = 1;
+var segmentLayer = void 0;
+var segmentLos = {};
 
-function addSegmentLayer(segments) {
-  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+// add Intersection layer
+function addIntersectionsLayer(intersections) {
+  //TODO: figure out why PostGIS geojson isn't in exactly the right format.
 
-  // TODO: figure out why PostGIS geojson isn't in exactly the right format.
+
   var _iteratorNormalCompletion = true;
   var _didIteratorError = false;
   var _iteratorError = undefined;
 
   try {
-    for (var _iterator = (0, _getIterator3.default)(segments), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      var segment = _step.value;
+    for (var _iterator = (0, _getIterator3.default)(intersections), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var intersection = _step.value;
 
-      segment["type"] = "Feature";
-      segment["geometry"] = JSON.parse(segment.geometry);
+      intersection["type"] = "Feature";
+      intersection["geometry"] = JSON.parse(intersection.st_asgeojson);
     }
   } catch (err) {
     _didIteratorError = true;
@@ -10919,69 +10821,41 @@ function addSegmentLayer(segments) {
     }
   }
 
-  segmentLayer = L.geoJSON(segments, {
-    style: styleByLosColor,
+  if (intersectionLayer) mymap.removeLayer(intersectionLayer);
+
+  intersectionLayer = L.geoJSON(intersections, {
+    style: styleByIntersectionColor,
+    pointToLayer: function pointToLayer(feature, latlng) {
+
+      return new L.CircleMarker(latlng, { radius: 4, fillOpacity: .2 });
+    },
     onEachFeature: function onEachFeature(feature, layer) {
-      layer.on({ mouseover: hoverOnSegment,
-        click: clickedOnSegment
-      });
+      //layer.on({
+      //mouseover : highlightFeature,
+      // mouseout : resetHighlight
+      //});
     }
   });
+  intersectionLayer.addTo(mymap);
+};
 
-  if (mymap.segmentLayer) {
-    selectedSegment = popupSegment = hoverColor = popupColor = null;
-    mymap.removeLayer(segmentLayer);
-    segmentLayer = null;
-  }
-  segmentLayer.addTo(mymap);
+function styleByIntersectionColor(intersection) {
+  return { "color": "#ff0000", "weight": 0.1, "opacity": .5 };
 }
 
-function styleByLosColor(segment) {
-  var cmp_id = segment.cmp_segid;
-  var los = segmentLos[cmp_id];
-  var color = losColor[los];
-  if (!color) color = MISSING_COLOR;
-  return { color: color, weight: 4, opacity: 1.0 };
-}
-
-function hoverOnSegment(e) {
-  // don't do anything if we just moused over the already-popped up segment
-  if (e.target == popupSegment) return;
-
-  var segment = e.target.feature;
-  var cmp_id = segment.cmp_segid;
-
-  // return previously-hovered segment to its original color
-  if (selectedSegment != popupSegment) {
-    if (selectedSegment) {
-      var _cmp_id = selectedSegment.feature.cmp_segid;
-      var color = losColor[segmentLos[_cmp_id]];
-      if (!color) color = MISSING_COLOR;
-      selectedSegment.setStyle({ color: color, weight: 4, opacity: 1.0 });
-    }
-  }
-
-  selectedSegment = e.target;
-  selectedSegment.setStyle(styles.selected);
-  selectedSegment.bringToFront();
-}
-
-function buildChartHtmlFromCmpData(json) {
-  var byYear = {};
-  var data = [];
-
+// add CMP segment layer
+function addCmpSegmentLayer(segments) {
+  // TODO: figure out why PostGIS geojson isn't in exactly the right format.
   var _iteratorNormalCompletion2 = true;
   var _didIteratorError2 = false;
   var _iteratorError2 = undefined;
 
   try {
-    for (var _iterator2 = (0, _getIterator3.default)(json), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-      var entry = _step2.value;
+    for (var _iterator2 = (0, _getIterator3.default)(segments), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+      var segment = _step2.value;
 
-      var speed = Number(entry.avg_speed).toFixed(1);
-      if (speed === 'NaN') continue;
-      if (!byYear[entry.year]) byYear[entry.year] = {};
-      byYear[entry.year][entry.period] = speed;
+      segment["type"] = "Feature";
+      segment["geometry"] = JSON.parse(segment.geometry);
     }
   } catch (err) {
     _didIteratorError2 = true;
@@ -10998,117 +10872,77 @@ function buildChartHtmlFromCmpData(json) {
     }
   }
 
-  for (var year in byYear) {
-    data.push({ year: year, am: byYear[year]['AM'], pm: byYear[year]['PM'] });
-  }
-
-  new Morris.Line({
-    // ID of the element in which to draw the chart.
-    element: 'chart',
-    // Chart data records -- each entry in this array corresponds to a point on
-    // the chart.
-    data: data,
-    // The name of the data record attribute that contains x-values.
-    xkey: 'year',
-    // A list of names of data record attributes that contain y-values.
-    ykeys: ['am', 'pm'],
-    // Labels for the ykeys -- will be displayed when you hover over the
-    // chart.
-    labels: ['AM', 'PM'],
-    lineColors: ["#f66", "#44f"],
-    xLabels: "year",
-    xLabelAngle: 45
+  segmentLayer = L.geoJSON(segments, {
+    style: styleByLosColor,
+    onEachFeature: function onEachFeature(feature, layer) {
+      // add stuff here!
+      layer.on({ mouseover: hoverOnSegment,
+        click: clickedOnSegment
+      });
+    }
   });
+
+  segmentLayer.addTo(mymap);
+}
+
+function styleByLosColor(segment) {
+  var cmp_id = segment.segnum2013;
+  var los = segmentLos[cmp_id];
+  var color = losColor[los];
+  if (!color) color = missingColor;
+
+  var style = {
+    color: color,
+    weight: 4,
+    opacity: 1.0
+  };
+
+  return style;
+}
+
+function getIntersections() {
+  var url = api_server + 'api/';
+  if (osm == 1) var chosenIntersections = 'osm_intersections?';else var chosenIntersections = 'intersections?';
+  var queryurl = url + chosenIntersections;
+
+  // Fetch the segments
+  fetch(queryurl).then(function (resp) {
+    return resp.json();
+  }).then(function (jsonData) {
+    addIntersectionsLayer(jsonData);
+  }).catch(function (error) {
+    console.log("err: " + error);
+  });
+}
+
+function hoverOnSegment(e) {
+  console.log("Hover!", e);
 }
 
 function clickedOnSegment(e) {
-  var segment = e.target.feature;
-  var cmp_id = segment.cmp_segid;
-
-  // highlight it
-  if (popupSegment) {
-    var _cmp_id2 = popupSegment.feature.cmp_segid;
-    var color = losColor[segmentLos[_cmp_id2]];
-    popupSegment.setStyle({ color: color, weight: 4, opacity: 1.0 });
-  }
-  e.target.setStyle(styles.popup);
-  popupSegment = e.target;
-
-  // delete old chart
-  document.getElementById("chart").innerHTML = "";
-
-  // fetch the CMP details
-  var finalUrl = api_server + 'cmp_auto?cmp_segid=eq.' + cmp_id;
-  fetch(finalUrl).then(function (resp) {
-    return resp.json();
-  }).then(function (jsonData) {
-    var popupText = "<b>" + segment.cmp_name + " " + segment.direction + "-bound</b><br/>" + segment.cmp_from + " to " + segment.cmp_to;
-
-    var popup = L.popup().setLatLng(e.latlng).setContent(popupText).openOn(mymap);
-
-    popup.on("remove", function (e) {
-      var cmp_id = popupSegment.feature.cmp_segid;
-      var color = losColor[segmentLos[cmp_id]];
-      popupSegment.setStyle({ color: color, weight: 4, opacity: 1.0 });
-      popupSegment = null;
-      document.getElementById("chart").innerHTML = "";
-    });
-
-    buildChartHtmlFromCmpData(jsonData);
-  }).catch(function (error) {
-    console.log("err: " + error);
-  });
+  console.log("Click!", e);
 }
 
-var esc = encodeURIComponent;
-
-function queryServer() {
-  var url = api_server + 'cmp_segments_master?' + 'select=geometry,cmp_segid,cmp_name,cmp_from,cmp_to,direction,length';
-  // Fetch the segments
-  fetch(url).then(function (resp) {
-    return resp.json();
-  }).then(function (jsonData) {
-    var personJson = jsonData;
-    colorByLOS(personJson, app.sliderValue);
-  }).catch(function (error) {
-    console.log("err: " + error);
-  });
-}
-
-var segmentLos = {};
-
-function colorByLOS(personJson, year) {
-  var lookup = chosenPeriod + year;
-
-  // Don't re-fetch if we already have the color data
-  if (lookup in speedCache) {
-    segmentLos = speedCache[lookup];
-    segmentLayer.clearLayers();
-    addSegmentLayer(personJson);
-    return;
-  }
-
-  var url = api_server + 'cmp_auto?';
-  var params = 'year=eq.' + year + '&period=eq.' + chosenPeriod + '&select=cmp_segid,avg_speed,year,period,los_hcm85';
+function getCmpData(json, year) {
+  var url = api_server + 'api/cmp_auto_speeds?';
+  var params = 'year=eq.' + year + '&period=eq.' + chosenPeriod + '&select=cmp_id,name_HCM1985,from,to,dir,avg_speed,year,period,los_HCM1985';
 
   var finalUrl = url + params;
 
   fetch(finalUrl).then(function (resp) {
     return resp.json();
   }).then(function (data) {
-    //console.log(data);
+
     var losData = {};
     for (var segment in data) {
       var thing = data[segment];
-      losData[thing.cmp_segid] = thing.los_hcm85;
+      losData[thing.cmp_id] = thing.los_HCM1985;
     }
-    // save it for later
-    speedCache[chosenPeriod + year] = losData;
-    segmentLos = losData;
 
     // add it to the map
+    segmentLos = losData;
+
     if (segmentLayer) segmentLayer.clearLayers();
-    addSegmentLayer(personJson);
   }).catch(function (error) {
     console.log(error);
   });
@@ -11120,129 +10954,38 @@ function pickAM(thing) {
   app.isAMactive = true;
   app.isPMactive = false;
   chosenPeriod = 'AM';
-  queryServer();
+  getCmpData();
 }
 
 function pickPM(thing) {
   app.isAMactive = false;
   app.isPMactive = true;
   chosenPeriod = 'PM';
-  queryServer();
-}
-
-function updateLegend() {
-  var legend = L.control({ position: 'bottomright' });
-  legend.onAdd = function (map) {
-    var div = L.DomUtil.create('div', 'info legend');
-    div.innerHTML = getLegHTML(LOS_VALS, LOS_COLORS, false);
-    return div;
-  };
-  legend.addTo(mymap);
-}
-
-// SLIDER ----
-// fetch the year details in data
-function updateSliderData() {
-  var yearlist = [];
-  fetch(api_server + data_view + '?select=year').then(function (resp) {
-    return resp.json();
-  }).then(function (jsonData) {
-    var _iteratorNormalCompletion3 = true;
-    var _didIteratorError3 = false;
-    var _iteratorError3 = undefined;
-
-    try {
-      for (var _iterator3 = (0, _getIterator3.default)(jsonData), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-        var entry = _step3.value;
-
-        if (!yearlist.includes(entry.year)) yearlist.push(entry.year);
-      }
-    } catch (err) {
-      _didIteratorError3 = true;
-      _iteratorError3 = err;
-    } finally {
-      try {
-        if (!_iteratorNormalCompletion3 && _iterator3.return) {
-          _iterator3.return();
-        }
-      } finally {
-        if (_didIteratorError3) {
-          throw _iteratorError3;
-        }
-      }
-    }
-
-    yearlist = yearlist.sort();
-    app.timeSlider.data = yearlist;
-    app.sliderValue = yearlist[yearlist.length - 1];
-  });
-}
-
-var timeSlider = {
-  data: [0],
-  sliderValue: 0,
-  width: 'auto',
-  height: 6,
-  direction: 'horizontal',
-  dotSize: 16,
-  eventType: 'auto',
-  disabled: false,
-  show: true,
-  realTime: false,
-  tooltip: 'always',
-  clickable: true,
-  tooltipDir: 'bottom',
-  piecewise: true,
-  piecewiseLabel: false,
-  lazy: false,
-  reverse: false,
-  labelActiveStyle: { "color": "#fff" },
-  piecewiseStyle: {
-    "backgroundColor": "#888",
-    "visibility": "visible",
-    "width": "14px",
-    "height": "14px"
-  }
-};
-// ------
-
-function sliderChanged(thing) {
-  mymap.closePopup();
-  // delete old chart
-  document.getElementById("chart").innerHTML = "";
-  queryServer();
+  getCmpData();
 }
 
 var app = new Vue({
   el: '#panel',
   data: {
     isAMactive: true,
-    isPMactive: false,
-    sliderValue: 0,
-    timeSlider: timeSlider
+    isPMactive: false
   },
   methods: {
     pickAM: pickAM,
     pickPM: pickPM
   },
   watch: {
-    sliderValue: sliderChanged
+    // watch nothing, for now
   },
   components: {
-    vueSlider: _vueSliderComponent2.default
+    // no extra components, for now
   }
 });
-updateSliderData();
-updateLegend();
-queryServer();
+
+// Ready to go! Read some data.
+getIntersections();
 
 /***/ }),
-/* 479 */,
-/* 480 */,
-/* 481 */,
-/* 482 */,
-/* 483 */,
-/* 484 */,
 /* 485 */,
 /* 486 */,
 /* 487 */,
@@ -11315,11 +11058,17 @@ queryServer();
 /* 554 */,
 /* 555 */,
 /* 556 */,
-/* 557 */
+/* 557 */,
+/* 558 */,
+/* 559 */,
+/* 560 */,
+/* 561 */,
+/* 562 */,
+/* 563 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(150);
-module.exports = __webpack_require__(478);
+module.exports = __webpack_require__(484);
 
 
 /***/ })

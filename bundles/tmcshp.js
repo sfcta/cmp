@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 557);
+/******/ 	return __webpack_require__(__webpack_require__.s = 560);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10569,7 +10569,181 @@ module.exports = {
 
 /***/ }),
 /* 389 */,
-/* 390 */,
+/* 390 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+ * JavaScript Cookie v2.1.4
+ * https://github.com/js-cookie/js-cookie
+ *
+ * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
+ * Released under the MIT license
+ */
+;(function (factory) {
+	var registeredInModuleLoader = false;
+	if (true) {
+		!(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		registeredInModuleLoader = true;
+	}
+	if (true) {
+		module.exports = factory();
+		registeredInModuleLoader = true;
+	}
+	if (!registeredInModuleLoader) {
+		var OldCookies = window.Cookies;
+		var api = window.Cookies = factory();
+		api.noConflict = function () {
+			window.Cookies = OldCookies;
+			return api;
+		};
+	}
+}(function () {
+	function extend () {
+		var i = 0;
+		var result = {};
+		for (; i < arguments.length; i++) {
+			var attributes = arguments[ i ];
+			for (var key in attributes) {
+				result[key] = attributes[key];
+			}
+		}
+		return result;
+	}
+
+	function init (converter) {
+		function api (key, value, attributes) {
+			var result;
+			if (typeof document === 'undefined') {
+				return;
+			}
+
+			// Write
+
+			if (arguments.length > 1) {
+				attributes = extend({
+					path: '/'
+				}, api.defaults, attributes);
+
+				if (typeof attributes.expires === 'number') {
+					var expires = new Date();
+					expires.setMilliseconds(expires.getMilliseconds() + attributes.expires * 864e+5);
+					attributes.expires = expires;
+				}
+
+				// We're using "expires" because "max-age" is not supported by IE
+				attributes.expires = attributes.expires ? attributes.expires.toUTCString() : '';
+
+				try {
+					result = JSON.stringify(value);
+					if (/^[\{\[]/.test(result)) {
+						value = result;
+					}
+				} catch (e) {}
+
+				if (!converter.write) {
+					value = encodeURIComponent(String(value))
+						.replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
+				} else {
+					value = converter.write(value, key);
+				}
+
+				key = encodeURIComponent(String(key));
+				key = key.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent);
+				key = key.replace(/[\(\)]/g, escape);
+
+				var stringifiedAttributes = '';
+
+				for (var attributeName in attributes) {
+					if (!attributes[attributeName]) {
+						continue;
+					}
+					stringifiedAttributes += '; ' + attributeName;
+					if (attributes[attributeName] === true) {
+						continue;
+					}
+					stringifiedAttributes += '=' + attributes[attributeName];
+				}
+				return (document.cookie = key + '=' + value + stringifiedAttributes);
+			}
+
+			// Read
+
+			if (!key) {
+				result = {};
+			}
+
+			// To prevent the for loop in the first place assign an empty array
+			// in case there are no cookies at all. Also prevents odd result when
+			// calling "get()"
+			var cookies = document.cookie ? document.cookie.split('; ') : [];
+			var rdecode = /(%[0-9A-Z]{2})+/g;
+			var i = 0;
+
+			for (; i < cookies.length; i++) {
+				var parts = cookies[i].split('=');
+				var cookie = parts.slice(1).join('=');
+
+				if (cookie.charAt(0) === '"') {
+					cookie = cookie.slice(1, -1);
+				}
+
+				try {
+					var name = parts[0].replace(rdecode, decodeURIComponent);
+					cookie = converter.read ?
+						converter.read(cookie, name) : converter(cookie, name) ||
+						cookie.replace(rdecode, decodeURIComponent);
+
+					if (this.json) {
+						try {
+							cookie = JSON.parse(cookie);
+						} catch (e) {}
+					}
+
+					if (key === name) {
+						result = cookie;
+						break;
+					}
+
+					if (!key) {
+						result[name] = cookie;
+					}
+				} catch (e) {}
+			}
+
+			return result;
+		}
+
+		api.set = api;
+		api.get = function (key) {
+			return api.call(api, key);
+		};
+		api.getJSON = function () {
+			return api.apply({
+				json: true
+			}, [].slice.call(arguments));
+		};
+		api.defaults = {};
+
+		api.remove = function (key, attributes) {
+			api(key, '', extend(attributes, {
+				expires: -1
+			}));
+		};
+
+		api.withConverter = init;
+
+		return api;
+	}
+
+	return init(function () {});
+}));
+
+
+/***/ }),
 /* 391 */,
 /* 392 */,
 /* 393 */,
@@ -10657,209 +10831,20 @@ module.exports = {
 /* 475 */,
 /* 476 */,
 /* 477 */,
-/* 478 */
+/* 478 */,
+/* 479 */,
+/* 480 */,
+/* 481 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-// Use npm and babel to support IE11/Safari
+// Must use npm and babel to support IE11/Safari
 
 var _getIterator2 = __webpack_require__(255);
 
 var _getIterator3 = _interopRequireDefault(_getIterator2);
-
-__webpack_require__(227);
-
-__webpack_require__(232);
-
-__webpack_require__(235);
-
-__webpack_require__(236);
-
-__webpack_require__(230);
-
-__webpack_require__(233);
-
-__webpack_require__(231);
-
-__webpack_require__(234);
-
-__webpack_require__(228);
-
-__webpack_require__(229);
-
-__webpack_require__(110);
-
-__webpack_require__(112);
-
-__webpack_require__(113);
-
-__webpack_require__(237);
-
-__webpack_require__(202);
-
-__webpack_require__(203);
-
-__webpack_require__(204);
-
-__webpack_require__(205);
-
-__webpack_require__(208);
-
-__webpack_require__(206);
-
-__webpack_require__(207);
-
-__webpack_require__(209);
-
-__webpack_require__(210);
-
-__webpack_require__(211);
-
-__webpack_require__(212);
-
-__webpack_require__(214);
-
-__webpack_require__(213);
-
-__webpack_require__(201);
-
-__webpack_require__(226);
-
-__webpack_require__(189);
-
-__webpack_require__(199);
-
-__webpack_require__(198);
-
-__webpack_require__(194);
-
-__webpack_require__(195);
-
-__webpack_require__(193);
-
-__webpack_require__(190);
-
-__webpack_require__(192);
-
-__webpack_require__(197);
-
-__webpack_require__(191);
-
-__webpack_require__(188);
-
-__webpack_require__(196);
-
-__webpack_require__(200);
-
-__webpack_require__(163);
-
-__webpack_require__(223);
-
-__webpack_require__(221);
-
-__webpack_require__(219);
-
-__webpack_require__(224);
-
-__webpack_require__(225);
-
-__webpack_require__(220);
-
-__webpack_require__(222);
-
-__webpack_require__(111);
-
-__webpack_require__(215);
-
-__webpack_require__(216);
-
-__webpack_require__(218);
-
-__webpack_require__(217);
-
-__webpack_require__(161);
-
-__webpack_require__(162);
-
-__webpack_require__(157);
-
-__webpack_require__(160);
-
-__webpack_require__(159);
-
-__webpack_require__(158);
-
-__webpack_require__(74);
-
-__webpack_require__(182);
-
-__webpack_require__(183);
-
-__webpack_require__(185);
-
-__webpack_require__(184);
-
-__webpack_require__(181);
-
-__webpack_require__(187);
-
-__webpack_require__(186);
-
-__webpack_require__(164);
-
-__webpack_require__(165);
-
-__webpack_require__(166);
-
-__webpack_require__(167);
-
-__webpack_require__(168);
-
-__webpack_require__(169);
-
-__webpack_require__(170);
-
-__webpack_require__(171);
-
-__webpack_require__(172);
-
-__webpack_require__(173);
-
-__webpack_require__(175);
-
-__webpack_require__(174);
-
-__webpack_require__(176);
-
-__webpack_require__(177);
-
-__webpack_require__(178);
-
-__webpack_require__(179);
-
-__webpack_require__(180);
-
-__webpack_require__(238);
-
-__webpack_require__(241);
-
-__webpack_require__(239);
-
-__webpack_require__(240);
-
-__webpack_require__(243);
-
-__webpack_require__(242);
-
-__webpack_require__(246);
-
-__webpack_require__(245);
-
-__webpack_require__(244);
-
-__webpack_require__(247);
 
 __webpack_require__(383);
 
@@ -10867,38 +10852,58 @@ var _vueSliderComponent = __webpack_require__(385);
 
 var _vueSliderComponent2 = _interopRequireDefault(_vueSliderComponent);
 
+var _jsCookie = __webpack_require__(390);
+
+var _jsCookie2 = _interopRequireDefault(_jsCookie);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var api_server = 'http://api.sfcta.org/api/';
-var data_view = 'cmp_auto';
-
-var segmentLayer = void 0;
-var selectedSegment = void 0,
-    popupSegment = void 0,
-    hoverColor = void 0,
-    popupColor = void 0;
-var speedCache = {};
-
-var losColor = { 'A': '#060', 'B': '#9f0', 'C': '#ff3', 'D': '#f90', 'E': '#f60', 'F': '#c00' };
-var MISSING_COLOR = '#ccc';
-var LOS_VALS = ['A', 'B', 'C', 'D', 'E', 'F'];
-var LOS_COLORS = ['#060', '#9f0', '#ff3', '#f90', '#f60', '#c00'];
-
 var maplib = __webpack_require__(388);
-var mymap = maplib.sfmap;
 var styles = maplib.styles;
 var getLegHTML = maplib.getLegHTML;
+var mymap = maplib.sfmap;
+mymap.setView([37.76889, -122.440997], 13);
 
-function addSegmentLayer(segments) {
-  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+// some important global variables.
+var API_SERVER = 'https://api.sfcta.org/api/';
+var GEO_VIEW1 = 'tmc_segments';
+var GEO_VIEW2 = 'tmc_trueshp';
 
-  // TODO: figure out why PostGIS geojson isn't in exactly the right format.
+var color_styles = [{ normal: { "color": "#39f", "weight": 3, "opacity": 0.5, "dashArray": '5 5' },
+  selected: { "color": "#33f", "weight": 4, "opacity": 0.5, "dashArray": '5 5' } }, { normal: { "color": "#3c6", "weight": 4, "opacity": 1.0 },
+  selected: { "color": "#34784b", "weight": 5, "opacity": 1.0 } }];
+
+var geoLayer_tmcseg = void 0;
+var geoLayer_tmcshp = void 0;
+
+var info = L.control();
+info.onAdd = function (map) {
+  this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+  this.update();
+  return this._div;
+};
+info.update = function (props) {
+  this._div.innerHTML = '<h4>Information</h4>' + '<b> TMC ID: ' + (props ? '<b>' + props.tmc + '</b>' : 'Hover over a TMC');
+};
+info.addTo(mymap);
+
+function queryServer(url, i) {
+  fetch(url).then(function (resp) {
+    return resp.json();
+  }).then(function (jsonData) {
+    return addGeoLayer(jsonData, i);
+  }).catch(function (error) {
+    console.log("err: " + error);
+  });
+}
+
+function addGeoLayer(jsonData, i) {
   var _iteratorNormalCompletion = true;
   var _didIteratorError = false;
   var _iteratorError = undefined;
 
   try {
-    for (var _iterator = (0, _getIterator3.default)(segments), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+    for (var _iterator = (0, _getIterator3.default)(jsonData), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
       var segment = _step.value;
 
       segment["type"] = "Feature";
@@ -10919,327 +10924,30 @@ function addSegmentLayer(segments) {
     }
   }
 
-  segmentLayer = L.geoJSON(segments, {
-    style: styleByLosColor,
+  var geolyr = L.geoJSON(jsonData, {
+    style: color_styles[i].normal,
     onEachFeature: function onEachFeature(feature, layer) {
-      layer.on({ mouseover: hoverOnSegment,
-        click: clickedOnSegment
+      layer.on({
+        mouseover: function mouseover(e) {
+          e.target.setStyle(color_styles[i].selected);
+          e.target.bringToFront();
+          info.update(e.target.feature);
+        },
+        mouseout: function mouseout(e) {
+          geolyr.resetStyle(e.target);
+          info.update(null);
+        }
       });
     }
   });
-
-  if (mymap.segmentLayer) {
-    selectedSegment = popupSegment = hoverColor = popupColor = null;
-    mymap.removeLayer(segmentLayer);
-    segmentLayer = null;
-  }
-  segmentLayer.addTo(mymap);
+  geolyr.addTo(mymap);
+  return geolyr;
 }
 
-function styleByLosColor(segment) {
-  var cmp_id = segment.cmp_segid;
-  var los = segmentLos[cmp_id];
-  var color = losColor[los];
-  if (!color) color = MISSING_COLOR;
-  return { color: color, weight: 4, opacity: 1.0 };
-}
-
-function hoverOnSegment(e) {
-  // don't do anything if we just moused over the already-popped up segment
-  if (e.target == popupSegment) return;
-
-  var segment = e.target.feature;
-  var cmp_id = segment.cmp_segid;
-
-  // return previously-hovered segment to its original color
-  if (selectedSegment != popupSegment) {
-    if (selectedSegment) {
-      var _cmp_id = selectedSegment.feature.cmp_segid;
-      var color = losColor[segmentLos[_cmp_id]];
-      if (!color) color = MISSING_COLOR;
-      selectedSegment.setStyle({ color: color, weight: 4, opacity: 1.0 });
-    }
-  }
-
-  selectedSegment = e.target;
-  selectedSegment.setStyle(styles.selected);
-  selectedSegment.bringToFront();
-}
-
-function buildChartHtmlFromCmpData(json) {
-  var byYear = {};
-  var data = [];
-
-  var _iteratorNormalCompletion2 = true;
-  var _didIteratorError2 = false;
-  var _iteratorError2 = undefined;
-
-  try {
-    for (var _iterator2 = (0, _getIterator3.default)(json), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-      var entry = _step2.value;
-
-      var speed = Number(entry.avg_speed).toFixed(1);
-      if (speed === 'NaN') continue;
-      if (!byYear[entry.year]) byYear[entry.year] = {};
-      byYear[entry.year][entry.period] = speed;
-    }
-  } catch (err) {
-    _didIteratorError2 = true;
-    _iteratorError2 = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion2 && _iterator2.return) {
-        _iterator2.return();
-      }
-    } finally {
-      if (_didIteratorError2) {
-        throw _iteratorError2;
-      }
-    }
-  }
-
-  for (var year in byYear) {
-    data.push({ year: year, am: byYear[year]['AM'], pm: byYear[year]['PM'] });
-  }
-
-  new Morris.Line({
-    // ID of the element in which to draw the chart.
-    element: 'chart',
-    // Chart data records -- each entry in this array corresponds to a point on
-    // the chart.
-    data: data,
-    // The name of the data record attribute that contains x-values.
-    xkey: 'year',
-    // A list of names of data record attributes that contain y-values.
-    ykeys: ['am', 'pm'],
-    // Labels for the ykeys -- will be displayed when you hover over the
-    // chart.
-    labels: ['AM', 'PM'],
-    lineColors: ["#f66", "#44f"],
-    xLabels: "year",
-    xLabelAngle: 45
-  });
-}
-
-function clickedOnSegment(e) {
-  var segment = e.target.feature;
-  var cmp_id = segment.cmp_segid;
-
-  // highlight it
-  if (popupSegment) {
-    var _cmp_id2 = popupSegment.feature.cmp_segid;
-    var color = losColor[segmentLos[_cmp_id2]];
-    popupSegment.setStyle({ color: color, weight: 4, opacity: 1.0 });
-  }
-  e.target.setStyle(styles.popup);
-  popupSegment = e.target;
-
-  // delete old chart
-  document.getElementById("chart").innerHTML = "";
-
-  // fetch the CMP details
-  var finalUrl = api_server + 'cmp_auto?cmp_segid=eq.' + cmp_id;
-  fetch(finalUrl).then(function (resp) {
-    return resp.json();
-  }).then(function (jsonData) {
-    var popupText = "<b>" + segment.cmp_name + " " + segment.direction + "-bound</b><br/>" + segment.cmp_from + " to " + segment.cmp_to;
-
-    var popup = L.popup().setLatLng(e.latlng).setContent(popupText).openOn(mymap);
-
-    popup.on("remove", function (e) {
-      var cmp_id = popupSegment.feature.cmp_segid;
-      var color = losColor[segmentLos[cmp_id]];
-      popupSegment.setStyle({ color: color, weight: 4, opacity: 1.0 });
-      popupSegment = null;
-      document.getElementById("chart").innerHTML = "";
-    });
-
-    buildChartHtmlFromCmpData(jsonData);
-  }).catch(function (error) {
-    console.log("err: " + error);
-  });
-}
-
-var esc = encodeURIComponent;
-
-function queryServer() {
-  var url = api_server + 'cmp_segments_master?' + 'select=geometry,cmp_segid,cmp_name,cmp_from,cmp_to,direction,length';
-  // Fetch the segments
-  fetch(url).then(function (resp) {
-    return resp.json();
-  }).then(function (jsonData) {
-    var personJson = jsonData;
-    colorByLOS(personJson, app.sliderValue);
-  }).catch(function (error) {
-    console.log("err: " + error);
-  });
-}
-
-var segmentLos = {};
-
-function colorByLOS(personJson, year) {
-  var lookup = chosenPeriod + year;
-
-  // Don't re-fetch if we already have the color data
-  if (lookup in speedCache) {
-    segmentLos = speedCache[lookup];
-    segmentLayer.clearLayers();
-    addSegmentLayer(personJson);
-    return;
-  }
-
-  var url = api_server + 'cmp_auto?';
-  var params = 'year=eq.' + year + '&period=eq.' + chosenPeriod + '&select=cmp_segid,avg_speed,year,period,los_hcm85';
-
-  var finalUrl = url + params;
-
-  fetch(finalUrl).then(function (resp) {
-    return resp.json();
-  }).then(function (data) {
-    //console.log(data);
-    var losData = {};
-    for (var segment in data) {
-      var thing = data[segment];
-      losData[thing.cmp_segid] = thing.los_hcm85;
-    }
-    // save it for later
-    speedCache[chosenPeriod + year] = losData;
-    segmentLos = losData;
-
-    // add it to the map
-    if (segmentLayer) segmentLayer.clearLayers();
-    addSegmentLayer(personJson);
-  }).catch(function (error) {
-    console.log(error);
-  });
-}
-
-var chosenPeriod = 'AM';
-
-function pickAM(thing) {
-  app.isAMactive = true;
-  app.isPMactive = false;
-  chosenPeriod = 'AM';
-  queryServer();
-}
-
-function pickPM(thing) {
-  app.isAMactive = false;
-  app.isPMactive = true;
-  chosenPeriod = 'PM';
-  queryServer();
-}
-
-function updateLegend() {
-  var legend = L.control({ position: 'bottomright' });
-  legend.onAdd = function (map) {
-    var div = L.DomUtil.create('div', 'info legend');
-    div.innerHTML = getLegHTML(LOS_VALS, LOS_COLORS, false);
-    return div;
-  };
-  legend.addTo(mymap);
-}
-
-// SLIDER ----
-// fetch the year details in data
-function updateSliderData() {
-  var yearlist = [];
-  fetch(api_server + data_view + '?select=year').then(function (resp) {
-    return resp.json();
-  }).then(function (jsonData) {
-    var _iteratorNormalCompletion3 = true;
-    var _didIteratorError3 = false;
-    var _iteratorError3 = undefined;
-
-    try {
-      for (var _iterator3 = (0, _getIterator3.default)(jsonData), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-        var entry = _step3.value;
-
-        if (!yearlist.includes(entry.year)) yearlist.push(entry.year);
-      }
-    } catch (err) {
-      _didIteratorError3 = true;
-      _iteratorError3 = err;
-    } finally {
-      try {
-        if (!_iteratorNormalCompletion3 && _iterator3.return) {
-          _iterator3.return();
-        }
-      } finally {
-        if (_didIteratorError3) {
-          throw _iteratorError3;
-        }
-      }
-    }
-
-    yearlist = yearlist.sort();
-    app.timeSlider.data = yearlist;
-    app.sliderValue = yearlist[yearlist.length - 1];
-  });
-}
-
-var timeSlider = {
-  data: [0],
-  sliderValue: 0,
-  width: 'auto',
-  height: 6,
-  direction: 'horizontal',
-  dotSize: 16,
-  eventType: 'auto',
-  disabled: false,
-  show: true,
-  realTime: false,
-  tooltip: 'always',
-  clickable: true,
-  tooltipDir: 'bottom',
-  piecewise: true,
-  piecewiseLabel: false,
-  lazy: false,
-  reverse: false,
-  labelActiveStyle: { "color": "#fff" },
-  piecewiseStyle: {
-    "backgroundColor": "#888",
-    "visibility": "visible",
-    "width": "14px",
-    "height": "14px"
-  }
-};
-// ------
-
-function sliderChanged(thing) {
-  mymap.closePopup();
-  // delete old chart
-  document.getElementById("chart").innerHTML = "";
-  queryServer();
-}
-
-var app = new Vue({
-  el: '#panel',
-  data: {
-    isAMactive: true,
-    isPMactive: false,
-    sliderValue: 0,
-    timeSlider: timeSlider
-  },
-  methods: {
-    pickAM: pickAM,
-    pickPM: pickPM
-  },
-  watch: {
-    sliderValue: sliderChanged
-  },
-  components: {
-    vueSlider: _vueSliderComponent2.default
-  }
-});
-updateSliderData();
-updateLegend();
-queryServer();
+geoLayer_tmcseg = queryServer(API_SERVER + GEO_VIEW1, 0);
+geoLayer_tmcshp = queryServer(API_SERVER + GEO_VIEW2, 1);
 
 /***/ }),
-/* 479 */,
-/* 480 */,
-/* 481 */,
 /* 482 */,
 /* 483 */,
 /* 484 */,
@@ -11315,11 +11023,14 @@ queryServer();
 /* 554 */,
 /* 555 */,
 /* 556 */,
-/* 557 */
+/* 557 */,
+/* 558 */,
+/* 559 */,
+/* 560 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(150);
-module.exports = __webpack_require__(478);
+module.exports = __webpack_require__(481);
 
 
 /***/ })

@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 557);
+/******/ 	return __webpack_require__(__webpack_require__.s = 562);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10466,7 +10466,37 @@ module.exports = self.fetch.bind(self);
 !function(t,e){ true?module.exports=e():"function"==typeof define&&define.amd?define("vue-slider-component",[],e):"object"==typeof exports?exports["vue-slider-component"]=e():t["vue-slider-component"]=e()}(this,function(){return function(t){function e(s){if(i[s])return i[s].exports;var r=i[s]={i:s,l:!1,exports:{}};return t[s].call(r.exports,r,r.exports,e),r.l=!0,r.exports}var i={};return e.m=t,e.c=i,e.i=function(t){return t},e.d=function(t,i,s){e.o(t,i)||Object.defineProperty(t,i,{configurable:!1,enumerable:!0,get:s})},e.n=function(t){var i=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(i,"a",i),i},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="",e(e.s=2)}([function(t,e,i){i(7);var s=i(5)(i(1),i(6),"data-v-4f2807ae",null);t.exports=s.exports},function(t,e,i){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.default={data:function(){return{flag:!1,size:0,currentValue:0,currentSlider:0}},props:{width:{type:[Number,String],default:"auto"},height:{type:[Number,String],default:6},data:{type:Array,default:null},dotSize:{type:Number,default:16},min:{type:Number,default:0},max:{type:Number,default:100},interval:{type:Number,default:1},show:{type:Boolean,default:!0},disabled:{type:Boolean,default:!1},piecewise:{type:Boolean,default:!1},tooltip:{type:[String,Boolean],default:"always"},eventType:{type:String,default:"auto"},direction:{type:String,default:"horizontal"},reverse:{type:Boolean,default:!1},lazy:{type:Boolean,default:!1},clickable:{type:Boolean,default:!0},speed:{type:Number,default:.5},realTime:{type:Boolean,default:!1},value:{type:[String,Number,Array],default:0},piecewiseLabel:{type:Boolean,default:!1},sliderStyle:[Array,Object],tooltipDir:[Array,String],formatter:[String,Function],piecewiseStyle:Object,piecewiseActiveStyle:Object,processStyle:Object,bgStyle:Object,tooltipStyle:[Array,Object],labelStyle:Object,labelActiveStyle:Object},computed:{flowDirection:function(){return"vue-slider-"+this.direction+(this.reverse?"-reverse":"")},tooltipDirection:function(){var t=this.tooltipDir||("vertical"===this.direction?"left":"top");return Array.isArray(t)?this.isRange?t:t[1]:this.isRange?[t,t]:t},tooltipStatus:function(){return"hover"===this.tooltip&&this.flag?"vue-slider-always":this.tooltip?"vue-slider-"+this.tooltip:""},tooltipClass:function(){return["vue-slider-tooltip-"+this.tooltipDirection,"vue-slider-tooltip"]},isMobile:function(){return"undefined"!=typeof navigator&&("touch"===this.eventType||"mouse"!==this.eventType&&/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od|ad)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(navigator.userAgent||navigator.vendor||window.opera))},isDisabled:function(){return"none"===this.eventType||this.disabled},disabledClass:function(){return this.disabled?"vue-slider-disabled":""},isRange:function(){return Array.isArray(this.value)},slider:function(){return this.isRange?[this.$refs.dot0,this.$refs.dot1]:this.$refs.dot},minimum:function(){return this.data?0:this.min},val:{get:function(){return this.data?this.isRange?[this.data[this.currentValue[0]],this.data[this.currentValue[1]]]:this.data[this.currentValue]:this.currentValue},set:function(t){if(this.data)if(this.isRange){var e=this.data.indexOf(t[0]),i=this.data.indexOf(t[1]);e>-1&&i>-1&&(this.currentValue=[e,i])}else{var s=this.data.indexOf(t);s>-1&&(this.currentValue=s)}else this.currentValue=t}},currentIndex:function(){return this.isRange?this.data?this.currentValue:[(this.currentValue[0]-this.minimum)/this.spacing,(this.currentValue[1]-this.minimum)/this.spacing]:(this.currentValue-this.minimum)/this.spacing},indexRange:function(){return this.isRange?this.currentIndex:[0,this.currentIndex]},maximum:function(){return this.data?this.data.length-1:this.max},multiple:function(){var t=(""+this.interval).split(".")[1];return t?Math.pow(10,t.length):1},spacing:function(){return this.data?1:this.interval},total:function(){return this.data?this.data.length-1:(~~((this.maximum-this.minimum)*this.multiple)%(this.interval*this.multiple)!=0&&console.error("[Vue-slider warn]: Prop[interval] is illegal, Please make sure that the interval can be divisible"),(this.maximum-this.minimum)/this.interval)},gap:function(){return this.size/this.total},position:function(){return this.isRange?[(this.currentValue[0]-this.minimum)/this.spacing*this.gap,(this.currentValue[1]-this.minimum)/this.spacing*this.gap]:(this.currentValue-this.minimum)/this.spacing*this.gap},limit:function(){return this.isRange?[[0,this.position[1]],[this.position[0],this.size]]:[0,this.size]},valueLimit:function(){return this.isRange?[[this.minimum,this.currentValue[1]],[this.currentValue[0],this.maximum]]:[this.minimum,this.maximum]},wrapStyles:function(){return"vertical"===this.direction?{height:"number"==typeof this.height?this.height+"px":this.height,padding:this.dotSize/2+"px"}:{width:"number"==typeof this.width?this.width+"px":this.width,padding:this.dotSize/2+"px"}},sliderStyles:function(){return Array.isArray(this.sliderStyle)?this.isRange?this.sliderStyle:this.sliderStyle[1]:this.isRange?[this.sliderStyle,this.sliderStyle]:this.sliderStyle},tooltipStyles:function(){return Array.isArray(this.tooltipStyle)?this.isRange?this.tooltipStyle:this.tooltipStyle[1]:this.isRange?[this.tooltipStyle,this.tooltipStyle]:this.tooltipStyle},elemStyles:function(){return"vertical"===this.direction?{width:this.width+"px",height:"100%"}:{height:this.height+"px"}},dotStyles:function(){return"vertical"===this.direction?{width:this.dotSize+"px",height:this.dotSize+"px",left:-(this.dotSize-this.width)/2+"px"}:{width:this.dotSize+"px",height:this.dotSize+"px",top:-(this.dotSize-this.height)/2+"px"}},piecewiseDotStyle:function(){return"vertical"===this.direction?{width:this.width+"px",height:this.width+"px"}:{width:this.height+"px",height:this.height+"px"}},piecewiseDotWrap:function(){if(!this.piecewise&&!this.piecewiseLabel)return!1;for(var t=[],e=0;e<=this.total;e++){var i="vertical"===this.direction?{bottom:this.gap*e-this.width/2+"px",left:0}:{left:this.gap*e-this.height/2+"px",top:0},s=this.reverse?this.total-e:e,r=this.data?this.data[s]:this.spacing*s+this.min;t.push({style:i,label:this.formatter?this.formatting(r):r,inRange:s>=this.indexRange[0]&&s<=this.indexRange[1]})}return t}},watch:{value:function(t){this.flag||this.setValue(t,!0)},max:function(t){var e=this.limitValue(this.val);!1!==e&&this.setValue(e),this.refresh()},min:function(t){var e=this.limitValue(this.val);!1!==e&&this.setValue(e),this.refresh()},show:function(t){var e=this;t&&!this.size&&this.$nextTick(function(){e.refresh()})}},methods:{bindEvents:function(){this.isMobile?(this.$refs.wrap.addEventListener("touchmove",this.moving),this.$refs.wrap.addEventListener("touchend",this.moveEnd)):(document.addEventListener("mousemove",this.moving),document.addEventListener("mouseup",this.moveEnd),document.addEventListener("mouseleave",this.moveEnd),window.addEventListener("resize",this.refresh))},unbindEvents:function(){window.removeEventListener("resize",this.refresh),this.isMobile?(this.$refs.wrap.removeEventListener("touchmove",this.moving),this.$refs.wrap.removeEventListener("touchend",this.moveEnd)):(document.removeEventListener("mousemove",this.moving),document.removeEventListener("mouseup",this.moveEnd),document.removeEventListener("mouseleave",this.moveEnd))},formatting:function(t){return"string"==typeof this.formatter?this.formatter.replace(/\{value\}/,t):this.formatter(t)},getPos:function(t){return this.realTime&&this.getStaticData(),"vertical"===this.direction?this.reverse?t.pageY-this.offset:this.size-(t.pageY-this.offset):this.reverse?this.size-(t.clientX-this.offset):t.clientX-this.offset},wrapClick:function(t){if(this.isDisabled||!this.clickable)return!1;var e=this.getPos(t);this.isRange&&(this.currentSlider=e>(this.position[1]-this.position[0])/2+this.position[0]?1:0),this.setValueOnPos(e)},moveStart:function(t){if(this.isDisabled)return!1;this.isRange&&(this.currentSlider=t),this.flag=!0,this.$emit("drag-start",this)},moving:function(t){if(!this.flag)return!1;t.preventDefault(),this.isMobile&&(t=t.targetTouches[0]),this.setValueOnPos(this.getPos(t),!0)},moveEnd:function(t){if(!this.flag)return!1;this.$emit("drag-end",this),this.lazy&&this.isDiff(this.val,this.value)&&this.syncValue(),this.flag=!1,this.setPosition()},setValueOnPos:function(t,e){var i=this.isRange?this.limit[this.currentSlider]:this.limit,s=this.isRange?this.valueLimit[this.currentSlider]:this.valueLimit;if(t>=i[0]&&t<=i[1]){this.setTransform(t);var r=(Math.round(t/this.gap)*(this.spacing*this.multiple)+this.minimum*this.multiple)/this.multiple;this.setCurrentValue(r,e)}else t<i[0]?(this.setTransform(i[0]),this.setCurrentValue(s[0]),1===this.currentSlider&&(this.currentSlider=0)):(this.setTransform(i[1]),this.setCurrentValue(s[1]),0===this.currentSlider&&(this.currentSlider=1))},isDiff:function(t,e){return Object.prototype.toString.call(t)!==Object.prototype.toString.call(e)||(Array.isArray(t)&&t.length===e.length?t.some(function(t,i){return t!==e[i]}):t!==e)},setCurrentValue:function(t,e){if(t<this.minimum||t>this.maximum)return!1;this.isRange?this.isDiff(this.currentValue[this.currentSlider],t)&&(this.currentValue.splice(this.currentSlider,1,t),this.lazy&&this.flag||this.syncValue()):this.isDiff(this.currentValue,t)&&(this.currentValue=t,this.lazy&&this.flag||this.syncValue()),e||this.setPosition()},setIndex:function(t){if(Array.isArray(t)&&this.isRange){var e=void 0;e=this.data?[this.data[t[0]],this.data[t[1]]]:[this.spacing*t[0]+this.minimum,this.spacing*t[1]+this.minimum],this.setValue(e)}else t=this.spacing*t+this.minimum,this.isRange&&(this.currentSlider=t>(this.currentValue[1]-this.currentValue[0])/2+this.currentValue[0]?1:0),this.setCurrentValue(t)},setValue:function(t,e,i){var s=this;if(this.isDiff(this.val,t)){var r=this.limitValue(t);this.val=!1!==r?this.isRange?r.concat():r:this.isRange?t.concat():t,this.syncValue(e)}this.$nextTick(function(){return s.setPosition(i)})},setPosition:function(t){this.flag||this.setTransitionTime(void 0===t?this.speed:t),this.isRange?(this.currentSlider=0,this.setTransform(this.position[this.currentSlider]),this.currentSlider=1,this.setTransform(this.position[this.currentSlider])):this.setTransform(this.position),this.flag||this.setTransitionTime(0)},setTransform:function(t){var e=("vertical"===this.direction?this.dotSize/2-t:t-this.dotSize/2)*(this.reverse?-1:1),i="vertical"===this.direction?"translateY("+e+"px)":"translateX("+e+"px)",s=(0===this.currentSlider?this.position[1]-t:t-this.position[0])+"px",r=(0===this.currentSlider?t:this.position[0])+"px";this.isRange?(this.slider[this.currentSlider].style.transform=i,this.slider[this.currentSlider].style.WebkitTransform=i,this.slider[this.currentSlider].style.msTransform=i,"vertical"===this.direction?(this.$refs.process.style.height=s,this.$refs.process.style[this.reverse?"top":"bottom"]=r):(this.$refs.process.style.width=s,this.$refs.process.style[this.reverse?"right":"left"]=r)):(this.slider.style.transform=i,this.slider.style.WebkitTransform=i,this.slider.style.msTransform=i,"vertical"===this.direction?(this.$refs.process.style.height=t+"px",this.$refs.process.style[this.reverse?"top":"bottom"]=0):(this.$refs.process.style.width=t+"px",this.$refs.process.style[this.reverse?"right":"left"]=0))},setTransitionTime:function(t){if(t||this.$refs.process.offsetWidth,this.isRange){for(var e=0;e<this.slider.length;e++)this.slider[e].style.transitionDuration=t+"s",this.slider[e].style.WebkitTransitionDuration=t+"s";this.$refs.process.style.transitionDuration=t+"s",this.$refs.process.style.WebkitTransitionDuration=t+"s"}else this.slider.style.transitionDuration=t+"s",this.slider.style.WebkitTransitionDuration=t+"s",this.$refs.process.style.transitionDuration=t+"s",this.$refs.process.style.WebkitTransitionDuration=t+"s"},limitValue:function(t){var e=this;if(this.data)return t;var i=!1;return this.isRange?t=t.map(function(t){return t<e.min?(i=!0,e.min):t>e.max?(i=!0,e.max):t}):t>this.max?(i=!0,t=this.max):t<this.min&&(i=!0,t=this.min),i&&t},syncValue:function(t){t||this.$emit("callback",this.val),this.$emit("input",this.isRange?this.val.concat():this.val)},getValue:function(){return this.val},getIndex:function(){return this.currentIndex},getStaticData:function(){this.$refs.elem&&(this.size="vertical"===this.direction?this.$refs.elem.offsetHeight:this.$refs.elem.offsetWidth,this.offset="vertical"===this.direction?this.$refs.elem.getBoundingClientRect().top+window.pageYOffset||document.documentElement.scrollTop:this.$refs.elem.getBoundingClientRect().left)},refresh:function(){this.$refs.elem&&(this.getStaticData(),this.setPosition())}},mounted:function(){var t=this;"undefined"!=typeof window&&"undefined"!=typeof document&&this.$nextTick(function(){t.getStaticData(),t.setValue(t.value,!0,0),t.bindEvents()})},beforeDestroy:function(){this.unbindEvents()}}},function(t,e,i){"use strict";var s=i(0);t.exports=s},function(t,e,i){e=t.exports=i(4)(),e.push([t.i,'.vue-slider-wrap[data-v-4f2807ae]{position:relative;box-sizing:border-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.vue-slider-wrap.vue-slider-disabled[data-v-4f2807ae]{opacity:.5;cursor:not-allowed}.vue-slider-wrap.vue-slider-has-label[data-v-4f2807ae]{margin-bottom:15px}.vue-slider-wrap.vue-slider-disabled .vue-slider-dot[data-v-4f2807ae]{cursor:not-allowed}.vue-slider-wrap .vue-slider[data-v-4f2807ae]{position:relative;display:block;border-radius:15px;background-color:#ccc}.vue-slider-wrap .vue-slider[data-v-4f2807ae]:after{content:"";position:absolute;left:0;top:0;width:100%;height:100%;z-index:2}.vue-slider-process[data-v-4f2807ae]{position:absolute;border-radius:15px;background-color:#3498db;transition:all 0s;z-index:1}.vue-slider-horizontal .vue-slider-process[data-v-4f2807ae]{width:0;height:100%;top:0;left:0;will-change:width}.vue-slider-vertical .vue-slider-process[data-v-4f2807ae]{width:100%;height:0;bottom:0;left:0;will-change:height}.vue-slider-horizontal-reverse .vue-slider-process[data-v-4f2807ae]{width:0;height:100%;top:0;right:0}.vue-slider-vertical-reverse .vue-slider-process[data-v-4f2807ae]{width:100%;height:0;top:0;left:0}.vue-slider-dot[data-v-4f2807ae]{position:absolute;border-radius:50%;background-color:#fff;box-shadow:.5px .5px 2px 1px rgba(0,0,0,.32);transition:all 0s;will-change:transform;cursor:pointer;z-index:3}.vue-slider-horizontal .vue-slider-dot[data-v-4f2807ae]{left:0}.vue-slider-vertical .vue-slider-dot[data-v-4f2807ae]{bottom:0}.vue-slider-horizontal-reverse .vue-slider-dot[data-v-4f2807ae]{right:0}.vue-slider-vertical-reverse .vue-slider-dot[data-v-4f2807ae]{top:0}.vue-slider-tooltip-wrap[data-v-4f2807ae]{display:none;position:absolute;z-index:9}.vue-slider-tooltip[data-v-4f2807ae]{display:block;font-size:14px;white-space:nowrap;padding:2px 5px;min-width:20px;text-align:center;color:#fff;border-radius:5px;border:1px solid #3498db;background-color:#3498db}.vue-slider-tooltip-wrap.vue-slider-tooltip-top[data-v-4f2807ae]{top:-9px;left:50%;transform:translate(-50%,-100%)}.vue-slider-tooltip-wrap.vue-slider-tooltip-bottom[data-v-4f2807ae]{bottom:-9px;left:50%;transform:translate(-50%,100%)}.vue-slider-tooltip-wrap.vue-slider-tooltip-left[data-v-4f2807ae]{top:50%;left:-9px;transform:translate(-100%,-50%)}.vue-slider-tooltip-wrap.vue-slider-tooltip-right[data-v-4f2807ae]{top:50%;right:-9px;transform:translate(100%,-50%)}.vue-slider-tooltip-wrap.vue-slider-tooltip-top .vue-slider-tooltip[data-v-4f2807ae]:before{content:"";position:absolute;bottom:-10px;left:50%;width:0;height:0;border:5px solid transparent;border:6px solid transparent\\0;border-top-color:inherit;transform:translate(-50%)}.vue-slider-tooltip-wrap.vue-slider-tooltip-bottom .vue-slider-tooltip[data-v-4f2807ae]:before{content:"";position:absolute;top:-10px;left:50%;width:0;height:0;border:5px solid transparent;border:6px solid transparent\\0;border-bottom-color:inherit;transform:translate(-50%)}.vue-slider-tooltip-wrap.vue-slider-tooltip-left .vue-slider-tooltip[data-v-4f2807ae]:before{content:"";position:absolute;top:50%;right:-10px;width:0;height:0;border:5px solid transparent;border:6px solid transparent\\0;border-left-color:inherit;transform:translateY(-50%)}.vue-slider-tooltip-wrap.vue-slider-tooltip-right .vue-slider-tooltip[data-v-4f2807ae]:before{content:"";position:absolute;top:50%;left:-10px;width:0;height:0;border:5px solid transparent;border:6px solid transparent\\0;border-right-color:inherit;transform:translateY(-50%)}.vue-slider-dot.vue-slider-hover:hover .vue-slider-tooltip-wrap[data-v-4f2807ae]{display:block}.vue-slider-dot.vue-slider-always .vue-slider-tooltip-wrap[data-v-4f2807ae]{display:block!important}.vue-slider-piecewise[data-v-4f2807ae]{position:absolute;width:100%;padding:0;margin:0;left:0;top:0;height:100%;list-style:none}.vue-slider-piecewise li[data-v-4f2807ae]{position:absolute;width:8px;height:8px}.vue-slider-piecewise .vue-slider-piecewise-dot[data-v-4f2807ae]{position:absolute;left:50%;top:50%;width:100%;height:100%;display:inline-block;background-color:rgba(0,0,0,.16);border-radius:50%;transform:translate(-50%,-50%);z-index:2;transition:all .3s}.vue-slider-piecewise li:first-child .vue-slider-piecewise-dot[data-v-4f2807ae],.vue-slider-piecewise li:last-child .vue-slider-piecewise-dot[data-v-4f2807ae]{visibility:hidden}.vue-slider-horizontal-reverse .vue-slider-piecewise-label[data-v-4f2807ae],.vue-slider-horizontal .vue-slider-piecewise-label[data-v-4f2807ae]{position:absolute;display:inline-block;top:100%;left:50%;white-space:nowrap;font-size:12px;color:#333;transform:translate(-50%,8px);visibility:visible}.vue-slider-vertical-reverse .vue-slider-piecewise-label[data-v-4f2807ae],.vue-slider-vertical .vue-slider-piecewise-label[data-v-4f2807ae]{position:absolute;display:inline-block;top:50%;left:100%;white-space:nowrap;font-size:12px;color:#333;transform:translate(8px,-50%);visibility:visible}.vue-slider-sr-only[data-v-4f2807ae]{clip:rect(1px,1px,1px,1px);height:1px;width:1px;overflow:hidden;position:absolute!important}',""])},function(t,e){t.exports=function(){var t=[];return t.toString=function(){for(var t=[],e=0;e<this.length;e++){var i=this[e];i[2]?t.push("@media "+i[2]+"{"+i[1]+"}"):t.push(i[1])}return t.join("")},t.i=function(e,i){"string"==typeof e&&(e=[[null,e,""]]);for(var s={},r=0;r<this.length;r++){var o=this[r][0];"number"==typeof o&&(s[o]=!0)}for(r=0;r<e.length;r++){var n=e[r];"number"==typeof n[0]&&s[n[0]]||(i&&!n[2]?n[2]=i:i&&(n[2]="("+n[2]+") and ("+i+")"),t.push(n))}},t}},function(t,e){t.exports=function(t,e,i,s){var r,o=t=t||{},n=typeof t.default;"object"!==n&&"function"!==n||(r=t,o=t.default);var a="function"==typeof o?o.options:o;if(e&&(a.render=e.render,a.staticRenderFns=e.staticRenderFns),i&&(a._scopeId=i),s){var l=Object.create(a.computed||null);Object.keys(s).forEach(function(t){var e=s[t];l[t]=function(){return e}}),a.computed=l}return{esModule:r,exports:o,options:a}}},function(t,e){t.exports={render:function(){var t=this,e=t.$createElement,i=t._self._c||e;return i("div",{directives:[{name:"show",rawName:"v-show",value:t.show,expression:"show"}],ref:"wrap",class:["vue-slider-wrap",t.flowDirection,t.disabledClass,{"vue-slider-has-label":t.piecewiseLabel}],style:t.wrapStyles,on:{click:t.wrapClick}},[i("div",{ref:"elem",staticClass:"vue-slider",style:[t.elemStyles,t.bgStyle],attrs:{"aria-hidden":"true"}},[t.isMobile?[t.isRange?[i("div",{ref:"dot0",class:[t.tooltipStatus,"vue-slider-dot"],style:[t.sliderStyles[0],t.dotStyles],on:{touchstart:function(e){t.moveStart(0)}}},[i("span",{class:["vue-slider-tooltip-"+t.tooltipDirection[0],"vue-slider-tooltip-wrap"]},[t._t("tooltip",[i("span",{staticClass:"vue-slider-tooltip",style:t.tooltipStyles[0]},[t._v(t._s(t.formatter?t.formatting(t.val[0]):t.val[0]))])],{value:t.val[0],index:0})],2)]),t._v(" "),i("div",{ref:"dot1",class:[t.tooltipStatus,"vue-slider-dot"],style:[t.sliderStyles[1],t.dotStyles],on:{touchstart:function(e){t.moveStart(1)}}},[i("span",{class:["vue-slider-tooltip-"+t.tooltipDirection[1],"vue-slider-tooltip-wrap"]},[t._t("tooltip",[i("span",{staticClass:"vue-slider-tooltip",style:t.tooltipStyles[1]},[t._v(t._s(t.formatter?t.formatting(t.val[1]):t.val[1]))])],{value:t.val[1],index:1})],2)])]:[i("div",{ref:"dot",class:[t.tooltipStatus,"vue-slider-dot"],style:[t.sliderStyles,t.dotStyles],on:{touchstart:t.moveStart}},[i("span",{class:["vue-slider-tooltip-"+t.tooltipDirection,"vue-slider-tooltip-wrap"]},[t._t("tooltip",[t._v("\n\t\t\t\t\t\t\t"+t._s(t.formatter?t.formatting(t.val):t.val)+"\n\t\t\t\t\t\t")],{value:t.val})],2)])]]:[t.isRange?[i("div",{ref:"dot0",class:[t.tooltipStatus,"vue-slider-dot"],style:[t.sliderStyles[0],t.dotStyles],on:{mousedown:function(e){t.moveStart(0)}}},[i("span",{class:["vue-slider-tooltip-"+t.tooltipDirection[0],"vue-slider-tooltip-wrap"]},[t._t("tooltip",[i("span",{staticClass:"vue-slider-tooltip",style:t.tooltipStyles[0]},[t._v(t._s(t.formatter?t.formatting(t.val[0]):t.val[0]))])],{value:t.val[0],index:0})],2)]),t._v(" "),i("div",{ref:"dot1",class:[t.tooltipStatus,"vue-slider-dot"],style:[t.sliderStyles[1],t.dotStyles],on:{mousedown:function(e){t.moveStart(1)}}},[i("span",{class:["vue-slider-tooltip-"+t.tooltipDirection[1],"vue-slider-tooltip-wrap"]},[t._t("tooltip",[i("span",{staticClass:"vue-slider-tooltip",style:t.tooltipStyles[1]},[t._v(t._s(t.formatter?t.formatting(t.val[1]):t.val[1]))])],{value:t.val[1],index:1})],2)])]:[i("div",{ref:"dot",class:[t.tooltipStatus,"vue-slider-dot"],style:[t.sliderStyles,t.dotStyles],on:{mousedown:t.moveStart}},[i("span",{class:["vue-slider-tooltip-"+t.tooltipDirection,"vue-slider-tooltip-wrap"]},[t._t("tooltip",[i("span",{staticClass:"vue-slider-tooltip",style:t.tooltipStyles},[t._v(t._s(t.formatter?t.formatting(t.val):t.val))])],{value:t.val})],2)])]],t._v(" "),[i("ul",{staticClass:"vue-slider-piecewise"},t._l(t.piecewiseDotWrap,function(e,s){return i("li",{style:[t.piecewiseDotStyle,e.style]},[t._t("piecewiseL",[t.piecewise?i("span",{staticClass:"vue-slider-piecewise-dot",style:[t.piecewiseStyle,e.inRange?t.piecewiseActiveStyle:null]}):t._e()],{label:e.label,index:s,first:0===s,last:s===t.piecewiseDotWrap.length-1}),t._v(" "),t._t("label",[t.piecewiseLabel?i("span",{staticClass:"vue-slider-piecewise-label",style:[t.labelStyle,e.inRange?t.labelActiveStyle:null]},[t._v("\n\t\t\t\t\t\t\t"+t._s(e.label)+"\n\t\t\t\t\t\t")]):t._e()],{label:e.label,index:s,first:0===s,last:s===t.piecewiseDotWrap.length-1})],2)}))],t._v(" "),i("div",{ref:"process",staticClass:"vue-slider-process",style:t.processStyle})],2),t._v(" "),t.isRange||t.data?t._e():i("input",{directives:[{name:"model",rawName:"v-model",value:t.val,expression:"val"}],staticClass:"vue-slider-sr-only",attrs:{type:"range",min:t.min,max:t.max},domProps:{value:t.val},on:{__r:function(e){t.val=e.target.value}}})])},staticRenderFns:[]}},function(t,e,i){var s=i(3);"string"==typeof s&&(s=[[t.i,s,""]]),s.locals&&(t.exports=s.locals);i(8)("3e13c911",s,!0)},function(t,e,i){function s(t){for(var e=0;e<t.length;e++){var i=t[e],s=d[i.id];if(s){s.refs++;for(var r=0;r<s.parts.length;r++)s.parts[r](i.parts[r]);for(;r<i.parts.length;r++)s.parts.push(o(i.parts[r]));s.parts.length>i.parts.length&&(s.parts.length=i.parts.length)}else{for(var n=[],r=0;r<i.parts.length;r++)n.push(o(i.parts[r]));d[i.id]={id:i.id,refs:1,parts:n}}}}function r(){var t=document.createElement("style");return t.type="text/css",h.appendChild(t),t}function o(t){var e,i,s=document.querySelector('style[data-vue-ssr-id~="'+t.id+'"]');if(s){if(f)return v;s.parentNode.removeChild(s)}if(m){var o=c++;s=p||(p=r()),e=n.bind(null,s,o,!1),i=n.bind(null,s,o,!0)}else s=r(),e=a.bind(null,s),i=function(){s.parentNode.removeChild(s)};return e(t),function(s){if(s){if(s.css===t.css&&s.media===t.media&&s.sourceMap===t.sourceMap)return;e(t=s)}else i()}}function n(t,e,i,s){var r=i?"":s.css;if(t.styleSheet)t.styleSheet.cssText=g(e,r);else{var o=document.createTextNode(r),n=t.childNodes;n[e]&&t.removeChild(n[e]),n.length?t.insertBefore(o,n[e]):t.appendChild(o)}}function a(t,e){var i=e.css,s=e.media,r=e.sourceMap;if(s&&t.setAttribute("media",s),r&&(i+="\n/*# sourceURL="+r.sources[0]+" */",i+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(r))))+" */"),t.styleSheet)t.styleSheet.cssText=i;else{for(;t.firstChild;)t.removeChild(t.firstChild);t.appendChild(document.createTextNode(i))}}var l="undefined"!=typeof document;if("undefined"!=typeof DEBUG&&DEBUG&&!l)throw new Error("vue-style-loader cannot be used in a non-browser environment. Use { target: 'node' } in your Webpack config to indicate a server-rendering environment.");var u=i(9),d={},h=l&&(document.head||document.getElementsByTagName("head")[0]),p=null,c=0,f=!1,v=function(){},m="undefined"!=typeof navigator&&/msie [6-9]\b/.test(navigator.userAgent.toLowerCase());t.exports=function(t,e,i){f=i;var r=u(t,e);return s(r),function(e){for(var i=[],o=0;o<r.length;o++){var n=r[o],a=d[n.id];a.refs--,i.push(a)}e?(r=u(t,e),s(r)):r=[];for(var o=0;o<i.length;o++){var a=i[o];if(0===a.refs){for(var l=0;l<a.parts.length;l++)a.parts[l]();delete d[a.id]}}}};var g=function(){var t=[];return function(e,i){return t[e]=i,t.filter(Boolean).join("\n")}}()},function(t,e){t.exports=function(t,e){for(var i=[],s={},r=0;r<e.length;r++){var o=e[r],n=o[0],a=o[1],l=o[2],u=o[3],d={id:t+":"+r,css:a,media:l,sourceMap:u};s[n]?s[n].parts.push(d):i.push(s[n]={id:n,parts:[d]})}return i}}])});
 
 /***/ }),
-/* 386 */,
+/* 386 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var ctx = __webpack_require__(107);
+var call = __webpack_require__(398);
+var isArrayIter = __webpack_require__(397);
+var anObject = __webpack_require__(49);
+var toLength = __webpack_require__(152);
+var getIterFn = __webpack_require__(155);
+var BREAK = {};
+var RETURN = {};
+var exports = module.exports = function (iterable, entries, fn, that, ITERATOR) {
+  var iterFn = ITERATOR ? function () { return iterable; } : getIterFn(iterable);
+  var f = ctx(fn, that, entries ? 2 : 1);
+  var index = 0;
+  var length, step, iterator, result;
+  if (typeof iterFn != 'function') throw TypeError(iterable + ' is not iterable!');
+  // fast case for arrays with default iterator
+  if (isArrayIter(iterFn)) for (length = toLength(iterable.length); length > index; index++) {
+    result = entries ? f(anObject(step = iterable[index])[0], step[1]) : f(iterable[index]);
+    if (result === BREAK || result === RETURN) return result;
+  } else for (iterator = iterFn.call(iterable); !(step = iterator.next()).done;) {
+    result = call(iterator, f, step.value, entries);
+    if (result === BREAK || result === RETURN) return result;
+  }
+};
+exports.BREAK = BREAK;
+exports.RETURN = RETURN;
+
+
+/***/ }),
 /* 387 */,
 /* 388 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -10569,60 +10599,2273 @@ module.exports = {
 
 /***/ }),
 /* 389 */,
-/* 390 */,
-/* 391 */,
-/* 392 */,
+/* 390 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+ * JavaScript Cookie v2.1.4
+ * https://github.com/js-cookie/js-cookie
+ *
+ * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
+ * Released under the MIT license
+ */
+;(function (factory) {
+	var registeredInModuleLoader = false;
+	if (true) {
+		!(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		registeredInModuleLoader = true;
+	}
+	if (true) {
+		module.exports = factory();
+		registeredInModuleLoader = true;
+	}
+	if (!registeredInModuleLoader) {
+		var OldCookies = window.Cookies;
+		var api = window.Cookies = factory();
+		api.noConflict = function () {
+			window.Cookies = OldCookies;
+			return api;
+		};
+	}
+}(function () {
+	function extend () {
+		var i = 0;
+		var result = {};
+		for (; i < arguments.length; i++) {
+			var attributes = arguments[ i ];
+			for (var key in attributes) {
+				result[key] = attributes[key];
+			}
+		}
+		return result;
+	}
+
+	function init (converter) {
+		function api (key, value, attributes) {
+			var result;
+			if (typeof document === 'undefined') {
+				return;
+			}
+
+			// Write
+
+			if (arguments.length > 1) {
+				attributes = extend({
+					path: '/'
+				}, api.defaults, attributes);
+
+				if (typeof attributes.expires === 'number') {
+					var expires = new Date();
+					expires.setMilliseconds(expires.getMilliseconds() + attributes.expires * 864e+5);
+					attributes.expires = expires;
+				}
+
+				// We're using "expires" because "max-age" is not supported by IE
+				attributes.expires = attributes.expires ? attributes.expires.toUTCString() : '';
+
+				try {
+					result = JSON.stringify(value);
+					if (/^[\{\[]/.test(result)) {
+						value = result;
+					}
+				} catch (e) {}
+
+				if (!converter.write) {
+					value = encodeURIComponent(String(value))
+						.replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
+				} else {
+					value = converter.write(value, key);
+				}
+
+				key = encodeURIComponent(String(key));
+				key = key.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent);
+				key = key.replace(/[\(\)]/g, escape);
+
+				var stringifiedAttributes = '';
+
+				for (var attributeName in attributes) {
+					if (!attributes[attributeName]) {
+						continue;
+					}
+					stringifiedAttributes += '; ' + attributeName;
+					if (attributes[attributeName] === true) {
+						continue;
+					}
+					stringifiedAttributes += '=' + attributes[attributeName];
+				}
+				return (document.cookie = key + '=' + value + stringifiedAttributes);
+			}
+
+			// Read
+
+			if (!key) {
+				result = {};
+			}
+
+			// To prevent the for loop in the first place assign an empty array
+			// in case there are no cookies at all. Also prevents odd result when
+			// calling "get()"
+			var cookies = document.cookie ? document.cookie.split('; ') : [];
+			var rdecode = /(%[0-9A-Z]{2})+/g;
+			var i = 0;
+
+			for (; i < cookies.length; i++) {
+				var parts = cookies[i].split('=');
+				var cookie = parts.slice(1).join('=');
+
+				if (cookie.charAt(0) === '"') {
+					cookie = cookie.slice(1, -1);
+				}
+
+				try {
+					var name = parts[0].replace(rdecode, decodeURIComponent);
+					cookie = converter.read ?
+						converter.read(cookie, name) : converter(cookie, name) ||
+						cookie.replace(rdecode, decodeURIComponent);
+
+					if (this.json) {
+						try {
+							cookie = JSON.parse(cookie);
+						} catch (e) {}
+					}
+
+					if (key === name) {
+						result = cookie;
+						break;
+					}
+
+					if (!key) {
+						result[name] = cookie;
+					}
+				} catch (e) {}
+			}
+
+			return result;
+		}
+
+		api.set = api;
+		api.get = function (key) {
+			return api.call(api, key);
+		};
+		api.getJSON = function () {
+			return api.apply({
+				json: true
+			}, [].slice.call(arguments));
+		};
+		api.defaults = {};
+
+		api.remove = function (key, attributes) {
+			api(key, '', extend(attributes, {
+				expires: -1
+			}));
+		};
+
+		api.withConverter = init;
+
+		return api;
+	}
+
+	return init(function () {});
+}));
+
+
+/***/ }),
+/* 391 */
+/***/ (function(module, exports) {
+
+module.exports = function (it, Constructor, name, forbiddenField) {
+  if (!(it instanceof Constructor) || (forbiddenField !== undefined && forbiddenField in it)) {
+    throw TypeError(name + ': incorrect invocation!');
+  } return it;
+};
+
+
+/***/ }),
+/* 392 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var hide = __webpack_require__(48);
+module.exports = function (target, src, safe) {
+  for (var key in src) {
+    if (safe && target[key]) target[key] = src[key];
+    else hide(target, key, src[key]);
+  } return target;
+};
+
+
+/***/ }),
 /* 393 */,
 /* 394 */,
-/* 395 */,
+/* 395 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// 25.4.1.5 NewPromiseCapability(C)
+var aFunction = __webpack_require__(118);
+
+function PromiseCapability(C) {
+  var resolve, reject;
+  this.promise = new C(function ($$resolve, $$reject) {
+    if (resolve !== undefined || reject !== undefined) throw TypeError('Bad Promise constructor');
+    resolve = $$resolve;
+    reject = $$reject;
+  });
+  this.resolve = aFunction(resolve);
+  this.reject = aFunction(reject);
+}
+
+module.exports.f = function (C) {
+  return new PromiseCapability(C);
+};
+
+
+/***/ }),
 /* 396 */,
-/* 397 */,
-/* 398 */,
-/* 399 */,
-/* 400 */,
+/* 397 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// check on default Array iterator
+var Iterators = __webpack_require__(55);
+var ITERATOR = __webpack_require__(32)('iterator');
+var ArrayProto = Array.prototype;
+
+module.exports = function (it) {
+  return it !== undefined && (Iterators.Array === it || ArrayProto[ITERATOR] === it);
+};
+
+
+/***/ }),
+/* 398 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// call something on iterator step with safe closing on error
+var anObject = __webpack_require__(49);
+module.exports = function (iterator, fn, value, entries) {
+  try {
+    return entries ? fn(anObject(value)[0], value[1]) : fn(value);
+  // 7.4.6 IteratorClose(iterator, completion)
+  } catch (e) {
+    var ret = iterator['return'];
+    if (ret !== undefined) anObject(ret.call(iterator));
+    throw e;
+  }
+};
+
+
+/***/ }),
+/* 399 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var global = __webpack_require__(33);
+var core = __webpack_require__(54);
+var dP = __webpack_require__(56);
+var DESCRIPTORS = __webpack_require__(50);
+var SPECIES = __webpack_require__(32)('species');
+
+module.exports = function (KEY) {
+  var C = typeof core[KEY] == 'function' ? core[KEY] : global[KEY];
+  if (DESCRIPTORS && C && !C[SPECIES]) dP.f(C, SPECIES, {
+    configurable: true,
+    get: function () { return this; }
+  });
+};
+
+
+/***/ }),
+/* 400 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
 /* 401 */,
 /* 402 */,
-/* 403 */,
-/* 404 */,
-/* 405 */,
-/* 406 */,
-/* 407 */,
-/* 408 */,
+/* 403 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var META = __webpack_require__(116)('meta');
+var isObject = __webpack_require__(58);
+var has = __webpack_require__(57);
+var setDesc = __webpack_require__(56).f;
+var id = 0;
+var isExtensible = Object.isExtensible || function () {
+  return true;
+};
+var FREEZE = !__webpack_require__(108)(function () {
+  return isExtensible(Object.preventExtensions({}));
+});
+var setMeta = function (it) {
+  setDesc(it, META, { value: {
+    i: 'O' + ++id, // object ID
+    w: {}          // weak collections IDs
+  } });
+};
+var fastKey = function (it, create) {
+  // return primitive with prefix
+  if (!isObject(it)) return typeof it == 'symbol' ? it : (typeof it == 'string' ? 'S' : 'P') + it;
+  if (!has(it, META)) {
+    // can't set metadata to uncaught frozen object
+    if (!isExtensible(it)) return 'F';
+    // not necessary to add metadata
+    if (!create) return 'E';
+    // add missing metadata
+    setMeta(it);
+  // return object ID
+  } return it[META].i;
+};
+var getWeak = function (it, create) {
+  if (!has(it, META)) {
+    // can't set metadata to uncaught frozen object
+    if (!isExtensible(it)) return true;
+    // not necessary to add metadata
+    if (!create) return false;
+    // add missing metadata
+    setMeta(it);
+  // return hash weak collections IDs
+  } return it[META].w;
+};
+// add metadata on freeze-family methods calling
+var onFreeze = function (it) {
+  if (FREEZE && meta.NEED && isExtensible(it) && !has(it, META)) setMeta(it);
+  return it;
+};
+var meta = module.exports = {
+  KEY: META,
+  NEED: false,
+  fastKey: fastKey,
+  getWeak: getWeak,
+  onFreeze: onFreeze
+};
+
+
+/***/ }),
+/* 404 */
+/***/ (function(module, exports) {
+
+module.exports = function (exec) {
+  try {
+    return { e: false, v: exec() };
+  } catch (e) {
+    return { e: true, v: e };
+  }
+};
+
+
+/***/ }),
+/* 405 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var newPromiseCapability = __webpack_require__(395);
+
+module.exports = function (C, x) {
+  var promiseCapability = newPromiseCapability.f(C);
+  var resolve = promiseCapability.resolve;
+  resolve(x);
+  return promiseCapability.promise;
+};
+
+
+/***/ }),
+/* 406 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.3.20 SpeciesConstructor(O, defaultConstructor)
+var anObject = __webpack_require__(49);
+var aFunction = __webpack_require__(118);
+var SPECIES = __webpack_require__(32)('species');
+module.exports = function (O, D) {
+  var C = anObject(O).constructor;
+  var S;
+  return C === undefined || (S = anObject(C)[SPECIES]) == undefined ? D : aFunction(S);
+};
+
+
+/***/ }),
+/* 407 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var ctx = __webpack_require__(107);
+var invoke = __webpack_require__(432);
+var html = __webpack_require__(249);
+var cel = __webpack_require__(114);
+var global = __webpack_require__(33);
+var process = global.process;
+var setTask = global.setImmediate;
+var clearTask = global.clearImmediate;
+var MessageChannel = global.MessageChannel;
+var Dispatch = global.Dispatch;
+var counter = 0;
+var queue = {};
+var ONREADYSTATECHANGE = 'onreadystatechange';
+var defer, channel, port;
+var run = function () {
+  var id = +this;
+  // eslint-disable-next-line no-prototype-builtins
+  if (queue.hasOwnProperty(id)) {
+    var fn = queue[id];
+    delete queue[id];
+    fn();
+  }
+};
+var listener = function (event) {
+  run.call(event.data);
+};
+// Node.js 0.9+ & IE10+ has setImmediate, otherwise:
+if (!setTask || !clearTask) {
+  setTask = function setImmediate(fn) {
+    var args = [];
+    var i = 1;
+    while (arguments.length > i) args.push(arguments[i++]);
+    queue[++counter] = function () {
+      // eslint-disable-next-line no-new-func
+      invoke(typeof fn == 'function' ? fn : Function(fn), args);
+    };
+    defer(counter);
+    return counter;
+  };
+  clearTask = function clearImmediate(id) {
+    delete queue[id];
+  };
+  // Node.js 0.8-
+  if (__webpack_require__(106)(process) == 'process') {
+    defer = function (id) {
+      process.nextTick(ctx(run, id, 1));
+    };
+  // Sphere (JS game engine) Dispatch API
+  } else if (Dispatch && Dispatch.now) {
+    defer = function (id) {
+      Dispatch.now(ctx(run, id, 1));
+    };
+  // Browsers with MessageChannel, includes WebWorkers
+  } else if (MessageChannel) {
+    channel = new MessageChannel();
+    port = channel.port2;
+    channel.port1.onmessage = listener;
+    defer = ctx(port.postMessage, port, 1);
+  // Browsers with postMessage, skip WebWorkers
+  // IE8 has postMessage, but it's sync & typeof its postMessage is 'object'
+  } else if (global.addEventListener && typeof postMessage == 'function' && !global.importScripts) {
+    defer = function (id) {
+      global.postMessage(id + '', '*');
+    };
+    global.addEventListener('message', listener, false);
+  // IE8-
+  } else if (ONREADYSTATECHANGE in cel('script')) {
+    defer = function (id) {
+      html.appendChild(cel('script'))[ONREADYSTATECHANGE] = function () {
+        html.removeChild(this);
+        run.call(id);
+      };
+    };
+  // Rest old browsers
+  } else {
+    defer = function (id) {
+      setTimeout(ctx(run, id, 1), 0);
+    };
+  }
+}
+module.exports = {
+  set: setTask,
+  clear: clearTask
+};
+
+
+/***/ }),
+/* 408 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__(58);
+module.exports = function (it, TYPE) {
+  if (!isObject(it) || it._t !== TYPE) throw TypeError('Incompatible receiver, ' + TYPE + ' required!');
+  return it;
+};
+
+
+/***/ }),
 /* 409 */,
 /* 410 */,
 /* 411 */,
-/* 412 */,
+/* 412 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var ITERATOR = __webpack_require__(32)('iterator');
+var SAFE_CLOSING = false;
+
+try {
+  var riter = [7][ITERATOR]();
+  riter['return'] = function () { SAFE_CLOSING = true; };
+  // eslint-disable-next-line no-throw-literal
+  Array.from(riter, function () { throw 2; });
+} catch (e) { /* empty */ }
+
+module.exports = function (exec, skipClosing) {
+  if (!skipClosing && !SAFE_CLOSING) return false;
+  var safe = false;
+  try {
+    var arr = [7];
+    var iter = arr[ITERATOR]();
+    iter.next = function () { return { done: safe = true }; };
+    arr[ITERATOR] = function () { return iter; };
+    exec(arr);
+  } catch (e) { /* empty */ }
+  return safe;
+};
+
+
+/***/ }),
 /* 413 */,
 /* 414 */,
 /* 415 */,
 /* 416 */,
-/* 417 */,
-/* 418 */,
-/* 419 */,
-/* 420 */,
-/* 421 */,
-/* 422 */,
-/* 423 */,
-/* 424 */,
-/* 425 */,
-/* 426 */,
-/* 427 */,
-/* 428 */,
-/* 429 */,
-/* 430 */,
-/* 431 */,
-/* 432 */,
-/* 433 */,
-/* 434 */,
-/* 435 */,
-/* 436 */,
-/* 437 */,
-/* 438 */,
-/* 439 */,
-/* 440 */,
-/* 441 */,
-/* 442 */,
-/* 443 */,
+/* 417 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(423), __esModule: true };
+
+/***/ }),
+/* 418 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(424), __esModule: true };
+
+/***/ }),
+/* 419 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _promise = __webpack_require__(417);
+
+var _promise2 = _interopRequireDefault(_promise);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (fn) {
+  return function () {
+    var gen = fn.apply(this, arguments);
+    return new _promise2.default(function (resolve, reject) {
+      function step(key, arg) {
+        try {
+          var info = gen[key](arg);
+          var value = info.value;
+        } catch (error) {
+          reject(error);
+          return;
+        }
+
+        if (info.done) {
+          resolve(value);
+        } else {
+          return _promise2.default.resolve(value).then(function (value) {
+            step("next", value);
+          }, function (err) {
+            step("throw", err);
+          });
+        }
+      }
+
+      return step("next");
+    });
+  };
+};
+
+/***/ }),
+/* 420 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+// This method of obtaining a reference to the global object needs to be
+// kept identical to the way it is obtained in runtime.js
+var g = (function() { return this })() || Function("return this")();
+
+// Use `getOwnPropertyNames` because not all browsers support calling
+// `hasOwnProperty` on the global `self` object in a worker. See #183.
+var hadRuntime = g.regeneratorRuntime &&
+  Object.getOwnPropertyNames(g).indexOf("regeneratorRuntime") >= 0;
+
+// Save the old regeneratorRuntime in case it needs to be restored later.
+var oldRuntime = hadRuntime && g.regeneratorRuntime;
+
+// Force reevalutation of runtime.js.
+g.regeneratorRuntime = undefined;
+
+module.exports = __webpack_require__(421);
+
+if (hadRuntime) {
+  // Restore the original runtime.
+  g.regeneratorRuntime = oldRuntime;
+} else {
+  // Remove the global property added by runtime.js.
+  try {
+    delete g.regeneratorRuntime;
+  } catch(e) {
+    g.regeneratorRuntime = undefined;
+  }
+}
+
+
+/***/ }),
+/* 421 */
+/***/ (function(module, exports) {
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+!(function(global) {
+  "use strict";
+
+  var Op = Object.prototype;
+  var hasOwn = Op.hasOwnProperty;
+  var undefined; // More compressible than void 0.
+  var $Symbol = typeof Symbol === "function" ? Symbol : {};
+  var iteratorSymbol = $Symbol.iterator || "@@iterator";
+  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+
+  var inModule = typeof module === "object";
+  var runtime = global.regeneratorRuntime;
+  if (runtime) {
+    if (inModule) {
+      // If regeneratorRuntime is defined globally and we're in a module,
+      // make the exports object identical to regeneratorRuntime.
+      module.exports = runtime;
+    }
+    // Don't bother evaluating the rest of this file if the runtime was
+    // already defined globally.
+    return;
+  }
+
+  // Define the runtime globally (as expected by generated code) as either
+  // module.exports (if we're in a module) or a new, empty object.
+  runtime = global.regeneratorRuntime = inModule ? module.exports : {};
+
+  function wrap(innerFn, outerFn, self, tryLocsList) {
+    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
+    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+    var generator = Object.create(protoGenerator.prototype);
+    var context = new Context(tryLocsList || []);
+
+    // The ._invoke method unifies the implementations of the .next,
+    // .throw, and .return methods.
+    generator._invoke = makeInvokeMethod(innerFn, self, context);
+
+    return generator;
+  }
+  runtime.wrap = wrap;
+
+  // Try/catch helper to minimize deoptimizations. Returns a completion
+  // record like context.tryEntries[i].completion. This interface could
+  // have been (and was previously) designed to take a closure to be
+  // invoked without arguments, but in all the cases we care about we
+  // already have an existing method we want to call, so there's no need
+  // to create a new function object. We can even get away with assuming
+  // the method takes exactly one argument, since that happens to be true
+  // in every case, so we don't have to touch the arguments object. The
+  // only additional allocation required is the completion record, which
+  // has a stable shape and so hopefully should be cheap to allocate.
+  function tryCatch(fn, obj, arg) {
+    try {
+      return { type: "normal", arg: fn.call(obj, arg) };
+    } catch (err) {
+      return { type: "throw", arg: err };
+    }
+  }
+
+  var GenStateSuspendedStart = "suspendedStart";
+  var GenStateSuspendedYield = "suspendedYield";
+  var GenStateExecuting = "executing";
+  var GenStateCompleted = "completed";
+
+  // Returning this object from the innerFn has the same effect as
+  // breaking out of the dispatch switch statement.
+  var ContinueSentinel = {};
+
+  // Dummy constructor functions that we use as the .constructor and
+  // .constructor.prototype properties for functions that return Generator
+  // objects. For full spec compliance, you may wish to configure your
+  // minifier not to mangle the names of these two functions.
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+
+  // This is a polyfill for %IteratorPrototype% for environments that
+  // don't natively support it.
+  var IteratorPrototype = {};
+  IteratorPrototype[iteratorSymbol] = function () {
+    return this;
+  };
+
+  var getProto = Object.getPrototypeOf;
+  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+  if (NativeIteratorPrototype &&
+      NativeIteratorPrototype !== Op &&
+      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+    // This environment has a native %IteratorPrototype%; use it instead
+    // of the polyfill.
+    IteratorPrototype = NativeIteratorPrototype;
+  }
+
+  var Gp = GeneratorFunctionPrototype.prototype =
+    Generator.prototype = Object.create(IteratorPrototype);
+  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
+  GeneratorFunctionPrototype.constructor = GeneratorFunction;
+  GeneratorFunctionPrototype[toStringTagSymbol] =
+    GeneratorFunction.displayName = "GeneratorFunction";
+
+  // Helper for defining the .next, .throw, and .return methods of the
+  // Iterator interface in terms of a single ._invoke method.
+  function defineIteratorMethods(prototype) {
+    ["next", "throw", "return"].forEach(function(method) {
+      prototype[method] = function(arg) {
+        return this._invoke(method, arg);
+      };
+    });
+  }
+
+  runtime.isGeneratorFunction = function(genFun) {
+    var ctor = typeof genFun === "function" && genFun.constructor;
+    return ctor
+      ? ctor === GeneratorFunction ||
+        // For the native GeneratorFunction constructor, the best we can
+        // do is to check its .name property.
+        (ctor.displayName || ctor.name) === "GeneratorFunction"
+      : false;
+  };
+
+  runtime.mark = function(genFun) {
+    if (Object.setPrototypeOf) {
+      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+    } else {
+      genFun.__proto__ = GeneratorFunctionPrototype;
+      if (!(toStringTagSymbol in genFun)) {
+        genFun[toStringTagSymbol] = "GeneratorFunction";
+      }
+    }
+    genFun.prototype = Object.create(Gp);
+    return genFun;
+  };
+
+  // Within the body of any async function, `await x` is transformed to
+  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+  // `hasOwn.call(value, "__await")` to determine if the yielded value is
+  // meant to be awaited.
+  runtime.awrap = function(arg) {
+    return { __await: arg };
+  };
+
+  function AsyncIterator(generator) {
+    function invoke(method, arg, resolve, reject) {
+      var record = tryCatch(generator[method], generator, arg);
+      if (record.type === "throw") {
+        reject(record.arg);
+      } else {
+        var result = record.arg;
+        var value = result.value;
+        if (value &&
+            typeof value === "object" &&
+            hasOwn.call(value, "__await")) {
+          return Promise.resolve(value.__await).then(function(value) {
+            invoke("next", value, resolve, reject);
+          }, function(err) {
+            invoke("throw", err, resolve, reject);
+          });
+        }
+
+        return Promise.resolve(value).then(function(unwrapped) {
+          // When a yielded Promise is resolved, its final value becomes
+          // the .value of the Promise<{value,done}> result for the
+          // current iteration. If the Promise is rejected, however, the
+          // result for this iteration will be rejected with the same
+          // reason. Note that rejections of yielded Promises are not
+          // thrown back into the generator function, as is the case
+          // when an awaited Promise is rejected. This difference in
+          // behavior between yield and await is important, because it
+          // allows the consumer to decide what to do with the yielded
+          // rejection (swallow it and continue, manually .throw it back
+          // into the generator, abandon iteration, whatever). With
+          // await, by contrast, there is no opportunity to examine the
+          // rejection reason outside the generator function, so the
+          // only option is to throw it from the await expression, and
+          // let the generator function handle the exception.
+          result.value = unwrapped;
+          resolve(result);
+        }, reject);
+      }
+    }
+
+    var previousPromise;
+
+    function enqueue(method, arg) {
+      function callInvokeWithMethodAndArg() {
+        return new Promise(function(resolve, reject) {
+          invoke(method, arg, resolve, reject);
+        });
+      }
+
+      return previousPromise =
+        // If enqueue has been called before, then we want to wait until
+        // all previous Promises have been resolved before calling invoke,
+        // so that results are always delivered in the correct order. If
+        // enqueue has not been called before, then it is important to
+        // call invoke immediately, without waiting on a callback to fire,
+        // so that the async generator function has the opportunity to do
+        // any necessary setup in a predictable way. This predictability
+        // is why the Promise constructor synchronously invokes its
+        // executor callback, and why async functions synchronously
+        // execute code before the first await. Since we implement simple
+        // async functions in terms of async generators, it is especially
+        // important to get this right, even though it requires care.
+        previousPromise ? previousPromise.then(
+          callInvokeWithMethodAndArg,
+          // Avoid propagating failures to Promises returned by later
+          // invocations of the iterator.
+          callInvokeWithMethodAndArg
+        ) : callInvokeWithMethodAndArg();
+    }
+
+    // Define the unified helper method that is used to implement .next,
+    // .throw, and .return (see defineIteratorMethods).
+    this._invoke = enqueue;
+  }
+
+  defineIteratorMethods(AsyncIterator.prototype);
+  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+    return this;
+  };
+  runtime.AsyncIterator = AsyncIterator;
+
+  // Note that simple async functions are implemented on top of
+  // AsyncIterator objects; they just return a Promise for the value of
+  // the final result produced by the iterator.
+  runtime.async = function(innerFn, outerFn, self, tryLocsList) {
+    var iter = new AsyncIterator(
+      wrap(innerFn, outerFn, self, tryLocsList)
+    );
+
+    return runtime.isGeneratorFunction(outerFn)
+      ? iter // If outerFn is a generator, return the full iterator.
+      : iter.next().then(function(result) {
+          return result.done ? result.value : iter.next();
+        });
+  };
+
+  function makeInvokeMethod(innerFn, self, context) {
+    var state = GenStateSuspendedStart;
+
+    return function invoke(method, arg) {
+      if (state === GenStateExecuting) {
+        throw new Error("Generator is already running");
+      }
+
+      if (state === GenStateCompleted) {
+        if (method === "throw") {
+          throw arg;
+        }
+
+        // Be forgiving, per 25.3.3.3.3 of the spec:
+        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+        return doneResult();
+      }
+
+      context.method = method;
+      context.arg = arg;
+
+      while (true) {
+        var delegate = context.delegate;
+        if (delegate) {
+          var delegateResult = maybeInvokeDelegate(delegate, context);
+          if (delegateResult) {
+            if (delegateResult === ContinueSentinel) continue;
+            return delegateResult;
+          }
+        }
+
+        if (context.method === "next") {
+          // Setting context._sent for legacy support of Babel's
+          // function.sent implementation.
+          context.sent = context._sent = context.arg;
+
+        } else if (context.method === "throw") {
+          if (state === GenStateSuspendedStart) {
+            state = GenStateCompleted;
+            throw context.arg;
+          }
+
+          context.dispatchException(context.arg);
+
+        } else if (context.method === "return") {
+          context.abrupt("return", context.arg);
+        }
+
+        state = GenStateExecuting;
+
+        var record = tryCatch(innerFn, self, context);
+        if (record.type === "normal") {
+          // If an exception is thrown from innerFn, we leave state ===
+          // GenStateExecuting and loop back for another invocation.
+          state = context.done
+            ? GenStateCompleted
+            : GenStateSuspendedYield;
+
+          if (record.arg === ContinueSentinel) {
+            continue;
+          }
+
+          return {
+            value: record.arg,
+            done: context.done
+          };
+
+        } else if (record.type === "throw") {
+          state = GenStateCompleted;
+          // Dispatch the exception by looping back around to the
+          // context.dispatchException(context.arg) call above.
+          context.method = "throw";
+          context.arg = record.arg;
+        }
+      }
+    };
+  }
+
+  // Call delegate.iterator[context.method](context.arg) and handle the
+  // result, either by returning a { value, done } result from the
+  // delegate iterator, or by modifying context.method and context.arg,
+  // setting context.delegate to null, and returning the ContinueSentinel.
+  function maybeInvokeDelegate(delegate, context) {
+    var method = delegate.iterator[context.method];
+    if (method === undefined) {
+      // A .throw or .return when the delegate iterator has no .throw
+      // method always terminates the yield* loop.
+      context.delegate = null;
+
+      if (context.method === "throw") {
+        if (delegate.iterator.return) {
+          // If the delegate iterator has a return method, give it a
+          // chance to clean up.
+          context.method = "return";
+          context.arg = undefined;
+          maybeInvokeDelegate(delegate, context);
+
+          if (context.method === "throw") {
+            // If maybeInvokeDelegate(context) changed context.method from
+            // "return" to "throw", let that override the TypeError below.
+            return ContinueSentinel;
+          }
+        }
+
+        context.method = "throw";
+        context.arg = new TypeError(
+          "The iterator does not provide a 'throw' method");
+      }
+
+      return ContinueSentinel;
+    }
+
+    var record = tryCatch(method, delegate.iterator, context.arg);
+
+    if (record.type === "throw") {
+      context.method = "throw";
+      context.arg = record.arg;
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    var info = record.arg;
+
+    if (! info) {
+      context.method = "throw";
+      context.arg = new TypeError("iterator result is not an object");
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    if (info.done) {
+      // Assign the result of the finished delegate to the temporary
+      // variable specified by delegate.resultName (see delegateYield).
+      context[delegate.resultName] = info.value;
+
+      // Resume execution at the desired location (see delegateYield).
+      context.next = delegate.nextLoc;
+
+      // If context.method was "throw" but the delegate handled the
+      // exception, let the outer generator proceed normally. If
+      // context.method was "next", forget context.arg since it has been
+      // "consumed" by the delegate iterator. If context.method was
+      // "return", allow the original .return call to continue in the
+      // outer generator.
+      if (context.method !== "return") {
+        context.method = "next";
+        context.arg = undefined;
+      }
+
+    } else {
+      // Re-yield the result returned by the delegate method.
+      return info;
+    }
+
+    // The delegate iterator is finished, so forget it and continue with
+    // the outer generator.
+    context.delegate = null;
+    return ContinueSentinel;
+  }
+
+  // Define Generator.prototype.{next,throw,return} in terms of the
+  // unified ._invoke helper method.
+  defineIteratorMethods(Gp);
+
+  Gp[toStringTagSymbol] = "Generator";
+
+  // A Generator should always return itself as the iterator object when the
+  // @@iterator function is called on it. Some browsers' implementations of the
+  // iterator prototype chain incorrectly implement this, causing the Generator
+  // object to not be returned from this call. This ensures that doesn't happen.
+  // See https://github.com/facebook/regenerator/issues/274 for more details.
+  Gp[iteratorSymbol] = function() {
+    return this;
+  };
+
+  Gp.toString = function() {
+    return "[object Generator]";
+  };
+
+  function pushTryEntry(locs) {
+    var entry = { tryLoc: locs[0] };
+
+    if (1 in locs) {
+      entry.catchLoc = locs[1];
+    }
+
+    if (2 in locs) {
+      entry.finallyLoc = locs[2];
+      entry.afterLoc = locs[3];
+    }
+
+    this.tryEntries.push(entry);
+  }
+
+  function resetTryEntry(entry) {
+    var record = entry.completion || {};
+    record.type = "normal";
+    delete record.arg;
+    entry.completion = record;
+  }
+
+  function Context(tryLocsList) {
+    // The root entry object (effectively a try statement without a catch
+    // or a finally block) gives us a place to store values thrown from
+    // locations where there is no enclosing try statement.
+    this.tryEntries = [{ tryLoc: "root" }];
+    tryLocsList.forEach(pushTryEntry, this);
+    this.reset(true);
+  }
+
+  runtime.keys = function(object) {
+    var keys = [];
+    for (var key in object) {
+      keys.push(key);
+    }
+    keys.reverse();
+
+    // Rather than returning an object with a next method, we keep
+    // things simple and return the next function itself.
+    return function next() {
+      while (keys.length) {
+        var key = keys.pop();
+        if (key in object) {
+          next.value = key;
+          next.done = false;
+          return next;
+        }
+      }
+
+      // To avoid creating an additional object, we just hang the .value
+      // and .done properties off the next function object itself. This
+      // also ensures that the minifier will not anonymize the function.
+      next.done = true;
+      return next;
+    };
+  };
+
+  function values(iterable) {
+    if (iterable) {
+      var iteratorMethod = iterable[iteratorSymbol];
+      if (iteratorMethod) {
+        return iteratorMethod.call(iterable);
+      }
+
+      if (typeof iterable.next === "function") {
+        return iterable;
+      }
+
+      if (!isNaN(iterable.length)) {
+        var i = -1, next = function next() {
+          while (++i < iterable.length) {
+            if (hasOwn.call(iterable, i)) {
+              next.value = iterable[i];
+              next.done = false;
+              return next;
+            }
+          }
+
+          next.value = undefined;
+          next.done = true;
+
+          return next;
+        };
+
+        return next.next = next;
+      }
+    }
+
+    // Return an iterator with no values.
+    return { next: doneResult };
+  }
+  runtime.values = values;
+
+  function doneResult() {
+    return { value: undefined, done: true };
+  }
+
+  Context.prototype = {
+    constructor: Context,
+
+    reset: function(skipTempReset) {
+      this.prev = 0;
+      this.next = 0;
+      // Resetting context._sent for legacy support of Babel's
+      // function.sent implementation.
+      this.sent = this._sent = undefined;
+      this.done = false;
+      this.delegate = null;
+
+      this.method = "next";
+      this.arg = undefined;
+
+      this.tryEntries.forEach(resetTryEntry);
+
+      if (!skipTempReset) {
+        for (var name in this) {
+          // Not sure about the optimal order of these conditions:
+          if (name.charAt(0) === "t" &&
+              hasOwn.call(this, name) &&
+              !isNaN(+name.slice(1))) {
+            this[name] = undefined;
+          }
+        }
+      }
+    },
+
+    stop: function() {
+      this.done = true;
+
+      var rootEntry = this.tryEntries[0];
+      var rootRecord = rootEntry.completion;
+      if (rootRecord.type === "throw") {
+        throw rootRecord.arg;
+      }
+
+      return this.rval;
+    },
+
+    dispatchException: function(exception) {
+      if (this.done) {
+        throw exception;
+      }
+
+      var context = this;
+      function handle(loc, caught) {
+        record.type = "throw";
+        record.arg = exception;
+        context.next = loc;
+
+        if (caught) {
+          // If the dispatched exception was caught by a catch block,
+          // then let that catch block handle the exception normally.
+          context.method = "next";
+          context.arg = undefined;
+        }
+
+        return !! caught;
+      }
+
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        var record = entry.completion;
+
+        if (entry.tryLoc === "root") {
+          // Exception thrown outside of any try block that could handle
+          // it, so set the completion value of the entire function to
+          // throw the exception.
+          return handle("end");
+        }
+
+        if (entry.tryLoc <= this.prev) {
+          var hasCatch = hasOwn.call(entry, "catchLoc");
+          var hasFinally = hasOwn.call(entry, "finallyLoc");
+
+          if (hasCatch && hasFinally) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            } else if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else if (hasCatch) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            }
+
+          } else if (hasFinally) {
+            if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else {
+            throw new Error("try statement without catch or finally");
+          }
+        }
+      }
+    },
+
+    abrupt: function(type, arg) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc <= this.prev &&
+            hasOwn.call(entry, "finallyLoc") &&
+            this.prev < entry.finallyLoc) {
+          var finallyEntry = entry;
+          break;
+        }
+      }
+
+      if (finallyEntry &&
+          (type === "break" ||
+           type === "continue") &&
+          finallyEntry.tryLoc <= arg &&
+          arg <= finallyEntry.finallyLoc) {
+        // Ignore the finally entry if control is not jumping to a
+        // location outside the try/catch block.
+        finallyEntry = null;
+      }
+
+      var record = finallyEntry ? finallyEntry.completion : {};
+      record.type = type;
+      record.arg = arg;
+
+      if (finallyEntry) {
+        this.method = "next";
+        this.next = finallyEntry.finallyLoc;
+        return ContinueSentinel;
+      }
+
+      return this.complete(record);
+    },
+
+    complete: function(record, afterLoc) {
+      if (record.type === "throw") {
+        throw record.arg;
+      }
+
+      if (record.type === "break" ||
+          record.type === "continue") {
+        this.next = record.arg;
+      } else if (record.type === "return") {
+        this.rval = this.arg = record.arg;
+        this.method = "return";
+        this.next = "end";
+      } else if (record.type === "normal" && afterLoc) {
+        this.next = afterLoc;
+      }
+
+      return ContinueSentinel;
+    },
+
+    finish: function(finallyLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.finallyLoc === finallyLoc) {
+          this.complete(entry.completion, entry.afterLoc);
+          resetTryEntry(entry);
+          return ContinueSentinel;
+        }
+      }
+    },
+
+    "catch": function(tryLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc === tryLoc) {
+          var record = entry.completion;
+          if (record.type === "throw") {
+            var thrown = record.arg;
+            resetTryEntry(entry);
+          }
+          return thrown;
+        }
+      }
+
+      // The context.catch method must only be called with a location
+      // argument that corresponds to a known catch block.
+      throw new Error("illegal catch attempt");
+    },
+
+    delegateYield: function(iterable, resultName, nextLoc) {
+      this.delegate = {
+        iterator: values(iterable),
+        resultName: resultName,
+        nextLoc: nextLoc
+      };
+
+      if (this.method === "next") {
+        // Deliberately forget the last sent value so that we don't
+        // accidentally pass it on to the delegate.
+        this.arg = undefined;
+      }
+
+      return ContinueSentinel;
+    }
+  };
+})(
+  // In sloppy mode, unbound `this` refers to the global object, fallback to
+  // Function constructor if we're in global strict mode. That is sadly a form
+  // of indirect eval which violates Content Security Policy.
+  (function() { return this })() || Function("return this")()
+);
+
+
+/***/ }),
+/* 422 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(420);
+
+
+/***/ }),
+/* 423 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(400);
+__webpack_require__(153);
+__webpack_require__(156);
+__webpack_require__(437);
+__webpack_require__(439);
+__webpack_require__(440);
+module.exports = __webpack_require__(54).Promise;
+
+
+/***/ }),
+/* 424 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(400);
+__webpack_require__(153);
+__webpack_require__(156);
+__webpack_require__(438);
+__webpack_require__(443);
+__webpack_require__(442);
+__webpack_require__(441);
+module.exports = __webpack_require__(54).Set;
+
+
+/***/ }),
+/* 425 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var forOf = __webpack_require__(386);
+
+module.exports = function (iter, ITERATOR) {
+  var result = [];
+  forOf(iter, false, result.push, result, ITERATOR);
+  return result;
+};
+
+
+/***/ }),
+/* 426 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 0 -> Array#forEach
+// 1 -> Array#map
+// 2 -> Array#filter
+// 3 -> Array#some
+// 4 -> Array#every
+// 5 -> Array#find
+// 6 -> Array#findIndex
+var ctx = __webpack_require__(107);
+var IObject = __webpack_require__(250);
+var toObject = __webpack_require__(248);
+var toLength = __webpack_require__(152);
+var asc = __webpack_require__(428);
+module.exports = function (TYPE, $create) {
+  var IS_MAP = TYPE == 1;
+  var IS_FILTER = TYPE == 2;
+  var IS_SOME = TYPE == 3;
+  var IS_EVERY = TYPE == 4;
+  var IS_FIND_INDEX = TYPE == 6;
+  var NO_HOLES = TYPE == 5 || IS_FIND_INDEX;
+  var create = $create || asc;
+  return function ($this, callbackfn, that) {
+    var O = toObject($this);
+    var self = IObject(O);
+    var f = ctx(callbackfn, that, 3);
+    var length = toLength(self.length);
+    var index = 0;
+    var result = IS_MAP ? create($this, length) : IS_FILTER ? create($this, 0) : undefined;
+    var val, res;
+    for (;length > index; index++) if (NO_HOLES || index in self) {
+      val = self[index];
+      res = f(val, index, O);
+      if (TYPE) {
+        if (IS_MAP) result[index] = res;   // map
+        else if (res) switch (TYPE) {
+          case 3: return true;             // some
+          case 5: return val;              // find
+          case 6: return index;            // findIndex
+          case 2: result.push(val);        // filter
+        } else if (IS_EVERY) return false; // every
+      }
+    }
+    return IS_FIND_INDEX ? -1 : IS_SOME || IS_EVERY ? IS_EVERY : result;
+  };
+};
+
+
+/***/ }),
+/* 427 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__(58);
+var isArray = __webpack_require__(433);
+var SPECIES = __webpack_require__(32)('species');
+
+module.exports = function (original) {
+  var C;
+  if (isArray(original)) {
+    C = original.constructor;
+    // cross-realm fallback
+    if (typeof C == 'function' && (C === Array || isArray(C.prototype))) C = undefined;
+    if (isObject(C)) {
+      C = C[SPECIES];
+      if (C === null) C = undefined;
+    }
+  } return C === undefined ? Array : C;
+};
+
+
+/***/ }),
+/* 428 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 9.4.2.3 ArraySpeciesCreate(originalArray, length)
+var speciesConstructor = __webpack_require__(427);
+
+module.exports = function (original, length) {
+  return new (speciesConstructor(original))(length);
+};
+
+
+/***/ }),
+/* 429 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var dP = __webpack_require__(56).f;
+var create = __webpack_require__(253);
+var redefineAll = __webpack_require__(392);
+var ctx = __webpack_require__(107);
+var anInstance = __webpack_require__(391);
+var forOf = __webpack_require__(386);
+var $iterDefine = __webpack_require__(115);
+var step = __webpack_require__(251);
+var setSpecies = __webpack_require__(399);
+var DESCRIPTORS = __webpack_require__(50);
+var fastKey = __webpack_require__(403).fastKey;
+var validate = __webpack_require__(408);
+var SIZE = DESCRIPTORS ? '_s' : 'size';
+
+var getEntry = function (that, key) {
+  // fast case
+  var index = fastKey(key);
+  var entry;
+  if (index !== 'F') return that._i[index];
+  // frozen object case
+  for (entry = that._f; entry; entry = entry.n) {
+    if (entry.k == key) return entry;
+  }
+};
+
+module.exports = {
+  getConstructor: function (wrapper, NAME, IS_MAP, ADDER) {
+    var C = wrapper(function (that, iterable) {
+      anInstance(that, C, NAME, '_i');
+      that._t = NAME;         // collection type
+      that._i = create(null); // index
+      that._f = undefined;    // first entry
+      that._l = undefined;    // last entry
+      that[SIZE] = 0;         // size
+      if (iterable != undefined) forOf(iterable, IS_MAP, that[ADDER], that);
+    });
+    redefineAll(C.prototype, {
+      // 23.1.3.1 Map.prototype.clear()
+      // 23.2.3.2 Set.prototype.clear()
+      clear: function clear() {
+        for (var that = validate(this, NAME), data = that._i, entry = that._f; entry; entry = entry.n) {
+          entry.r = true;
+          if (entry.p) entry.p = entry.p.n = undefined;
+          delete data[entry.i];
+        }
+        that._f = that._l = undefined;
+        that[SIZE] = 0;
+      },
+      // 23.1.3.3 Map.prototype.delete(key)
+      // 23.2.3.4 Set.prototype.delete(value)
+      'delete': function (key) {
+        var that = validate(this, NAME);
+        var entry = getEntry(that, key);
+        if (entry) {
+          var next = entry.n;
+          var prev = entry.p;
+          delete that._i[entry.i];
+          entry.r = true;
+          if (prev) prev.n = next;
+          if (next) next.p = prev;
+          if (that._f == entry) that._f = next;
+          if (that._l == entry) that._l = prev;
+          that[SIZE]--;
+        } return !!entry;
+      },
+      // 23.2.3.6 Set.prototype.forEach(callbackfn, thisArg = undefined)
+      // 23.1.3.5 Map.prototype.forEach(callbackfn, thisArg = undefined)
+      forEach: function forEach(callbackfn /* , that = undefined */) {
+        validate(this, NAME);
+        var f = ctx(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+        var entry;
+        while (entry = entry ? entry.n : this._f) {
+          f(entry.v, entry.k, this);
+          // revert to the last existing entry
+          while (entry && entry.r) entry = entry.p;
+        }
+      },
+      // 23.1.3.7 Map.prototype.has(key)
+      // 23.2.3.7 Set.prototype.has(value)
+      has: function has(key) {
+        return !!getEntry(validate(this, NAME), key);
+      }
+    });
+    if (DESCRIPTORS) dP(C.prototype, 'size', {
+      get: function () {
+        return validate(this, NAME)[SIZE];
+      }
+    });
+    return C;
+  },
+  def: function (that, key, value) {
+    var entry = getEntry(that, key);
+    var prev, index;
+    // change existing entry
+    if (entry) {
+      entry.v = value;
+    // create new entry
+    } else {
+      that._l = entry = {
+        i: index = fastKey(key, true), // <- index
+        k: key,                        // <- key
+        v: value,                      // <- value
+        p: prev = that._l,             // <- previous entry
+        n: undefined,                  // <- next entry
+        r: false                       // <- removed
+      };
+      if (!that._f) that._f = entry;
+      if (prev) prev.n = entry;
+      that[SIZE]++;
+      // add to index
+      if (index !== 'F') that._i[index] = entry;
+    } return that;
+  },
+  getEntry: getEntry,
+  setStrong: function (C, NAME, IS_MAP) {
+    // add .keys, .values, .entries, [@@iterator]
+    // 23.1.3.4, 23.1.3.8, 23.1.3.11, 23.1.3.12, 23.2.3.5, 23.2.3.8, 23.2.3.10, 23.2.3.11
+    $iterDefine(C, NAME, function (iterated, kind) {
+      this._t = validate(iterated, NAME); // target
+      this._k = kind;                     // kind
+      this._l = undefined;                // previous
+    }, function () {
+      var that = this;
+      var kind = that._k;
+      var entry = that._l;
+      // revert to the last existing entry
+      while (entry && entry.r) entry = entry.p;
+      // get next entry
+      if (!that._t || !(that._l = entry = entry ? entry.n : that._t._f)) {
+        // or finish the iteration
+        that._t = undefined;
+        return step(1);
+      }
+      // return step by kind
+      if (kind == 'keys') return step(0, entry.k);
+      if (kind == 'values') return step(0, entry.v);
+      return step(0, [entry.k, entry.v]);
+    }, IS_MAP ? 'entries' : 'values', !IS_MAP, true);
+
+    // add [@@species], 23.1.2.2, 23.2.2.2
+    setSpecies(NAME);
+  }
+};
+
+
+/***/ }),
+/* 430 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// https://github.com/DavidBruant/Map-Set.prototype.toJSON
+var classof = __webpack_require__(154);
+var from = __webpack_require__(425);
+module.exports = function (NAME) {
+  return function toJSON() {
+    if (classof(this) != NAME) throw TypeError(NAME + "#toJSON isn't generic");
+    return from(this);
+  };
+};
+
+
+/***/ }),
+/* 431 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var global = __webpack_require__(33);
+var $export = __webpack_require__(75);
+var meta = __webpack_require__(403);
+var fails = __webpack_require__(108);
+var hide = __webpack_require__(48);
+var redefineAll = __webpack_require__(392);
+var forOf = __webpack_require__(386);
+var anInstance = __webpack_require__(391);
+var isObject = __webpack_require__(58);
+var setToStringTag = __webpack_require__(109);
+var dP = __webpack_require__(56).f;
+var each = __webpack_require__(426)(0);
+var DESCRIPTORS = __webpack_require__(50);
+
+module.exports = function (NAME, wrapper, methods, common, IS_MAP, IS_WEAK) {
+  var Base = global[NAME];
+  var C = Base;
+  var ADDER = IS_MAP ? 'set' : 'add';
+  var proto = C && C.prototype;
+  var O = {};
+  if (!DESCRIPTORS || typeof C != 'function' || !(IS_WEAK || proto.forEach && !fails(function () {
+    new C().entries().next();
+  }))) {
+    // create collection constructor
+    C = common.getConstructor(wrapper, NAME, IS_MAP, ADDER);
+    redefineAll(C.prototype, methods);
+    meta.NEED = true;
+  } else {
+    C = wrapper(function (target, iterable) {
+      anInstance(target, C, NAME, '_c');
+      target._c = new Base();
+      if (iterable != undefined) forOf(iterable, IS_MAP, target[ADDER], target);
+    });
+    each('add,clear,delete,forEach,get,has,set,keys,values,entries,toJSON'.split(','), function (KEY) {
+      var IS_ADDER = KEY == 'add' || KEY == 'set';
+      if (KEY in proto && !(IS_WEAK && KEY == 'clear')) hide(C.prototype, KEY, function (a, b) {
+        anInstance(this, C, KEY);
+        if (!IS_ADDER && IS_WEAK && !isObject(a)) return KEY == 'get' ? undefined : false;
+        var result = this._c[KEY](a === 0 ? 0 : a, b);
+        return IS_ADDER ? this : result;
+      });
+    });
+    IS_WEAK || dP(C.prototype, 'size', {
+      get: function () {
+        return this._c.size;
+      }
+    });
+  }
+
+  setToStringTag(C, NAME);
+
+  O[NAME] = C;
+  $export($export.G + $export.W + $export.F, O);
+
+  if (!IS_WEAK) common.setStrong(C, NAME, IS_MAP);
+
+  return C;
+};
+
+
+/***/ }),
+/* 432 */
+/***/ (function(module, exports) {
+
+// fast apply, http://jsperf.lnkit.com/fast-apply/5
+module.exports = function (fn, args, that) {
+  var un = that === undefined;
+  switch (args.length) {
+    case 0: return un ? fn()
+                      : fn.call(that);
+    case 1: return un ? fn(args[0])
+                      : fn.call(that, args[0]);
+    case 2: return un ? fn(args[0], args[1])
+                      : fn.call(that, args[0], args[1]);
+    case 3: return un ? fn(args[0], args[1], args[2])
+                      : fn.call(that, args[0], args[1], args[2]);
+    case 4: return un ? fn(args[0], args[1], args[2], args[3])
+                      : fn.call(that, args[0], args[1], args[2], args[3]);
+  } return fn.apply(that, args);
+};
+
+
+/***/ }),
+/* 433 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.2.2 IsArray(argument)
+var cof = __webpack_require__(106);
+module.exports = Array.isArray || function isArray(arg) {
+  return cof(arg) == 'Array';
+};
+
+
+/***/ }),
+/* 434 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var global = __webpack_require__(33);
+var macrotask = __webpack_require__(407).set;
+var Observer = global.MutationObserver || global.WebKitMutationObserver;
+var process = global.process;
+var Promise = global.Promise;
+var isNode = __webpack_require__(106)(process) == 'process';
+
+module.exports = function () {
+  var head, last, notify;
+
+  var flush = function () {
+    var parent, fn;
+    if (isNode && (parent = process.domain)) parent.exit();
+    while (head) {
+      fn = head.fn;
+      head = head.next;
+      try {
+        fn();
+      } catch (e) {
+        if (head) notify();
+        else last = undefined;
+        throw e;
+      }
+    } last = undefined;
+    if (parent) parent.enter();
+  };
+
+  // Node.js
+  if (isNode) {
+    notify = function () {
+      process.nextTick(flush);
+    };
+  // browsers with MutationObserver
+  } else if (Observer) {
+    var toggle = true;
+    var node = document.createTextNode('');
+    new Observer(flush).observe(node, { characterData: true }); // eslint-disable-line no-new
+    notify = function () {
+      node.data = toggle = !toggle;
+    };
+  // environments with maybe non-completely correct, but existent Promise
+  } else if (Promise && Promise.resolve) {
+    var promise = Promise.resolve();
+    notify = function () {
+      promise.then(flush);
+    };
+  // for other environments - macrotask based on:
+  // - setImmediate
+  // - MessageChannel
+  // - window.postMessag
+  // - onreadystatechange
+  // - setTimeout
+  } else {
+    notify = function () {
+      // strange IE + webpack dev server bug - use .call(global)
+      macrotask.call(global, flush);
+    };
+  }
+
+  return function (fn) {
+    var task = { fn: fn, next: undefined };
+    if (last) last.next = task;
+    if (!head) {
+      head = task;
+      notify();
+    } last = task;
+  };
+};
+
+
+/***/ }),
+/* 435 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// https://tc39.github.io/proposal-setmap-offrom/
+var $export = __webpack_require__(75);
+var aFunction = __webpack_require__(118);
+var ctx = __webpack_require__(107);
+var forOf = __webpack_require__(386);
+
+module.exports = function (COLLECTION) {
+  $export($export.S, COLLECTION, { from: function from(source /* , mapFn, thisArg */) {
+    var mapFn = arguments[1];
+    var mapping, A, n, cb;
+    aFunction(this);
+    mapping = mapFn !== undefined;
+    if (mapping) aFunction(mapFn);
+    if (source == undefined) return new this();
+    A = [];
+    if (mapping) {
+      n = 0;
+      cb = ctx(mapFn, arguments[2], 2);
+      forOf(source, false, function (nextItem) {
+        A.push(cb(nextItem, n++));
+      });
+    } else {
+      forOf(source, false, A.push, A);
+    }
+    return new this(A);
+  } });
+};
+
+
+/***/ }),
+/* 436 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// https://tc39.github.io/proposal-setmap-offrom/
+var $export = __webpack_require__(75);
+
+module.exports = function (COLLECTION) {
+  $export($export.S, COLLECTION, { of: function of() {
+    var length = arguments.length;
+    var A = Array(length);
+    while (length--) A[length] = arguments[length];
+    return new this(A);
+  } });
+};
+
+
+/***/ }),
+/* 437 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var LIBRARY = __webpack_require__(252);
+var global = __webpack_require__(33);
+var ctx = __webpack_require__(107);
+var classof = __webpack_require__(154);
+var $export = __webpack_require__(75);
+var isObject = __webpack_require__(58);
+var aFunction = __webpack_require__(118);
+var anInstance = __webpack_require__(391);
+var forOf = __webpack_require__(386);
+var speciesConstructor = __webpack_require__(406);
+var task = __webpack_require__(407).set;
+var microtask = __webpack_require__(434)();
+var newPromiseCapabilityModule = __webpack_require__(395);
+var perform = __webpack_require__(404);
+var promiseResolve = __webpack_require__(405);
+var PROMISE = 'Promise';
+var TypeError = global.TypeError;
+var process = global.process;
+var $Promise = global[PROMISE];
+var isNode = classof(process) == 'process';
+var empty = function () { /* empty */ };
+var Internal, newGenericPromiseCapability, OwnPromiseCapability, Wrapper;
+var newPromiseCapability = newGenericPromiseCapability = newPromiseCapabilityModule.f;
+
+var USE_NATIVE = !!function () {
+  try {
+    // correct subclassing with @@species support
+    var promise = $Promise.resolve(1);
+    var FakePromise = (promise.constructor = {})[__webpack_require__(32)('species')] = function (exec) {
+      exec(empty, empty);
+    };
+    // unhandled rejections tracking support, NodeJS Promise without it fails @@species test
+    return (isNode || typeof PromiseRejectionEvent == 'function') && promise.then(empty) instanceof FakePromise;
+  } catch (e) { /* empty */ }
+}();
+
+// helpers
+var sameConstructor = LIBRARY ? function (a, b) {
+  // with library wrapper special case
+  return a === b || a === $Promise && b === Wrapper;
+} : function (a, b) {
+  return a === b;
+};
+var isThenable = function (it) {
+  var then;
+  return isObject(it) && typeof (then = it.then) == 'function' ? then : false;
+};
+var notify = function (promise, isReject) {
+  if (promise._n) return;
+  promise._n = true;
+  var chain = promise._c;
+  microtask(function () {
+    var value = promise._v;
+    var ok = promise._s == 1;
+    var i = 0;
+    var run = function (reaction) {
+      var handler = ok ? reaction.ok : reaction.fail;
+      var resolve = reaction.resolve;
+      var reject = reaction.reject;
+      var domain = reaction.domain;
+      var result, then;
+      try {
+        if (handler) {
+          if (!ok) {
+            if (promise._h == 2) onHandleUnhandled(promise);
+            promise._h = 1;
+          }
+          if (handler === true) result = value;
+          else {
+            if (domain) domain.enter();
+            result = handler(value);
+            if (domain) domain.exit();
+          }
+          if (result === reaction.promise) {
+            reject(TypeError('Promise-chain cycle'));
+          } else if (then = isThenable(result)) {
+            then.call(result, resolve, reject);
+          } else resolve(result);
+        } else reject(value);
+      } catch (e) {
+        reject(e);
+      }
+    };
+    while (chain.length > i) run(chain[i++]); // variable length - can't use forEach
+    promise._c = [];
+    promise._n = false;
+    if (isReject && !promise._h) onUnhandled(promise);
+  });
+};
+var onUnhandled = function (promise) {
+  task.call(global, function () {
+    var value = promise._v;
+    var unhandled = isUnhandled(promise);
+    var result, handler, console;
+    if (unhandled) {
+      result = perform(function () {
+        if (isNode) {
+          process.emit('unhandledRejection', value, promise);
+        } else if (handler = global.onunhandledrejection) {
+          handler({ promise: promise, reason: value });
+        } else if ((console = global.console) && console.error) {
+          console.error('Unhandled promise rejection', value);
+        }
+      });
+      // Browsers should not trigger `rejectionHandled` event if it was handled here, NodeJS - should
+      promise._h = isNode || isUnhandled(promise) ? 2 : 1;
+    } promise._a = undefined;
+    if (unhandled && result.e) throw result.v;
+  });
+};
+var isUnhandled = function (promise) {
+  if (promise._h == 1) return false;
+  var chain = promise._a || promise._c;
+  var i = 0;
+  var reaction;
+  while (chain.length > i) {
+    reaction = chain[i++];
+    if (reaction.fail || !isUnhandled(reaction.promise)) return false;
+  } return true;
+};
+var onHandleUnhandled = function (promise) {
+  task.call(global, function () {
+    var handler;
+    if (isNode) {
+      process.emit('rejectionHandled', promise);
+    } else if (handler = global.onrejectionhandled) {
+      handler({ promise: promise, reason: promise._v });
+    }
+  });
+};
+var $reject = function (value) {
+  var promise = this;
+  if (promise._d) return;
+  promise._d = true;
+  promise = promise._w || promise; // unwrap
+  promise._v = value;
+  promise._s = 2;
+  if (!promise._a) promise._a = promise._c.slice();
+  notify(promise, true);
+};
+var $resolve = function (value) {
+  var promise = this;
+  var then;
+  if (promise._d) return;
+  promise._d = true;
+  promise = promise._w || promise; // unwrap
+  try {
+    if (promise === value) throw TypeError("Promise can't be resolved itself");
+    if (then = isThenable(value)) {
+      microtask(function () {
+        var wrapper = { _w: promise, _d: false }; // wrap
+        try {
+          then.call(value, ctx($resolve, wrapper, 1), ctx($reject, wrapper, 1));
+        } catch (e) {
+          $reject.call(wrapper, e);
+        }
+      });
+    } else {
+      promise._v = value;
+      promise._s = 1;
+      notify(promise, false);
+    }
+  } catch (e) {
+    $reject.call({ _w: promise, _d: false }, e); // wrap
+  }
+};
+
+// constructor polyfill
+if (!USE_NATIVE) {
+  // 25.4.3.1 Promise(executor)
+  $Promise = function Promise(executor) {
+    anInstance(this, $Promise, PROMISE, '_h');
+    aFunction(executor);
+    Internal.call(this);
+    try {
+      executor(ctx($resolve, this, 1), ctx($reject, this, 1));
+    } catch (err) {
+      $reject.call(this, err);
+    }
+  };
+  // eslint-disable-next-line no-unused-vars
+  Internal = function Promise(executor) {
+    this._c = [];             // <- awaiting reactions
+    this._a = undefined;      // <- checked in isUnhandled reactions
+    this._s = 0;              // <- state
+    this._d = false;          // <- done
+    this._v = undefined;      // <- value
+    this._h = 0;              // <- rejection state, 0 - default, 1 - handled, 2 - unhandled
+    this._n = false;          // <- notify
+  };
+  Internal.prototype = __webpack_require__(392)($Promise.prototype, {
+    // 25.4.5.3 Promise.prototype.then(onFulfilled, onRejected)
+    then: function then(onFulfilled, onRejected) {
+      var reaction = newPromiseCapability(speciesConstructor(this, $Promise));
+      reaction.ok = typeof onFulfilled == 'function' ? onFulfilled : true;
+      reaction.fail = typeof onRejected == 'function' && onRejected;
+      reaction.domain = isNode ? process.domain : undefined;
+      this._c.push(reaction);
+      if (this._a) this._a.push(reaction);
+      if (this._s) notify(this, false);
+      return reaction.promise;
+    },
+    // 25.4.5.1 Promise.prototype.catch(onRejected)
+    'catch': function (onRejected) {
+      return this.then(undefined, onRejected);
+    }
+  });
+  OwnPromiseCapability = function () {
+    var promise = new Internal();
+    this.promise = promise;
+    this.resolve = ctx($resolve, promise, 1);
+    this.reject = ctx($reject, promise, 1);
+  };
+  newPromiseCapabilityModule.f = newPromiseCapability = function (C) {
+    return sameConstructor($Promise, C)
+      ? new OwnPromiseCapability(C)
+      : newGenericPromiseCapability(C);
+  };
+}
+
+$export($export.G + $export.W + $export.F * !USE_NATIVE, { Promise: $Promise });
+__webpack_require__(109)($Promise, PROMISE);
+__webpack_require__(399)(PROMISE);
+Wrapper = __webpack_require__(54)[PROMISE];
+
+// statics
+$export($export.S + $export.F * !USE_NATIVE, PROMISE, {
+  // 25.4.4.5 Promise.reject(r)
+  reject: function reject(r) {
+    var capability = newPromiseCapability(this);
+    var $$reject = capability.reject;
+    $$reject(r);
+    return capability.promise;
+  }
+});
+$export($export.S + $export.F * (LIBRARY || !USE_NATIVE), PROMISE, {
+  // 25.4.4.6 Promise.resolve(x)
+  resolve: function resolve(x) {
+    // instanceof instead of internal slot check because we should fix it without replacement native Promise core
+    if (x instanceof $Promise && sameConstructor(x.constructor, this)) return x;
+    return promiseResolve(this, x);
+  }
+});
+$export($export.S + $export.F * !(USE_NATIVE && __webpack_require__(412)(function (iter) {
+  $Promise.all(iter)['catch'](empty);
+})), PROMISE, {
+  // 25.4.4.1 Promise.all(iterable)
+  all: function all(iterable) {
+    var C = this;
+    var capability = newPromiseCapability(C);
+    var resolve = capability.resolve;
+    var reject = capability.reject;
+    var result = perform(function () {
+      var values = [];
+      var index = 0;
+      var remaining = 1;
+      forOf(iterable, false, function (promise) {
+        var $index = index++;
+        var alreadyCalled = false;
+        values.push(undefined);
+        remaining++;
+        C.resolve(promise).then(function (value) {
+          if (alreadyCalled) return;
+          alreadyCalled = true;
+          values[$index] = value;
+          --remaining || resolve(values);
+        }, reject);
+      });
+      --remaining || resolve(values);
+    });
+    if (result.e) reject(result.v);
+    return capability.promise;
+  },
+  // 25.4.4.4 Promise.race(iterable)
+  race: function race(iterable) {
+    var C = this;
+    var capability = newPromiseCapability(C);
+    var reject = capability.reject;
+    var result = perform(function () {
+      forOf(iterable, false, function (promise) {
+        C.resolve(promise).then(capability.resolve, reject);
+      });
+    });
+    if (result.e) reject(result.v);
+    return capability.promise;
+  }
+});
+
+
+/***/ }),
+/* 438 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var strong = __webpack_require__(429);
+var validate = __webpack_require__(408);
+var SET = 'Set';
+
+// 23.2 Set Objects
+module.exports = __webpack_require__(431)(SET, function (get) {
+  return function Set() { return get(this, arguments.length > 0 ? arguments[0] : undefined); };
+}, {
+  // 23.2.3.1 Set.prototype.add(value)
+  add: function add(value) {
+    return strong.def(validate(this, SET), value = value === 0 ? 0 : value, value);
+  }
+}, strong);
+
+
+/***/ }),
+/* 439 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+// https://github.com/tc39/proposal-promise-finally
+
+var $export = __webpack_require__(75);
+var core = __webpack_require__(54);
+var global = __webpack_require__(33);
+var speciesConstructor = __webpack_require__(406);
+var promiseResolve = __webpack_require__(405);
+
+$export($export.P + $export.R, 'Promise', { 'finally': function (onFinally) {
+  var C = speciesConstructor(this, core.Promise || global.Promise);
+  var isFunction = typeof onFinally == 'function';
+  return this.then(
+    isFunction ? function (x) {
+      return promiseResolve(C, onFinally()).then(function () { return x; });
+    } : onFinally,
+    isFunction ? function (e) {
+      return promiseResolve(C, onFinally()).then(function () { throw e; });
+    } : onFinally
+  );
+} });
+
+
+/***/ }),
+/* 440 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// https://github.com/tc39/proposal-promise-try
+var $export = __webpack_require__(75);
+var newPromiseCapability = __webpack_require__(395);
+var perform = __webpack_require__(404);
+
+$export($export.S, 'Promise', { 'try': function (callbackfn) {
+  var promiseCapability = newPromiseCapability.f(this);
+  var result = perform(callbackfn);
+  (result.e ? promiseCapability.reject : promiseCapability.resolve)(result.v);
+  return promiseCapability.promise;
+} });
+
+
+/***/ }),
+/* 441 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// https://tc39.github.io/proposal-setmap-offrom/#sec-set.from
+__webpack_require__(435)('Set');
+
+
+/***/ }),
+/* 442 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// https://tc39.github.io/proposal-setmap-offrom/#sec-set.of
+__webpack_require__(436)('Set');
+
+
+/***/ }),
+/* 443 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// https://github.com/DavidBruant/Map-Set.prototype.toJSON
+var $export = __webpack_require__(75);
+
+$export($export.P + $export.R, 'Set', { toJSON: __webpack_require__(430)('Set') });
+
+
+/***/ }),
 /* 444 */,
 /* 445 */,
 /* 446 */,
@@ -10657,209 +12900,453 @@ module.exports = {
 /* 475 */,
 /* 476 */,
 /* 477 */,
-/* 478 */
+/* 478 */,
+/* 479 */,
+/* 480 */,
+/* 481 */,
+/* 482 */,
+/* 483 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-// Use npm and babel to support IE11/Safari
+// Must use npm and babel to support IE11/Safari
+
+var _set = __webpack_require__(418);
+
+var _set2 = _interopRequireDefault(_set);
+
+var _from = __webpack_require__(486);
+
+var _from2 = _interopRequireDefault(_from);
 
 var _getIterator2 = __webpack_require__(255);
 
 var _getIterator3 = _interopRequireDefault(_getIterator2);
 
-__webpack_require__(227);
+var _regenerator = __webpack_require__(422);
 
-__webpack_require__(232);
+var _regenerator2 = _interopRequireDefault(_regenerator);
 
-__webpack_require__(235);
+var _asyncToGenerator2 = __webpack_require__(419);
 
-__webpack_require__(236);
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
-__webpack_require__(230);
+var initialPrep = function () {
+  var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee() {
+    return _regenerator2.default.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
 
-__webpack_require__(233);
+            console.log('1...');
+            _context.next = 3;
+            return fetchMapFeatures();
 
-__webpack_require__(231);
+          case 3:
+            _featJson = _context.sent;
 
-__webpack_require__(234);
 
-__webpack_require__(228);
+            console.log('2...');
+            _context.next = 7;
+            return fetchAllCmpSegmentData();
 
-__webpack_require__(229);
+          case 7:
+            _allCmpData = _context.sent;
 
-__webpack_require__(110);
 
-__webpack_require__(112);
+            console.log('3...');
+            _context.next = 11;
+            return fetchAggregateData();
 
-__webpack_require__(113);
+          case 11:
+            _aggregateData = _context.sent;
 
-__webpack_require__(237);
 
-__webpack_require__(202);
+            console.log('4... ');
+            _context.next = 15;
+            return buildChartHtmlFromCmpData();
 
-__webpack_require__(203);
+          case 15:
 
-__webpack_require__(204);
+            console.log('5...');
+            _context.next = 18;
+            return updateOptionsData('scenario');
 
-__webpack_require__(205);
+          case 18:
+            app.scen_options = _context.sent;
+            _context.next = 21;
+            return updateOptionsData('tod');
 
-__webpack_require__(208);
+          case 21:
+            app.time_options = _context.sent;
 
-__webpack_require__(206);
 
-__webpack_require__(207);
+            console.log('6...');
+            _context.next = 25;
+            return getMetricOptions();
 
-__webpack_require__(209);
+          case 25:
+            _context.next = 27;
+            return selectionChanged();
 
-__webpack_require__(210);
+          case 27:
 
-__webpack_require__(211);
+            console.log('7 !!!');
 
-__webpack_require__(212);
+          case 28:
+          case 'end':
+            return _context.stop();
+        }
+      }
+    }, _callee, this);
+  }));
 
-__webpack_require__(214);
+  return function initialPrep() {
+    return _ref.apply(this, arguments);
+  };
+}();
 
-__webpack_require__(213);
+var fetchMapFeatures = function () {
+  var _ref2 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee2() {
+    var geo_url, resp, features, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, feat;
 
-__webpack_require__(201);
+    return _regenerator2.default.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            geo_url = API_SERVER + GEO_VIEW + '?select=tmc,geometry';
+            _context2.prev = 1;
+            _context2.next = 4;
+            return fetch(geo_url);
 
-__webpack_require__(226);
+          case 4:
+            resp = _context2.sent;
+            _context2.next = 7;
+            return resp.json();
+
+          case 7:
+            features = _context2.sent;
+
+
+            // do some parsing and stuff
+            _iteratorNormalCompletion = true;
+            _didIteratorError = false;
+            _iteratorError = undefined;
+            _context2.prev = 11;
+            for (_iterator = (0, _getIterator3.default)(features); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+              feat = _step.value;
+
+              feat['type'] = 'Feature';
+              feat['geometry'] = JSON.parse(feat.geometry);
+            }
+            _context2.next = 19;
+            break;
+
+          case 15:
+            _context2.prev = 15;
+            _context2.t0 = _context2['catch'](11);
+            _didIteratorError = true;
+            _iteratorError = _context2.t0;
+
+          case 19:
+            _context2.prev = 19;
+            _context2.prev = 20;
+
+            if (!_iteratorNormalCompletion && _iterator.return) {
+              _iterator.return();
+            }
+
+          case 22:
+            _context2.prev = 22;
+
+            if (!_didIteratorError) {
+              _context2.next = 25;
+              break;
+            }
+
+            throw _iteratorError;
+
+          case 25:
+            return _context2.finish(22);
+
+          case 26:
+            return _context2.finish(19);
+
+          case 27:
+            return _context2.abrupt('return', features);
+
+          case 30:
+            _context2.prev = 30;
+            _context2.t1 = _context2['catch'](1);
+
+            console.log('map feature error: ' + _context2.t1);
+
+          case 33:
+          case 'end':
+            return _context2.stop();
+        }
+      }
+    }, _callee2, this, [[1, 30], [11, 15, 19, 27], [20,, 22, 26]]);
+  }));
+
+  return function fetchMapFeatures() {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+var fetchAllCmpSegmentData = function () {
+  var _ref3 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee3() {
+    var params, data_url, resp;
+    return _regenerator2.default.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            //FIXME this should be a map()
+            params = 'select=cmp_segid,year,period,los_hcm85,transit_speed,transit_cv,atspd_ratio,auto_speed';
+            data_url = API_SERVER + data_view + '?' + params;
+            _context3.prev = 2;
+            _context3.next = 5;
+            return fetch(data_url);
+
+          case 5:
+            resp = _context3.sent;
+            _context3.next = 8;
+            return resp.json();
+
+          case 8:
+            return _context3.abrupt('return', _context3.sent);
+
+          case 11:
+            _context3.prev = 11;
+            _context3.t0 = _context3['catch'](2);
+            console.log('cmp data fetch error: ' + _context3.t0);
+          case 14:
+          case 'end':
+            return _context3.stop();
+        }
+      }
+    }, _callee3, this, [[2, 11]]);
+  }));
+
+  return function fetchAllCmpSegmentData() {
+    return _ref3.apply(this, arguments);
+  };
+}();
+
+var fetchAggregateData = function () {
+  var _ref4 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee4() {
+    var buildAggData, url, resp, jsonData, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, viz;
+
+    return _regenerator2.default.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            buildAggData = {};
+            url = API_SERVER + aggdata_view + '?select=fac_typ,period,year,viz,metric';
+            _context4.prev = 2;
+            _context4.next = 5;
+            return fetch(url);
+
+          case 5:
+            resp = _context4.sent;
+            _context4.next = 8;
+            return resp.json();
+
+          case 8:
+            jsonData = _context4.sent;
+            _iteratorNormalCompletion2 = true;
+            _didIteratorError2 = false;
+            _iteratorError2 = undefined;
+            _context4.prev = 12;
+
+
+            for (_iterator2 = (0, _getIterator3.default)(VIZ_LIST); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+              viz = _step2.value;
+
+              parseAllAggregateData(buildAggData, jsonData, viz);
+            }
+            _context4.next = 20;
+            break;
+
+          case 16:
+            _context4.prev = 16;
+            _context4.t0 = _context4['catch'](12);
+            _didIteratorError2 = true;
+            _iteratorError2 = _context4.t0;
+
+          case 20:
+            _context4.prev = 20;
+            _context4.prev = 21;
+
+            if (!_iteratorNormalCompletion2 && _iterator2.return) {
+              _iterator2.return();
+            }
+
+          case 23:
+            _context4.prev = 23;
+
+            if (!_didIteratorError2) {
+              _context4.next = 26;
+              break;
+            }
+
+            throw _iteratorError2;
+
+          case 26:
+            return _context4.finish(23);
+
+          case 27:
+            return _context4.finish(20);
+
+          case 28:
+            return _context4.abrupt('return', buildAggData);
+
+          case 31:
+            _context4.prev = 31;
+            _context4.t1 = _context4['catch'](2);
+
+            console.log('aggregate data error: ' + _context4.t1);
+
+          case 34:
+          case 'end':
+            return _context4.stop();
+        }
+      }
+    }, _callee4, this, [[2, 31], [12, 16, 20, 28], [21,, 23, 27]]);
+  }));
+
+  return function fetchAggregateData() {
+    return _ref4.apply(this, arguments);
+  };
+}();
+
+var parseAllAggregateData = function () {
+  var _ref5 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee5(buildAggData, jsonData, viz) {
+    var vizData, byYearAM, byYearPM, _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, entry, val, data, year, _year;
+
+    return _regenerator2.default.wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            buildAggData[viz] = {};
+
+            vizData = jsonData.filter(function (row) {
+              return row['viz'] === viz;
+            });
+            byYearAM = {};
+            byYearPM = {};
+            _iteratorNormalCompletion3 = true;
+            _didIteratorError3 = false;
+            _iteratorError3 = undefined;
+            _context5.prev = 7;
+            _iterator3 = (0, _getIterator3.default)(vizData);
+
+          case 9:
+            if (_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done) {
+              _context5.next = 18;
+              break;
+            }
+
+            entry = _step3.value;
+            val = Number(entry.metric).toFixed(VIZ_INFO[viz]['CHART_PREC']);
+
+            if (!(val === 'NaN')) {
+              _context5.next = 14;
+              break;
+            }
+
+            return _context5.abrupt('continue', 15);
+
+          case 14:
+            if (entry.period == 'AM') {
+              if (!byYearAM[entry.year]) byYearAM[entry.year] = {};
+              byYearAM[entry.year][entry.fac_typ] = val;
+            } else {
+              if (!byYearPM[entry.year]) byYearPM[entry.year] = {};
+              byYearPM[entry.year][entry.fac_typ] = val;
+            }
+
+          case 15:
+            _iteratorNormalCompletion3 = true;
+            _context5.next = 9;
+            break;
+
+          case 18:
+            _context5.next = 24;
+            break;
+
+          case 20:
+            _context5.prev = 20;
+            _context5.t0 = _context5['catch'](7);
+            _didIteratorError3 = true;
+            _iteratorError3 = _context5.t0;
+
+          case 24:
+            _context5.prev = 24;
+            _context5.prev = 25;
+
+            if (!_iteratorNormalCompletion3 && _iterator3.return) {
+              _iterator3.return();
+            }
+
+          case 27:
+            _context5.prev = 27;
+
+            if (!_didIteratorError3) {
+              _context5.next = 30;
+              break;
+            }
+
+            throw _iteratorError3;
+
+          case 30:
+            return _context5.finish(27);
+
+          case 31:
+            return _context5.finish(24);
+
+          case 32:
+
+            // Push AM data
+            data = [];
+
+            for (year in byYearAM) {
+              data.push({
+                year: year,
+                art: byYearAM[year]['Arterial'],
+                fwy: byYearAM[year]['Freeway']
+              });
+            }
+            buildAggData[viz]['AM'] = data;
+
+            // Push PM data
+            data = [];
+            for (_year in byYearPM) {
+              data.push({
+                year: _year,
+                art: byYearPM[_year]['Arterial'],
+                fwy: byYearPM[_year]['Freeway']
+              });
+            }
+            buildAggData[viz]['PM'] = data;
+
+          case 38:
+          case 'end':
+            return _context5.stop();
+        }
+      }
+    }, _callee5, this, [[7, 20, 24, 32], [25,, 27, 31]]);
+  }));
+
+  return function parseAllAggregateData(_x, _x2, _x3) {
+    return _ref5.apply(this, arguments);
+  };
+}();
+
+// hover panel -------------------
 
-__webpack_require__(189);
-
-__webpack_require__(199);
-
-__webpack_require__(198);
-
-__webpack_require__(194);
-
-__webpack_require__(195);
-
-__webpack_require__(193);
-
-__webpack_require__(190);
-
-__webpack_require__(192);
-
-__webpack_require__(197);
-
-__webpack_require__(191);
-
-__webpack_require__(188);
-
-__webpack_require__(196);
-
-__webpack_require__(200);
-
-__webpack_require__(163);
-
-__webpack_require__(223);
-
-__webpack_require__(221);
-
-__webpack_require__(219);
-
-__webpack_require__(224);
-
-__webpack_require__(225);
-
-__webpack_require__(220);
-
-__webpack_require__(222);
-
-__webpack_require__(111);
-
-__webpack_require__(215);
-
-__webpack_require__(216);
-
-__webpack_require__(218);
-
-__webpack_require__(217);
-
-__webpack_require__(161);
-
-__webpack_require__(162);
-
-__webpack_require__(157);
-
-__webpack_require__(160);
-
-__webpack_require__(159);
-
-__webpack_require__(158);
-
-__webpack_require__(74);
-
-__webpack_require__(182);
-
-__webpack_require__(183);
-
-__webpack_require__(185);
-
-__webpack_require__(184);
-
-__webpack_require__(181);
-
-__webpack_require__(187);
-
-__webpack_require__(186);
-
-__webpack_require__(164);
-
-__webpack_require__(165);
-
-__webpack_require__(166);
-
-__webpack_require__(167);
-
-__webpack_require__(168);
-
-__webpack_require__(169);
-
-__webpack_require__(170);
-
-__webpack_require__(171);
-
-__webpack_require__(172);
-
-__webpack_require__(173);
-
-__webpack_require__(175);
-
-__webpack_require__(174);
-
-__webpack_require__(176);
-
-__webpack_require__(177);
-
-__webpack_require__(178);
-
-__webpack_require__(179);
-
-__webpack_require__(180);
-
-__webpack_require__(238);
-
-__webpack_require__(241);
-
-__webpack_require__(239);
-
-__webpack_require__(240);
-
-__webpack_require__(243);
-
-__webpack_require__(242);
-
-__webpack_require__(246);
-
-__webpack_require__(245);
-
-__webpack_require__(244);
-
-__webpack_require__(247);
 
 __webpack_require__(383);
 
@@ -10867,396 +13354,808 @@ var _vueSliderComponent = __webpack_require__(385);
 
 var _vueSliderComponent2 = _interopRequireDefault(_vueSliderComponent);
 
+var _jsCookie = __webpack_require__(390);
+
+var _jsCookie2 = _interopRequireDefault(_jsCookie);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var api_server = 'http://api.sfcta.org/api/';
-var data_view = 'cmp_auto';
-
-var segmentLayer = void 0;
-var selectedSegment = void 0,
-    popupSegment = void 0,
-    hoverColor = void 0,
-    popupColor = void 0;
-var speedCache = {};
-
-var losColor = { 'A': '#060', 'B': '#9f0', 'C': '#ff3', 'D': '#f90', 'E': '#f60', 'F': '#c00' };
-var MISSING_COLOR = '#ccc';
-var LOS_VALS = ['A', 'B', 'C', 'D', 'E', 'F'];
-var LOS_COLORS = ['#060', '#9f0', '#ff3', '#f90', '#f60', '#c00'];
-
 var maplib = __webpack_require__(388);
-var mymap = maplib.sfmap;
 var styles = maplib.styles;
 var getLegHTML = maplib.getLegHTML;
+var getColorFromVal = maplib.getColorFromVal;
+var mymap = maplib.sfmap;
+mymap.setView([37.76889, -122.440997], 13);
 
-function addSegmentLayer(segments) {
-  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+// some important global variables.
+var API_SERVER = 'https://api.sfcta.org/api/';
+var GEO_VIEW = 'tmc_trueshp';
+var DATA_VIEW = 'tmcemp';
+var EXCLUDE_COLS = ['tmc', 'geometry', 'geom', 'tod', 'modifiedtmc', 'scenario'];
+var VIZ_LIST = ['ALOS', 'TSPD', 'TRLB', 'ATRAT'];
+var VIZ_INFO = {
+  ALOS: {
+    TXT: 'Auto Level-of-Service (LOS)',
+    VIEW: 'cmp_autotransit',
+    METRIC: 'los_hcm85',
+    METRIC_DESC: 'Level of Service',
+    COLOR_BY_BINS: false,
+    COLORVALS: ['A', 'B', 'C', 'D', 'E', 'F'],
+    COLORS: ['#060', '#9f0', '#ff3', '#f90', '#f60', '#c00'],
+    CHARTINFO: 'AUTO SPEED TREND (MPH):',
+    CHART_PREC: 1,
+    POST_UNITS: ''
+  },
 
-  // TODO: figure out why PostGIS geojson isn't in exactly the right format.
-  var _iteratorNormalCompletion = true;
-  var _didIteratorError = false;
-  var _iteratorError = undefined;
+  TSPD: {
+    TXT: 'Transit Speed',
+    VIEW: 'cmp_autotransit',
+    METRIC: 'transit_speed',
+    METRIC_DESC: 'Transit Speed (MPH)',
+    COLOR_BY_BINS: true,
+    COLORVALS: [0, 5, 7.5, 10, 12.5, 15],
+    COLORS: ['#ccc', '#c00', '#f60', '#f90', '#ff3', '#9f0', '#060'],
+    CHARTINFO: 'TRANSIT SPEED TREND (MPH):',
+    CHART_PREC: 1,
+    POST_UNITS: ''
+  },
 
+  TRLB: {
+    TXT: 'Transit Reliability',
+    VIEW: 'cmp_autotransit',
+    METRIC: 'transit_cv',
+    METRIC_DESC: 'Transit Reliability',
+    COLOR_BY_BINS: true,
+    COLORVALS: [0, 5, 10, 20, 30, 40],
+    COLORS: ['#ccc', '#060', '#9f0', '#ff3', '#f90', '#f60', '#c00'],
+    CHARTINFO: 'TRANSIT RELIABILITY TREND:',
+    CHART_PREC: 1,
+    POST_UNITS: '%'
+  },
+
+  ATRAT: {
+    TXT: 'Auto-Transit Speed Ratio',
+    VIEW: 'cmp_autotransit',
+    METRIC: 'atspd_ratio',
+    METRIC_DESC: 'Auto/Transit Speed',
+    COLOR_BY_BINS: true,
+    COLORVALS: [0, 1, 1.5, 2, 2.5, 3],
+    COLORS: ['#ccc', '#060', '#9f0', '#ff3', '#f90', '#f60', '#c00'],
+    CHARTINFO: 'AUTO/TRANSIT SPEED TREND:',
+    CHART_PREC: 1,
+    POST_UNITS: ''
+  }
+};
+var MISSING_COLOR = '#ccd';
+
+var sel_colorvals = void 0,
+    sel_colors = void 0,
+    sel_binsflag = void 0;
+
+var init_selectedViz = VIZ_LIST[0];
+
+var data_view = VIZ_INFO[init_selectedViz]['VIEW'];
+var selviz_metric = VIZ_INFO[init_selectedViz]['METRIC'];
+var selPeriod = 'AM';
+var aggdata_view = 'cmp_aggregate';
+var aggdata_label = 'All Segments Combined';
+var selGeoId = void 0;
+
+var geoLayer = void 0,
+    mapLegend = void 0;
+var yearData = {};
+var popHoverSegment = void 0,
+    popSelSegment = void 0;
+var selectedSegment = void 0,
+    prevselectedSegment = void 0;
+
+var _featJson = void 0;
+var _allCmpData = void 0;
+var _aggregateData = void 0;
+
+var infoPanel = L.control();
+
+infoPanel.onAdd = function (map) {
+  // create a div with a class "info"
+  this._div = L.DomUtil.create('div', 'info-panel-hide');
+  return this._div;
+};
+
+infoPanel.update = function (geo) {
+  infoPanel._div.innerHTML = '';
+  infoPanel._div.className = 'info-panel';
+
+  if (geo) {
+    this._div.innerHTML = '<b>' + geo.cmp_name + ' ' + geo.direction + '-bound</b><br/>' + (geo.cmp_from + ' to ' + geo.cmp_to);
+  }
+
+  infoPanelTimeout = setTimeout(function () {
+    // use CSS to hide the info-panel
+    infoPanel._div.className = 'info-panel-hide';
+    // and clear the hover too
+    geoLayer.resetStyle(oldHoverTarget);
+  }, 2000);
+};
+infoPanel.addTo(mymap);
+
+function drawMapFeatures() {
+
+  // create a clean copy of the feature Json
+  var cleanFeatures = _featJson.slice();
+
+  var sel_metric = app.selected_metric;
+  var data_url = API_SERVER + DATA_VIEW + '?select=tmc,' + sel_metric;
+  data_url += '&scenario=eq.' + app.selected_scenario;
+  data_url += '&tod=eq.' + app.selected_timep;
+
+  var lookup = {};
+  var vals = [];
   try {
-    for (var _iterator = (0, _getIterator3.default)(segments), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      var segment = _step.value;
+    fetch(data_url).then(function (resp) {
+      return resp.json();
+    }).then(function (jsonData) {
+      var _iteratorNormalCompletion4 = true;
+      var _didIteratorError4 = false;
+      var _iteratorError4 = undefined;
 
-      segment["type"] = "Feature";
-      segment["geometry"] = JSON.parse(segment.geometry);
-    }
-  } catch (err) {
-    _didIteratorError = true;
-    _iteratorError = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion && _iterator.return) {
-        _iterator.return();
-      }
-    } finally {
-      if (_didIteratorError) {
-        throw _iteratorError;
-      }
-    }
-  }
+      try {
+        for (var _iterator4 = (0, _getIterator3.default)(jsonData), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+          var entry = _step4.value;
 
-  segmentLayer = L.geoJSON(segments, {
-    style: styleByLosColor,
-    onEachFeature: function onEachFeature(feature, layer) {
-      layer.on({ mouseover: hoverOnSegment,
-        click: clickedOnSegment
+          lookup[entry.tmc] = entry;
+          vals.push(entry[sel_metric]);
+        }
+      } catch (err) {
+        _didIteratorError4 = true;
+        _iteratorError4 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion4 && _iterator4.return) {
+            _iterator4.return();
+          }
+        } finally {
+          if (_didIteratorError4) {
+            throw _iteratorError4;
+          }
+        }
+      }
+
+      vals = vals.filter(function (n) {
+        return n !== null;
       });
-    }
-  });
+      vals = vals.sort();
+      if (vals.length > 0) {
+        sel_colorvals = (0, _from2.default)(new _set2.default(vals)).sort(function (a, b) {
+          return a - b;
+        });
+        var color_func = void 0;
+        if (sel_colorvals.length <= 10) {
+          console.log('Using unique values for mapping');
+          sel_binsflag = false;
+          color_func = chroma.scale('OrRd').classes(sel_colorvals.concat([sel_colorvals[sel_colorvals.length - 1] + 1]));
+        } else {
+          console.log('Using quintiles for mapping');
+          sel_colorvals = [];
+          for (var i = 1; i <= 5; i++) {
+            sel_colorvals.push(parseInt(vals[Math.floor(vals.length * 1 / i) - 1]));
+          }
+          sel_colorvals.push(Math.floor(vals[0]));
+          sel_colorvals = sel_colorvals.sort(function (a, b) {
+            return a - b;
+          });
+          sel_binsflag = true;
+          color_func = chroma.scale('OrRd').classes(sel_colorvals);
+          sel_colorvals = sel_colorvals.slice(0, sel_colorvals.length - 1);
+        }
+        sel_colors = [];
+        var _iteratorNormalCompletion5 = true;
+        var _didIteratorError5 = false;
+        var _iteratorError5 = undefined;
 
-  if (mymap.segmentLayer) {
-    selectedSegment = popupSegment = hoverColor = popupColor = null;
-    mymap.removeLayer(segmentLayer);
-    segmentLayer = null;
-  }
-  segmentLayer.addTo(mymap);
+        try {
+          for (var _iterator5 = (0, _getIterator3.default)(sel_colorvals), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+            var _i = _step5.value;
+
+            sel_colors.push(color_func(_i).hex());
+          }
+        } catch (err) {
+          _didIteratorError5 = true;
+          _iteratorError5 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion5 && _iterator5.return) {
+              _iterator5.return();
+            }
+          } finally {
+            if (_didIteratorError5) {
+              throw _iteratorError5;
+            }
+          }
+        }
+
+        var sel_colorvals2 = sel_colorvals.slice(0);
+        var sel_colors2 = sel_colors.slice(0);
+        if (sel_binsflag) {
+          sel_colorvals2 = sel_colorvals2.slice(1);
+          sel_colors2 = ['0000'].concat(sel_colors);
+        }
+
+        // update metric-colored feature data
+        var _iteratorNormalCompletion6 = true;
+        var _didIteratorError6 = false;
+        var _iteratorError6 = undefined;
+
+        try {
+          for (var _iterator6 = (0, _getIterator3.default)(cleanFeatures), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+            var feat = _step6.value;
+
+            if (lookup[feat.tmc]) {
+              feat['metric'] = lookup[feat.tmc][sel_metric];
+            } else {
+              feat['metric'] = null;
+            }
+          }
+        } catch (err) {
+          _didIteratorError6 = true;
+          _iteratorError6 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion6 && _iterator6.return) {
+              _iterator6.return();
+            }
+          } finally {
+            if (_didIteratorError6) {
+              throw _iteratorError6;
+            }
+          }
+        }
+
+        if (geoLayer) mymap.removeLayer(geoLayer);
+        if (mapLegend) mymap.removeControl(mapLegend);
+
+        geoLayer = L.geoJSON(cleanFeatures, {
+          style: function style(feat) {
+            var color = getColorFromVal(feat['metric'], sel_colorvals2, sel_colors, sel_binsflag);
+            if (!color) color = MISSING_COLOR;
+            return { color: color, weight: 4, opacity: 1.0 };
+          }
+          //onEachFeature: function(feature, layer) {
+          //  layer.on({
+          //    mouseover: hoverFeature,
+          //    click: clickedOnFeature,
+          //    });
+          //},
+        });
+        geoLayer.addTo(mymap);
+
+        mapLegend = L.control({ position: 'bottomright' });
+        mapLegend.onAdd = function (map) {
+          var div = L.DomUtil.create('div', 'info legend');
+          var legHTML = getLegHTML(sel_colorvals, sel_colors2, sel_binsflag);
+          div.innerHTML = '<h4>' + sel_metric.toUpperCase() + '</h4>' + legHTML;
+          return div;
+        };
+        mapLegend.addTo(mymap);
+      }
+    });
+  } catch (error) {}
 }
 
-function styleByLosColor(segment) {
-  var cmp_id = segment.cmp_segid;
-  var los = segmentLos[cmp_id];
-  var color = losColor[los];
+function styleByMetricColor(feat) {
+  var color = getColorFromVal(feat['metric'], sel_colorvals, sel_colors, sel_binsflag);
   if (!color) color = MISSING_COLOR;
   return { color: color, weight: 4, opacity: 1.0 };
 }
 
-function hoverOnSegment(e) {
-  // don't do anything if we just moused over the already-popped up segment
-  if (e.target == popupSegment) return;
+var infoPanelTimeout = void 0;
+var oldHoverTarget = void 0;
 
-  var segment = e.target.feature;
-  var cmp_id = segment.cmp_segid;
+function hoverFeature(e) {
+  clearTimeout(infoPanelTimeout);
+  infoPanel.update(e.target.feature);
+
+  // don't do anything else if the feature is already clicked
+  if (selGeoId === e.target.feature.cmp_segid) return;
 
   // return previously-hovered segment to its original color
-  if (selectedSegment != popupSegment) {
-    if (selectedSegment) {
-      var _cmp_id = selectedSegment.feature.cmp_segid;
-      var color = losColor[segmentLos[_cmp_id]];
-      if (!color) color = MISSING_COLOR;
-      selectedSegment.setStyle({ color: color, weight: 4, opacity: 1.0 });
-    }
+  if (oldHoverTarget && e.target.feature.cmp_segid != selGeoId) {
+    if (oldHoverTarget.feature.cmp_segid != selGeoId) geoLayer.resetStyle(oldHoverTarget);
   }
 
-  selectedSegment = e.target;
-  selectedSegment.setStyle(styles.selected);
-  selectedSegment.bringToFront();
+  var highlightedGeo = e.target;
+  highlightedGeo.bringToFront();
+
+  if (highlightedGeo.feature.cmp_segid != selGeoId) {
+    highlightedGeo.setStyle(styles.selected);
+    oldHoverTarget = e.target;
+  }
 }
 
-function buildChartHtmlFromCmpData(json) {
-  var byYear = {};
-  var data = [];
+var _selectedGeo = void 0;
+var _selectedLatLng = void 0;
 
-  var _iteratorNormalCompletion2 = true;
-  var _didIteratorError2 = false;
-  var _iteratorError2 = undefined;
+function highlightSelectedSegment() {
+  if (!selGeoId) return;
 
-  try {
-    for (var _iterator2 = (0, _getIterator3.default)(json), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-      var entry = _step2.value;
-
-      var speed = Number(entry.avg_speed).toFixed(1);
-      if (speed === 'NaN') continue;
-      if (!byYear[entry.year]) byYear[entry.year] = {};
-      byYear[entry.year][entry.period] = speed;
-    }
-  } catch (err) {
-    _didIteratorError2 = true;
-    _iteratorError2 = err;
-  } finally {
+  mymap.eachLayer(function (e) {
     try {
-      if (!_iteratorNormalCompletion2 && _iterator2.return) {
-        _iterator2.return();
+      if (e.feature.cmp_segid === selGeoId) {
+        e.setStyle(styles.popup);
+        selectedSegment = e;
+        return;
       }
-    } finally {
-      if (_didIteratorError2) {
-        throw _iteratorError2;
-      }
-    }
-  }
-
-  for (var year in byYear) {
-    data.push({ year: year, am: byYear[year]['AM'], pm: byYear[year]['PM'] });
-  }
-
-  new Morris.Line({
-    // ID of the element in which to draw the chart.
-    element: 'chart',
-    // Chart data records -- each entry in this array corresponds to a point on
-    // the chart.
-    data: data,
-    // The name of the data record attribute that contains x-values.
-    xkey: 'year',
-    // A list of names of data record attributes that contain y-values.
-    ykeys: ['am', 'pm'],
-    // Labels for the ykeys -- will be displayed when you hover over the
-    // chart.
-    labels: ['AM', 'PM'],
-    lineColors: ["#f66", "#44f"],
-    xLabels: "year",
-    xLabelAngle: 45
+    } catch (error) {}
   });
 }
 
-function clickedOnSegment(e) {
-  var segment = e.target.feature;
-  var cmp_id = segment.cmp_segid;
-
-  // highlight it
-  if (popupSegment) {
-    var _cmp_id2 = popupSegment.feature.cmp_segid;
-    var color = losColor[segmentLos[_cmp_id2]];
-    popupSegment.setStyle({ color: color, weight: 4, opacity: 1.0 });
-  }
+function clickedOnFeature(e) {
   e.target.setStyle(styles.popup);
-  popupSegment = e.target;
 
-  // delete old chart
-  document.getElementById("chart").innerHTML = "";
+  var geo = e.target.feature;
+  selGeoId = geo.cmp_segid;
 
-  // fetch the CMP details
-  var finalUrl = api_server + 'cmp_auto?cmp_segid=eq.' + cmp_id;
-  fetch(finalUrl).then(function (resp) {
-    return resp.json();
-  }).then(function (jsonData) {
-    var popupText = "<b>" + segment.cmp_name + " " + segment.direction + "-bound</b><br/>" + segment.cmp_from + " to " + segment.cmp_to;
-
-    var popup = L.popup().setLatLng(e.latlng).setContent(popupText).openOn(mymap);
-
-    popup.on("remove", function (e) {
-      var cmp_id = popupSegment.feature.cmp_segid;
-      var color = losColor[segmentLos[cmp_id]];
-      popupSegment.setStyle({ color: color, weight: 4, opacity: 1.0 });
-      popupSegment = null;
-      document.getElementById("chart").innerHTML = "";
-    });
-
-    buildChartHtmlFromCmpData(jsonData);
-  }).catch(function (error) {
-    console.log("err: " + error);
-  });
-}
-
-var esc = encodeURIComponent;
-
-function queryServer() {
-  var url = api_server + 'cmp_segments_master?' + 'select=geometry,cmp_segid,cmp_name,cmp_from,cmp_to,direction,length';
-  // Fetch the segments
-  fetch(url).then(function (resp) {
-    return resp.json();
-  }).then(function (jsonData) {
-    var personJson = jsonData;
-    colorByLOS(personJson, app.sliderValue);
-  }).catch(function (error) {
-    console.log("err: " + error);
-  });
-}
-
-var segmentLos = {};
-
-function colorByLOS(personJson, year) {
-  var lookup = chosenPeriod + year;
-
-  // Don't re-fetch if we already have the color data
-  if (lookup in speedCache) {
-    segmentLos = speedCache[lookup];
-    segmentLayer.clearLayers();
-    addSegmentLayer(personJson);
-    return;
+  // unselect the previously-selected selection, if there is one
+  if (selectedSegment && selectedSegment.feature.cmp_segid != geo.cmp_segid) {
+    prevselectedSegment = selectedSegment;
+    geoLayer.resetStyle(prevselectedSegment);
   }
+  selectedSegment = e.target;
 
-  var url = api_server + 'cmp_auto?';
-  var params = 'year=eq.' + year + '&period=eq.' + chosenPeriod + '&select=cmp_segid,avg_speed,year,period,los_hcm85';
+  var tmptxt = geo.cmp_name + ' ' + geo.direction + '-bound';
+  app.chartSubtitle = tmptxt + ' [' + geo.cmp_from + ' to ' + geo.cmp_to + ']';
 
-  var finalUrl = url + params;
-
-  fetch(finalUrl).then(function (resp) {
-    return resp.json();
-  }).then(function (data) {
-    //console.log(data);
-    var losData = {};
-    for (var segment in data) {
-      var thing = data[segment];
-      losData[thing.cmp_segid] = thing.los_hcm85;
-    }
-    // save it for later
-    speedCache[chosenPeriod + year] = losData;
-    segmentLos = losData;
-
-    // add it to the map
-    if (segmentLayer) segmentLayer.clearLayers();
-    addSegmentLayer(personJson);
-  }).catch(function (error) {
-    console.log(error);
-  });
+  showSegmentDetails(geo, e.latlng);
 }
 
-var chosenPeriod = 'AM';
+function showSegmentDetails(geo, latlng) {
+  _selectedGeo = geo;
+  _selectedLatLng = latlng;
+
+  // show popup
+  var popupText = '<b>' + geo.cmp_name + ' ' + geo.direction + '-bound</b><br/>' + (geo.cmp_from + ' to ' + geo.cmp_to);
+
+  popSelSegment = L.popup().setLatLng(latlng).setContent(popupText).addTo(mymap);
+
+  // Revert to overall chart when no segment selected
+  popSelSegment.on('remove', function (e) {
+    geoLayer.resetStyle(selectedSegment);
+    app.chartSubtitle = aggdata_label;
+    prevselectedSegment = selectedSegment = selGeoId = _selectedGeo = null;
+    buildChartHtmlFromCmpData();
+  });
+
+  showVizChartForSelectedSegment();
+}
+
+// Show chart (filter json results for just the selected segment)
+function showVizChartForSelectedSegment() {
+
+  var metric_col = selviz_metric;
+  // show actual speeds in chart, not A-F LOS categories
+  if (selviz_metric == 'los_hcm85') metric_col = 'auto_speed';
+
+  var segmentData = _allCmpData.filter(function (row) {
+    return row.cmp_segid == _selectedGeo.cmp_segid;
+  }).filter(function (row) {
+    return row[metric_col] != null;
+  });
+
+  buildChartHtmlFromCmpData(segmentData);
+}
+
+function buildChartHtmlFromCmpData() {
+  var json = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+  document.getElementById('longchart').innerHTML = '';
+
+  if (json) {
+    var byYear = {};
+    var data = [];
+    var maxHeight = 0;
+
+    var _iteratorNormalCompletion7 = true;
+    var _didIteratorError7 = false;
+    var _iteratorError7 = undefined;
+
+    try {
+      for (var _iterator7 = (0, _getIterator3.default)(json), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+        var entry = _step7.value;
+
+        var metric_col = selviz_metric;
+        if (selviz_metric == VIZ_INFO['ALOS']['METRIC']) metric_col = 'auto_speed';
+        var val = Number(entry[metric_col]).toFixed(VIZ_INFO[app.selectedViz]['CHART_PREC']);
+        if (val === 'NaN') continue;
+        if (!byYear[entry.year]) byYear[entry.year] = {};
+        byYear[entry.year][entry.period] = val;
+      }
+    } catch (err) {
+      _didIteratorError7 = true;
+      _iteratorError7 = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion7 && _iterator7.return) {
+          _iterator7.return();
+        }
+      } finally {
+        if (_didIteratorError7) {
+          throw _iteratorError7;
+        }
+      }
+    }
+
+    for (var year in byYear) {
+      if (app.isAMActive) {
+        data.push({ year: year, period: byYear[year]['AM'] });
+      } else {
+        data.push({ year: year, period: byYear[year]['PM'] });
+      }
+
+      // use the same scale for am/pm even though we only show one
+      if (byYear[year]['AM']) maxHeight = Math.max(maxHeight, byYear[year]['AM']);
+      if (byYear[year]['PM']) maxHeight = Math.max(maxHeight, byYear[year]['PM']);
+    }
+
+    // scale ymax to either 20 or 60:
+    maxHeight = maxHeight <= 20 ? 20 : 60;
+
+    // use maxHeight for ALOS and TSPD; use auto for other metrics
+    var scale = 'auto';
+    if (app.selectedViz == 'ALOS' || app.selectedViz == 'TSPD') {
+      scale = maxHeight;
+    }
+
+    new Morris.Line({
+      data: data,
+      element: 'longchart',
+      hideHover: true,
+      labels: [selPeriod],
+      lineColors: [app.isAMActive ? '#f66' : '#99f'],
+      postUnits: VIZ_INFO[app.selectedViz]['POST_UNITS'],
+      xkey: 'year',
+      xLabels: 'year',
+      xLabelAngle: 45,
+      ykeys: ['period'],
+      ymax: scale
+    });
+  } else {
+    var ykey_tmp = void 0,
+        lab_tmp = void 0;
+    if (app.selectedViz == 'ALOS') {
+      ykey_tmp = ['art', 'fwy'];
+      lab_tmp = ['Arterial', 'Freeway'];
+    } else {
+      ykey_tmp = ['art'];
+      lab_tmp = ['Arterial'];
+    }
+    new Morris.Line({
+      data: _aggregateData[app.selectedViz][selPeriod],
+      element: 'longchart',
+      gridTextColor: '#aaa',
+      hideHover: true,
+      labels: lab_tmp,
+      lineColors: ['#f66', '#99f'],
+      postUnits: VIZ_INFO[app.selectedViz]['POST_UNITS'],
+      xkey: 'year',
+      xLabels: 'year',
+      xLabelAngle: 45,
+      ykeys: ykey_tmp,
+      ymax: app.selectedViz == 'TSPD' ? 20 : 'auto'
+    });
+  }
+}
 
 function pickAM(thing) {
-  app.isAMactive = true;
-  app.isPMactive = false;
-  chosenPeriod = 'AM';
-  queryServer();
+  selPeriod = 'AM';
+  app.isAMActive = true;
+  app.isPMActive = false;
+
+  drawMapFeatures();
+  highlightSelectedSegment();
+  showVizChartForSelectedSegment();
 }
 
 function pickPM(thing) {
-  app.isAMactive = false;
-  app.isPMactive = true;
-  chosenPeriod = 'PM';
-  queryServer();
+  selPeriod = 'PM';
+  app.isAMActive = false;
+  app.isPMActive = true;
+
+  drawMapFeatures();
+  highlightSelectedSegment();
+  showVizChartForSelectedSegment();
 }
 
-function updateLegend() {
-  var legend = L.control({ position: 'bottomright' });
-  legend.onAdd = function (map) {
-    var div = L.DomUtil.create('div', 'info legend');
-    div.innerHTML = getLegHTML(LOS_VALS, LOS_COLORS, false);
-    return div;
-  };
-  legend.addTo(mymap);
+function selectionChanged(thing) {
+  if (app.selected_scenario && app.selected_timep && app.selected_metric) {
+    drawMapFeatures();
+  }
+  //highlightSelectedSegment();
 }
 
-// SLIDER ----
-// fetch the year details in data
-function updateSliderData() {
-  var yearlist = [];
-  fetch(api_server + data_view + '?select=year').then(function (resp) {
+function optionsChanged(thing) {
+  if (app.scen_options.length > 0) app.selected_scenario = app.scen_options[app.scen_options.length - 1].value;
+  if (app.time_options.length > 0) app.selected_timep = app.time_options[0].value;
+}
+
+function clickViz(chosenviz) {
+  app.selectedViz = chosenviz;
+  app.chartTitle = VIZ_INFO[chosenviz]['CHARTINFO'];
+
+  data_view = VIZ_INFO[chosenviz]['VIEW'];
+  selviz_metric = VIZ_INFO[chosenviz]['METRIC'];
+
+  drawMapFeatures();
+
+  if (_selectedGeo) {
+    showVizChartForSelectedSegment();
+    // showSegmentDetails(_selectedGeo, _selectedLatLng);
+    highlightSelectedSegment();
+  } else {
+    buildChartHtmlFromCmpData();
+  }
+}
+
+// fetch data to fill in select dropdowns
+function updateOptionsData(colname) {
+  var sellist = [];
+  var selopts = [];
+  fetch(API_SERVER + DATA_VIEW + '?select=' + colname + '&' + colname + '=neq.null').then(function (resp) {
     return resp.json();
   }).then(function (jsonData) {
-    var _iteratorNormalCompletion3 = true;
-    var _didIteratorError3 = false;
-    var _iteratorError3 = undefined;
+    var _iteratorNormalCompletion8 = true;
+    var _didIteratorError8 = false;
+    var _iteratorError8 = undefined;
 
     try {
-      for (var _iterator3 = (0, _getIterator3.default)(jsonData), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-        var entry = _step3.value;
+      for (var _iterator8 = (0, _getIterator3.default)(jsonData), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
+        var entry = _step8.value;
 
-        if (!yearlist.includes(entry.year)) yearlist.push(entry.year);
+        if (!sellist.includes(entry[colname])) sellist.push(entry[colname]);
       }
     } catch (err) {
-      _didIteratorError3 = true;
-      _iteratorError3 = err;
+      _didIteratorError8 = true;
+      _iteratorError8 = err;
     } finally {
       try {
-        if (!_iteratorNormalCompletion3 && _iterator3.return) {
-          _iterator3.return();
+        if (!_iteratorNormalCompletion8 && _iterator8.return) {
+          _iterator8.return();
         }
       } finally {
-        if (_didIteratorError3) {
-          throw _iteratorError3;
+        if (_didIteratorError8) {
+          throw _iteratorError8;
         }
       }
     }
 
-    yearlist = yearlist.sort();
-    app.timeSlider.data = yearlist;
-    app.sliderValue = yearlist[yearlist.length - 1];
+    sellist = sellist.sort();
+    var _iteratorNormalCompletion9 = true;
+    var _didIteratorError9 = false;
+    var _iteratorError9 = undefined;
+
+    try {
+      for (var _iterator9 = (0, _getIterator3.default)(sellist), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
+        var _entry = _step9.value;
+
+        selopts.push({ text: _entry, value: _entry });
+      }
+    } catch (err) {
+      _didIteratorError9 = true;
+      _iteratorError9 = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion9 && _iterator9.return) {
+          _iterator9.return();
+        }
+      } finally {
+        if (_didIteratorError9) {
+          throw _iteratorError9;
+        }
+      }
+    }
   });
+  return selopts;
 }
 
-var timeSlider = {
-  data: [0],
-  sliderValue: 0,
-  width: 'auto',
-  height: 6,
-  direction: 'horizontal',
-  dotSize: 16,
-  eventType: 'auto',
-  disabled: false,
-  show: true,
-  realTime: false,
-  tooltip: 'always',
-  clickable: true,
-  tooltipDir: 'bottom',
-  piecewise: true,
-  piecewiseLabel: false,
-  lazy: false,
-  reverse: false,
-  labelActiveStyle: { "color": "#fff" },
-  piecewiseStyle: {
-    "backgroundColor": "#888",
-    "visibility": "visible",
-    "width": "14px",
-    "height": "14px"
-  }
-};
-// ------
+function getMetricOptions() {
+  var sellist = [];
+  var selopts = [];
+  fetch(API_SERVER + DATA_VIEW + '?limit=1').then(function (resp) {
+    return resp.json();
+  }).then(function (jsonData) {
+    for (var entry in jsonData[0]) {
+      if (!EXCLUDE_COLS.includes(entry)) sellist.push(entry);
+    }
+    var _iteratorNormalCompletion10 = true;
+    var _didIteratorError10 = false;
+    var _iteratorError10 = undefined;
 
-function sliderChanged(thing) {
-  mymap.closePopup();
-  // delete old chart
-  document.getElementById("chart").innerHTML = "";
-  queryServer();
+    try {
+      for (var _iterator10 = (0, _getIterator3.default)(sellist), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
+        var _entry2 = _step10.value;
+
+        selopts.push({ text: _entry2, value: _entry2 });
+      }
+    } catch (err) {
+      _didIteratorError10 = true;
+      _iteratorError10 = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion10 && _iterator10.return) {
+          _iterator10.return();
+        }
+      } finally {
+        if (_didIteratorError10) {
+          throw _iteratorError10;
+        }
+      }
+    }
+
+    app.metric_options = selopts;
+    app.selected_metric = 'vhd';
+  });
 }
 
 var app = new Vue({
   el: '#panel',
+  delimiters: ['${', '}'],
   data: {
-    isAMactive: true,
-    isPMactive: false,
+    chartTitle: VIZ_INFO[VIZ_LIST[0]].CHARTINFO,
+    chartSubtitle: aggdata_label,
+    isAMActive: true,
+    isPMActive: false,
+    selectedViz: VIZ_LIST[0],
     sliderValue: 0,
-    timeSlider: timeSlider
+    vizlist: VIZ_LIST,
+    vizinfo: VIZ_INFO,
+
+    selected_scenario: null,
+    scen_options: [{ text: '', value: '' }],
+
+    selected_timep: null,
+    time_options: [{ text: '', value: '' }],
+
+    selected_metric: null,
+    metric_options: [{ text: '', value: '' }]
+  },
+  watch: {
+    scen_options: optionsChanged,
+    time_options: optionsChanged,
+    selected_scenario: selectionChanged,
+    selected_timep: selectionChanged,
+    selected_metric: selectionChanged
   },
   methods: {
     pickAM: pickAM,
-    pickPM: pickPM
-  },
-  watch: {
-    sliderValue: sliderChanged
+    pickPM: pickPM,
+    clickToggleHelp: clickToggleHelp,
+    clickViz: clickViz
   },
   components: {
     vueSlider: _vueSliderComponent2.default
   }
 });
-updateSliderData();
-updateLegend();
-queryServer();
+
+// eat some cookies -- so we can hide the help permanently
+var cookieShowHelp = _jsCookie2.default.get('showHelp');
+function clickToggleHelp() {
+  helpPanel.showHelp = !helpPanel.showHelp;
+
+  // and save it for next time
+  if (helpPanel.showHelp) {
+    _jsCookie2.default.remove('showHelp');
+  } else {
+    _jsCookie2.default.set('showHelp', 'false', { expires: 365 });
+  }
+}
+
+var helpPanel = new Vue({
+  el: '#helpbox',
+  data: {
+    showHelp: cookieShowHelp == undefined
+  },
+  methods: {
+    clickToggleHelp: clickToggleHelp
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    document.addEventListener('keydown', function (e) {
+      if (_this.showHelp && e.keyCode == 27) {
+        clickToggleHelp();
+      }
+    });
+  }
+});
+
+// this to get the year list directly from the database
+// so if database view get updated with new data, the slider data will reflect it too
+initialPrep();
 
 /***/ }),
-/* 479 */,
-/* 480 */,
-/* 481 */,
-/* 482 */,
-/* 483 */,
 /* 484 */,
 /* 485 */,
-/* 486 */,
+/* 486 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(492), __esModule: true };
+
+/***/ }),
 /* 487 */,
 /* 488 */,
 /* 489 */,
 /* 490 */,
 /* 491 */,
-/* 492 */,
+/* 492 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(153);
+__webpack_require__(498);
+module.exports = __webpack_require__(54).Array.from;
+
+
+/***/ }),
 /* 493 */,
 /* 494 */,
-/* 495 */,
+/* 495 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $defineProperty = __webpack_require__(56);
+var createDesc = __webpack_require__(117);
+
+module.exports = function (object, index, value) {
+  if (index in object) $defineProperty.f(object, index, createDesc(0, value));
+  else object[index] = value;
+};
+
+
+/***/ }),
 /* 496 */,
 /* 497 */,
-/* 498 */,
+/* 498 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var ctx = __webpack_require__(107);
+var $export = __webpack_require__(75);
+var toObject = __webpack_require__(248);
+var call = __webpack_require__(398);
+var isArrayIter = __webpack_require__(397);
+var toLength = __webpack_require__(152);
+var createProperty = __webpack_require__(495);
+var getIterFn = __webpack_require__(155);
+
+$export($export.S + $export.F * !__webpack_require__(412)(function (iter) { Array.from(iter); }), 'Array', {
+  // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
+  from: function from(arrayLike /* , mapfn = undefined, thisArg = undefined */) {
+    var O = toObject(arrayLike);
+    var C = typeof this == 'function' ? this : Array;
+    var aLen = arguments.length;
+    var mapfn = aLen > 1 ? arguments[1] : undefined;
+    var mapping = mapfn !== undefined;
+    var index = 0;
+    var iterFn = getIterFn(O);
+    var length, result, step, iterator;
+    if (mapping) mapfn = ctx(mapfn, aLen > 2 ? arguments[2] : undefined, 2);
+    // if object isn't iterable or it's array with default iterator - use simple case
+    if (iterFn != undefined && !(C == Array && isArrayIter(iterFn))) {
+      for (iterator = iterFn.call(O), result = new C(); !(step = iterator.next()).done; index++) {
+        createProperty(result, index, mapping ? call(iterator, mapfn, [step.value, index], true) : step.value);
+      }
+    } else {
+      length = toLength(O.length);
+      for (result = new C(length); length > index; index++) {
+        createProperty(result, index, mapping ? mapfn(O[index], index) : O[index]);
+      }
+    }
+    result.length = index;
+    return result;
+  }
+});
+
+
+/***/ }),
 /* 499 */,
 /* 500 */,
 /* 501 */,
@@ -11315,11 +14214,16 @@ queryServer();
 /* 554 */,
 /* 555 */,
 /* 556 */,
-/* 557 */
+/* 557 */,
+/* 558 */,
+/* 559 */,
+/* 560 */,
+/* 561 */,
+/* 562 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(150);
-module.exports = __webpack_require__(478);
+module.exports = __webpack_require__(483);
 
 
 /***/ })

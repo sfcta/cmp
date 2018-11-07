@@ -10507,7 +10507,7 @@ exports.RETURN = RETURN;
 var theme = "light";
 var sfmap = L.map('sfmap').setView([37.77, -122.42], 12);
 var url = 'https://api.mapbox.com/styles/v1/mapbox/' + theme + '-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}';
-var token = 'pk.eyJ1IjoicHNyYyIsImEiOiJjaXFmc2UxanMwM3F6ZnJtMWp3MjBvZHNrIn0._Dmske9er0ounTbBmdRrRQ';
+var token = 'pk.eyJ1Ijoic2ZjdGEiLCJhIjoiY2pvN2lrangyMGJ2NDNwbHJ2dWc2NG05MyJ9.yFq8Tl0S2cY_ZB6mx4uKaA';
 var attribution = '<a href="http://openstreetmap.org">OpenStreetMap</a> | ' + '<a href="http://mapbox.com">Mapbox</a>';
 L.tileLayer(url, {
   attribution: attribution,

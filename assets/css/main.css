@@ -23,7 +23,7 @@ h5 {margin-top:4px; margin-bottom: 4px;}
 
 #panel {
   display:table;
-  position: absolute;
+  position:absolute;
   top:0;
   right:0;
   bottom:0;
@@ -33,7 +33,6 @@ h5 {margin-top:4px; margin-bottom: 4px;}
   background-color:#444;
   float: right;
 }
-
 
 #header {
   display:table-row;
@@ -90,7 +89,6 @@ p.hint {color:#777; text-align:right; margin-right:24px; margin-top:-20px;}
 
 #sfmap {
   height:800px;
-  margin-right: 320px;
   z-index:0;
 }
 
@@ -125,11 +123,6 @@ p.hint {color:#777; text-align:right; margin-right:24px; margin-top:-20px;}
 }
 
 /*.vue-slider-wrap {margin-left:20px;}*/
-
-#picker {
-  width:100%;
-  margin-right:20px;
-}
 
 .column1 {width:60%; float: left; margin-top:20px; margin-bottom:30px;}
 .column2 {width:40%; float: right; }
@@ -204,6 +197,18 @@ td {text-align:center; vertical-align:top; }
     margin-right: 8px;
     opacity: 1;
 }
+.legend2 {
+    line-height: 5px;
+    color: #555;
+    min-width: 88px;
+}
+.legend2 i {
+    width: 10px;
+    height: 10px;
+    float: left;
+    margin-right: 8px;
+    opacity: 1;
+}
 
 p.legend-row {
   margin-bottom: 3px;
@@ -269,3 +274,33 @@ table { border: 0px; }
     opacity: 0;
     transition: visibility 0s 0.5s, opacity 0.5s linear;
 }
+
+.info-panel-2 {
+    padding: 6px 8px;
+    margin: 46px 8px;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+
+.info-panel-hide-2 {
+    padding: 6px 8px;
+    margin: 46px 8px;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.5s, opacity 0.5s linear;
+}
+
+
+
+
+
+
+
+

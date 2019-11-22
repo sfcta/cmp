@@ -1,4 +1,4 @@
-/* CSS Layout for Standalone ONLY goes here */
+/* CSS Layout for ConnectSF ONLY goes here */
 
 #slide-panel {
   top: auto;
@@ -10,20 +10,16 @@
 }
 
 .ui.color1.button {
-  background-color: #8cb8ca;
+  background-color: #f56e71;
   color: #fff;
 }
 
 .ui.color2.button {
-  background-color: #ffb81d;
+  background-color: #38bebb;
   color: #fff;
 }
 .ui.color2.button.active {
-  background-color: #ffb81d;
-}
-
-.ui.button {
-  margin: 2% 1%;
+  background-color: #38bebb;
 }
 
 
@@ -103,30 +99,20 @@ hr {margin: 1% 0px; }
   background-color: #555;
   z-index: 7;
 }
-
 #layer-widgets button {
   margin: 5px 5px 5px 5px;
 }
 .ui.toggle.checkbox {
   margin: 2% 3%;
 }
-.ui.colorsup.toggle.checkbox input:focus:checked~label:before{
-  background-color: #767676!important;
+.ui.toggle.checkbox input:focus:checked~label:before{
+  background-color: #f56e71!important;
 }
-.ui.colorsup.toggle.checkbox input:checked~label:before{
-  background-color: #767676!important;
+.ui.toggle.checkbox input:checked~label:before{
+  background-color: #f56e71!important;
 }
-.ui.colorhin.toggle.checkbox input:focus:checked~label:before{
-  background-color: #ff8d6d!important;
-}
-.ui.colorhin.toggle.checkbox input:checked~label:before{
-  background-color: #ff8d6d!important;
-}
-.ui.colorpar.toggle.checkbox input:focus:checked~label:before{
-  background-color: #9bae89!important;
-}
-.ui.colorpar.toggle.checkbox input:checked~label:before{
-  background-color: #9bae89!important;
+a.icon {
+  color: #fff;
 }
 
 table#citywide tbody th, td {   
@@ -136,20 +122,24 @@ table#citywide tbody th, td {
 }
 
 /* Bottom agency and logo*/
+tbody tr:nth-child(odd) td, tbody th {
+    background-color: #444;
+}
 .logo {
   display:table-row;
   text-align:right;
   height:80px;
 }
 a.agency {color: #fff;}
-table#table-logo {
+#table-logo {
   margin-bottom: 0px;
-  background-color: transparent;
+  background-color: #444;
   border: 0px;
 }
 .td-logo {
   padding-right: 0px;
 }
+
 .img-logo {
   display:block;
   margin-top: 20px;
@@ -157,10 +147,34 @@ table#table-logo {
   margin-right: auto;
   width: 60%
 }
-table#table-logo tbody tr:nth-child(odd) td, tbody th {
-    background-color: transparent;
-}
 
+.row-label {
+  margin-left: auto;
+  margin-right: 0px;
+  font-style: italic;
+}
+/* Header Title and ConnectSF Graphic*/
+#table-header {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 0px;
+}
+.title {
+  padding-right: 0px;
+  vertical-align: center;
+  font-size: 200%;
+  width: 66%;
+  color: white;
+  white-space: nowrap;
+}
+.img-csf {
+  display: block;
+  margin-left: auto;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  vertical-align: middle;
+}
+  
 /*Legend*/
 .legend {
   padding: 6px 8px;
@@ -218,5 +232,10 @@ p.legend-row {
      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
 }
 
-/*Captcha*/
+#chart-label {
+  text-align: center;
+  color: #999;
+  font-size: 0.75em;
+}
+
 .grecaptcha-badge { visibility: hidden; }

@@ -1,4 +1,25 @@
+
+
 'use strict';
+
+/*
+SFCTA PROSPECTOR: Data visualization platform.
+
+Copyright (C) 2018 San Francisco County Transportation Authority
+and respective authors. See Git history for individual contributions.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the Apache License version 2.0, as published
+by the Apache Foundation, or any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the Apache License for more details.
+
+You should have received a copy of the Apache License along with
+this program. If not, see <https://www.apache.org/licenses/LICENSE-2.0>.
+*/
 
 // Must use npm and babel to support IE11/Safari
 import 'isomorphic-fetch';
@@ -87,8 +108,8 @@ let popHoverSegment, popSelSegment;
 let selectedSegment, prevselectedSegment;
 
 let _segmentJson;
-let _allCmpData;
-let _aggregateData;
+let _allCmpData, _allCmpData_xd;
+let _aggregateData, _aggregateData_xd;
 
 async function initialPrep() {
 
@@ -96,10 +117,12 @@ async function initialPrep() {
   _segmentJson = await fetchCmpSegments();
 
   console.log('2...');
-  _allCmpData = await fetchAllCmpSegmentData();
+  _allCmpData = await fetchAllCmpSegmentData(data_view);
+  _allCmpData_xd = await fetchAllCmpSegmentData('cmp_autotransit_xd');
 
   console.log('3...');
-  _aggregateData = await fetchAggregateData();
+  _aggregateData = await fetchAggregateData(aggdata_view);
+  _aggregateData_xd = await fetchAggregateData('cmp_aggregate_xd');
 
   console.log('4... ');
   await buildChartHtmlFromCmpData();
@@ -130,12 +153,12 @@ async function fetchCmpSegments() {
   }
 }
 
-async function fetchAllCmpSegmentData() {
+async function fetchAllCmpSegmentData(dat_view) {
   //FIXME this should be a map()
   let params =
     'select=cmp_segid,year,period,los_hcm85,transit_speed,transit_cv,atspd_ratio,auto_speed';
 
-  let data_url = API_SERVER + data_view + '?' + params;
+  let data_url = API_SERVER + dat_view + '?' + params;
 
   selMetricData = {};
 
@@ -146,10 +169,10 @@ async function fetchAllCmpSegmentData() {
   } catch (error) {console.log('cmp data fetch error: ' + error);}
 }
 
-async function fetchAggregateData() {
+async function fetchAggregateData(aggdat_view) {
   let buildAggData = {};
 
-  const url = API_SERVER + aggdata_view
+  const url = API_SERVER + aggdat_view
     + '?select=fac_typ,period,year,viz,metric';
 
   try {
@@ -234,7 +257,7 @@ infoPanel.update = function(geo) {
     // use CSS to hide the info-panel
     infoPanel._div.className = 'info-panel-hide';
     // and clear the hover too
-    geoLayer.resetStyle(oldHoverTarget);
+    if (oldHoverTarget.feature.cmp_segid != selGeoId) geoLayer.resetStyle(oldHoverTarget);
   }, 2000);
 };
 infoPanel.addTo(mymap);
@@ -243,10 +266,18 @@ function drawMapSegments() {
 
   // create a clean copy of the segment Json
   let cleanSegments = _segmentJson.slice();
-
-  let relevantRows = _allCmpData.filter(
-    row => row.year==app.sliderValue && row.period===selPeriod
-  );
+  
+  let relevantRows;
+  if (app.sliderValue > 2017) {
+    relevantRows = _allCmpData_xd.filter(
+      row => row.year==app.sliderValue && row.period===selPeriod
+    );    
+  } else {
+    relevantRows = _allCmpData.filter(
+      row => row.year==app.sliderValue && row.period===selPeriod
+    );
+  }
+  
 
   let lookup = {};
   for (let row of relevantRows) {
@@ -323,11 +354,8 @@ function hoverFeature(e) {
 
   let highlightedGeo = e.target;
   highlightedGeo.bringToFront();
-
-  if (highlightedGeo.feature.cmp_segid != selGeoId) {
-    highlightedGeo.setStyle(styles.selected);
-    oldHoverTarget = e.target;
-  }
+  highlightedGeo.setStyle(styles.selected);
+  oldHoverTarget = e.target;
 }
 
 let _selectedGeo;
@@ -440,6 +468,36 @@ function buildChartHtmlFromCmpData(json = null) {
       if (byYear[year]['PM'])
         maxHeight = Math.max(maxHeight, byYear[year]['PM']);
     }
+    
+    // adding xd auto speed data
+    byYear = {};
+    if (app.selectedViz == 'ALOS') {
+      let segmentData = _allCmpData_xd
+      .filter(row => row.cmp_segid == _selectedGeo.cmp_segid)
+      .filter(row => row['auto_speed'] != null);
+      for (let entry of segmentData) {
+        let val = Number(entry['auto_speed']).toFixed(
+          VIZ_INFO[app.selectedViz]['CHART_PREC']
+        );
+        if (val === 'NaN') continue;
+        if (!byYear[entry.year]) byYear[entry.year] = {};
+        byYear[entry.year][entry.period] = val;
+      }
+      
+      for (let year in byYear) {
+        if (app.isAMActive) {
+          data.push({year: year, period: byYear[year]['AM']});
+        } else {
+          data.push({year: year, period: byYear[year]['PM']});
+        }
+
+        // use the same scale for am/pm even though we only show one
+        if (byYear[year]['AM'])
+          maxHeight = Math.max(maxHeight, byYear[year]['AM']);
+        if (byYear[year]['PM'])
+          maxHeight = Math.max(maxHeight, byYear[year]['PM']);
+      }      
+    }
 
     // scale ymax to either 20 or 60:
     maxHeight = maxHeight <= 20 ? 20 : 60;
@@ -468,24 +526,39 @@ function buildChartHtmlFromCmpData(json = null) {
     if (app.selectedViz == 'ALOS') {
       ykey_tmp = ['art', 'fwy'];
       lab_tmp = ['Arterial', 'Freeway'];
+      new Morris.Line({
+        data: _aggregateData[app.selectedViz][selPeriod].concat(_aggregateData_xd[app.selectedViz][selPeriod]),
+        element: 'longchart',
+        gridTextColor: '#aaa',
+        hideHover: true,
+        labels: lab_tmp,
+        lineColors: ['#f66', '#99f'],
+        postUnits: VIZ_INFO[app.selectedViz]['POST_UNITS'],
+        xkey: 'year',
+        xLabels: 'year',
+        xLabelAngle: 45,
+        ykeys: ykey_tmp,
+        ymax: 'auto',
+      });      
     } else {
       ykey_tmp = ['art'];
       lab_tmp = ['Arterial'];
+      
+      new Morris.Line({
+        data: _aggregateData[app.selectedViz][selPeriod],
+        element: 'longchart',
+        gridTextColor: '#aaa',
+        hideHover: true,
+        labels: lab_tmp,
+        lineColors: ['#f66', '#99f'],
+        postUnits: VIZ_INFO[app.selectedViz]['POST_UNITS'],
+        xkey: 'year',
+        xLabels: 'year',
+        xLabelAngle: 45,
+        ykeys: ykey_tmp,
+        ymax: app.selectedViz == 'TSPD' ? 20 : 'auto',
+      });
     }
-    new Morris.Line({
-      data: _aggregateData[app.selectedViz][selPeriod],
-      element: 'longchart',
-      gridTextColor: '#aaa',
-      hideHover: true,
-      labels: lab_tmp,
-      lineColors: ['#f66', '#99f'],
-      postUnits: VIZ_INFO[app.selectedViz]['POST_UNITS'],
-      xkey: 'year',
-      xLabels: 'year',
-      xLabelAngle: 45,
-      ykeys: ykey_tmp,
-      ymax: app.selectedViz == 'TSPD' ? 20 : 'auto',
-    });
   }
 }
 
@@ -533,7 +606,7 @@ function clickViz(chosenviz) {
 }
 
 // fetch the year details in data
-function updateSliderData() {
+async function updateSliderData() {
   let yearlist = [];
   fetch(API_SERVER + data_view + '?select=year')
     .then(resp => resp.json())
@@ -541,10 +614,20 @@ function updateSliderData() {
       for (let entry of jsonData) {
         if (!yearlist.includes(entry.year)) yearlist.push(entry.year);
       }
+    });
+  fetch(API_SERVER + 'cmp_autotransit_xd' + '?select=year')
+    .then(resp => resp.json()) 
+    .then(function(jsonData) {
+      for (let entry of jsonData) {
+        if (!yearlist.includes(entry.year)) yearlist.push(entry.year);
+      }
+      
       yearlist = yearlist.sort();
       app.timeSlider.data = yearlist;
       app.sliderValue = yearlist[yearlist.length - 1];
     });
+
+  return;
 }
 
 // SLIDER ----
@@ -592,6 +675,7 @@ let app = new Vue({
   el: '#panel',
   delimiters: ['${', '}'],
   data: {
+    isPanelHidden: false,
     chartTitle: VIZ_INFO[VIZ_LIST[0]].CHARTINFO,
     chartSubtitle: aggdata_label,
     isAMActive: true,
@@ -609,12 +693,34 @@ let app = new Vue({
     pickAM: pickAM,
     pickPM: pickPM,
     clickToggleHelp: clickToggleHelp,
+    clickedShowHide: clickedShowHide,
     clickViz: clickViz,
   },
   components: {
     vueSlider,
   },
 });
+
+let slideapp = new Vue({
+  el: '#slide-panel',
+  delimiters: ['${', '}'],
+  data: {
+    isPanelHidden: false,
+  },
+  methods: {
+    clickedShowHide: clickedShowHide,
+  },
+});
+function clickedShowHide(e) {
+  slideapp.isPanelHidden = !slideapp.isPanelHidden;
+  app.isPanelHidden = slideapp.isPanelHidden;
+  // leaflet map needs to be force-recentered, and it is slow.
+  for (let delay of [50, 100, 150, 200, 250, 300, 350, 400, 450, 500]) {
+    setTimeout(function() {
+      mymap.invalidateSize()
+    }, delay)
+  }
+}
 
 // eat some cookies -- so we can hide the help permanently
 let cookieShowHelp = Cookies.get('showHelp');

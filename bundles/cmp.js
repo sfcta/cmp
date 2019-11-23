@@ -13365,6 +13365,9 @@ function buildChartHtmlFromCmpData() {
     var data = [];
     var maxHeight = 0;
 
+    var metric_col = selviz_metric;
+    if (selviz_metric == VIZ_INFO['ALOS']['METRIC']) metric_col = 'auto_speed';
+
     var _iteratorNormalCompletion6 = true;
     var _didIteratorError6 = false;
     var _iteratorError6 = undefined;
@@ -13373,8 +13376,6 @@ function buildChartHtmlFromCmpData() {
       for (var _iterator6 = (0, _getIterator3.default)(json), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
         var entry = _step6.value;
 
-        var metric_col = selviz_metric;
-        if (selviz_metric == VIZ_INFO['ALOS']['METRIC']) metric_col = 'auto_speed';
         var val = Number(entry[metric_col]).toFixed(VIZ_INFO[app.selectedViz]['CHART_PREC']);
         if (val === 'NaN') continue;
         if (!byYear[entry.year]) byYear[entry.year] = {};
@@ -13409,51 +13410,50 @@ function buildChartHtmlFromCmpData() {
 
     // adding xd auto speed data
     byYear = {};
-    if (app.selectedViz == 'ALOS') {
-      var segmentData = _allCmpData_xd.filter(function (row) {
-        return row.cmp_segid == _selectedGeo.cmp_segid;
-      }).filter(function (row) {
-        return row['auto_speed'] != null;
-      });
-      var _iteratorNormalCompletion7 = true;
-      var _didIteratorError7 = false;
-      var _iteratorError7 = undefined;
 
+    var segmentData = _allCmpData_xd.filter(function (row) {
+      return row.cmp_segid == _selectedGeo.cmp_segid;
+    }).filter(function (row) {
+      return row[metric_col] != null;
+    });
+    var _iteratorNormalCompletion7 = true;
+    var _didIteratorError7 = false;
+    var _iteratorError7 = undefined;
+
+    try {
+      for (var _iterator7 = (0, _getIterator3.default)(segmentData), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+        var _entry = _step7.value;
+
+        var val = Number(_entry[metric_col]).toFixed(VIZ_INFO[app.selectedViz]['CHART_PREC']);
+        if (val === 'NaN') continue;
+        if (!byYear[_entry.year]) byYear[_entry.year] = {};
+        byYear[_entry.year][_entry.period] = val;
+      }
+    } catch (err) {
+      _didIteratorError7 = true;
+      _iteratorError7 = err;
+    } finally {
       try {
-        for (var _iterator7 = (0, _getIterator3.default)(segmentData), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
-          var _entry = _step7.value;
-
-          var val = Number(_entry['auto_speed']).toFixed(VIZ_INFO[app.selectedViz]['CHART_PREC']);
-          if (val === 'NaN') continue;
-          if (!byYear[_entry.year]) byYear[_entry.year] = {};
-          byYear[_entry.year][_entry.period] = val;
+        if (!_iteratorNormalCompletion7 && _iterator7.return) {
+          _iterator7.return();
         }
-      } catch (err) {
-        _didIteratorError7 = true;
-        _iteratorError7 = err;
       } finally {
-        try {
-          if (!_iteratorNormalCompletion7 && _iterator7.return) {
-            _iterator7.return();
-          }
-        } finally {
-          if (_didIteratorError7) {
-            throw _iteratorError7;
-          }
+        if (_didIteratorError7) {
+          throw _iteratorError7;
         }
       }
+    }
 
-      for (var _year2 in byYear) {
-        if (app.isAMActive) {
-          data.push({ year: _year2, period: byYear[_year2]['AM'] });
-        } else {
-          data.push({ year: _year2, period: byYear[_year2]['PM'] });
-        }
-
-        // use the same scale for am/pm even though we only show one
-        if (byYear[_year2]['AM']) maxHeight = Math.max(maxHeight, byYear[_year2]['AM']);
-        if (byYear[_year2]['PM']) maxHeight = Math.max(maxHeight, byYear[_year2]['PM']);
+    for (var _year2 in byYear) {
+      if (app.isAMActive) {
+        data.push({ year: _year2, period: byYear[_year2]['AM'] });
+      } else {
+        data.push({ year: _year2, period: byYear[_year2]['PM'] });
       }
+
+      // use the same scale for am/pm even though we only show one
+      if (byYear[_year2]['AM']) maxHeight = Math.max(maxHeight, byYear[_year2]['AM']);
+      if (byYear[_year2]['PM']) maxHeight = Math.max(maxHeight, byYear[_year2]['PM']);
     }
 
     // scale ymax to either 20 or 60:

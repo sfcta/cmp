@@ -9,7 +9,7 @@
 
   <title>
     
-      CMP &middot; SFCTA Prospector
+      Congestion Management Program &middot; SFCTA Prospector
     
   </title>
 
@@ -35,6 +35,8 @@
   <!-- use the latest vue-select release -->
   <script src="https://unpkg.com/vue-select@latest"></script>
   <link rel="stylesheet" href="https://unpkg.com/vue-select@latest/dist/vue-select.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vue-slider-component@latest/theme/antd.css">
 
   <!-- MAPBOX GL -->
   <script src='https://api.mapbox.com/mapbox-gl-js/v0.37.0/mapbox-gl.js'></script>
@@ -64,7 +66,7 @@
   <script src='https://unpkg.com/simple-statistics@7.0.2/dist/simple-statistics.min.js'></script>
   
   <!-- IONICONS -->
-  <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
   <link rel="stylesheet" href="/assets/ionicons/leaflet.awesome-markers.css">
   <script src="/assets/ionicons/leaflet.awesome-markers.min.js"></script>
 
@@ -91,7 +93,9 @@
   <!-- Page CSS -->
   
     
-      <link rel="stylesheet" href="main.css">
+      <link rel="stylesheet" href="/assets/css/main.css">
+    
+      <link rel="stylesheet" href="/assets/css/standalone.css">
     
   
 
@@ -101,208 +105,39 @@
 
 </head>
 
-  
-  <body class="theme-base-01">
 
-    <div class="sidebar">
-    <div class="sidebar-about">
-      <a href="/"><img class="sidebar-logo" src="/assets/sfcta-logo-144.png"/></a>
-      <h1>
-        <a href="/">
-          SFCTA Prospector
-        </a>
-      </h1>
-      <p class="lead">"Just add data."</p>
-    </div>
-
-    <br/>
-    <br/>
-
-    <nav class="sidebar-nav">
-      <a class="sidebar-nav-item" href="/">Home</a>
-
-      
-
-      
-      
-        
-          
-        
-      
-        
-          
-            <a class="sidebar-nav-item" href="/autolos/">Auto LOS</a>
-          
-        
-      
-        
-          
-        
-      
-        
-          
-            <a class="sidebar-nav-item active" href="/cmp/">CMP</a>
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-            <a class="sidebar-nav-item" href="/hwyskims/">SF-CHAMP Highway Skims</a>
-          
-        
-      
-        
-          
-            <a class="sidebar-nav-item" href="/walkskims/">SF-CHAMP Walk Skims</a>
-          
-        
-      
-        
-          
-        
-      
-        
-          
-            <a class="sidebar-nav-item" href="/tmcshp/">TMCs True Shape</a>
-          
-        
-      
-        
-          
-        
-      
-        
-          
-            <a class="sidebar-nav-item" href="/tnc/">TNCs Today</a>
-          
-        
-      
-        
-          
-        
-      
-        
-          
-            <a class="sidebar-nav-item" href="/viz-template/">Visualization Template</a>
-          
-        
-      
-    </nav>
-</div>
-
-
-    <div class="content container">
-      <div class="page">
-  <h1 class="page-title">CMP</h1>
-  <div id="container">
+  <body>
+    <div class="container">
+      <div id="container">
 
   <div id="slide-panel" v-bind:class="{ shrunken: isPanelHidden}">
     <div id="layer-widgets">
-      <button class="ui tiny green icon button"
-              v-on:click="clickedShowHide">
-              <i class="angle double icon"
-              v-bind:class="{ left: isPanelHidden, right: !isPanelHidden}"></i>
+      <button class="ui tiny green icon button" v-on:click="clickedShowHide">
+              <i class="angle double icon" v-bind:class="{ left: isPanelHidden, right: !isPanelHidden}"></i>
       </button>
     </div>
   </div> 
 
   <div id="panel" v-bind:class="{ shrunken: isPanelHidden}">
       <div id="preheader">
-        <hr/>
+        <hr />
         <h3 class="apptitle">CONGESTION EXPLORER</h3>
         <div id="helpbar">
-            <button class="ui mini right labeled icon violet button"
-                    v-on:click="clickToggleHelp">
+            <button class="ui mini right labeled icon violet button" v-on:click="clickToggleHelp">
                     <i class="help circle icon"></i>
                     What is this?
             </button>
             &nbsp;
-            <button class="ui mini right labeled icon violet button"
-                    v-on:click="this.window.open('https://www.sfcta.org/congestion','_blank')">
+            <button class="ui mini right labeled icon violet button" v-on:click="this.window.open('https://www.sfcta.org/congestion','_blank')">
                     <i class="arrow right icon"></i>
                     Learn More
             </button>
-            <hr/>
+            <hr />
            </div>
 
           <div id="picker">
             <div id="vizbuttons" class="ui vertical buttons">
-              <button v-for="item in vizlist"
-                    v-on:click="clickViz(item)"
-                    class="ui grey button"
-                    v-bind:class="{ active: item==selectedViz, yellow: item==selectedViz }">
+              <button v-for="item in vizlist" v-on:click="clickViz(item)" class="ui grey button" v-bind:class="{ active: item==selectedViz, yellow: item==selectedViz }">
                     ${vizinfo[item]['TXT']}
               </button>
             </div>
@@ -327,37 +162,35 @@
             <vue-slider v-bind="timeSlider" v-model="sliderValue"></vue-slider>
 
             <h5>CHOOSE TIME PERIOD:</h5>
-            <button v-on:click="pickAM"
-                    v-bind:class="{ active: isAMActive, yellow: isAMActive}"
-                     class="mini ui grey button">
+            <button v-on:click="pickAM" v-bind:class="{ active: isAMActive, yellow: isAMActive}" class="mini ui grey button">
                      AM</button>
-            <button v-on:click="pickPM"
-                    v-bind:class="{ active: isPMActive, yellow: isPMActive }"
-                     class="mini ui grey button">
+            <button v-on:click="pickPM" v-bind:class="{ active: isPMActive, yellow: isPMActive }" class="mini ui grey button">
                      PM</button>
         </div>
-        <br>
+        <br />
 
-        <hr/>
+        <hr />
 
         <div class="logo">
             <a class="agency-link" target="_blank" href="https://www.sfcta.org">
-              <img class="img-logo" src="/assets/SFCTA Logo dark-background.svg" width="80%">
+              <img class="img-logo" src="/assets/SFCTA Logo dark-background.svg" width="80%" />
             </a>
         </div>
       </div>
     </div>
 
   <div id="helpbox" v-if="showHelp" class="ui segment">
-  <div v-cloak> <!-- hides everything until Vue finished loading -->
+  <div v-cloak=""> <!-- hides everything until Vue finished loading -->
         <h2 style="margin-bottom:0px;">Congestion in San Francisco</h2>
-        <hr style="margin-bottom:5px;margin-top:5px"/>
+        <hr style="margin-bottom:5px;margin-top:5px" />
         Use this tool to explore performance metrics for both automobiles and buses on major San Francisco streets and highways.
         These are monitored every two years, in accordance with state law for San Francisco’s Congestion Management Program.
 
         <ul>
         <li><b>Auto Level-of-Service (LOS)</b> grades road segments by vehicle delay with "A" describing free flow,
         and "F" describing bumper-to-bumper conditions.</li>
+        <li><b>Auto Buffer Time Index</b> indicates auto travel time reliability. It is the extra time needed over the average to not be late more than once a month.
+        A lower number means that travelers experience more consistent travel times.</li>
         <li><b>Transit Speed</b> reflects the average speeds including both when the buses are in motion as well as waiting at stops.</li>
         <li><b>Transit Reliability</b> shows the variability in transit travel speeds. A lower percentage means transit speeds are more consistent.</li>
         <li><b>Auto-Transit Speed Ratio</b> compares auto speeds to  to transit speeds, with lower values indicating where transit is more competitive with auto.
@@ -365,9 +198,9 @@
         </ul>
 
         <h2 style="margin-top:10px; margin-bottom:0px;">How to use this map</h2>
-        <hr style="margin-bottom:5px;margin-top:5px"/>
+        <hr style="margin-bottom:5px;margin-top:5px" />
         <ul>
-        <li>Select a metric to display it on the map for all segments, for the latest year (2017).</li>
+        <li>Select a metric to display it on the map for all segments, for the latest year (2019).</li>
         <li>Move the year slider to map historic data.</li>
         <li>Choose time period to display metric for AM or PM peak.</li>
         <li>Click on a colored roadway segment on the map to see segment-specific trends.</li>
@@ -378,16 +211,12 @@
             &nbsp;OK&nbsp;
           </button>
 
-          <button v-on:click="this.window.open('/assets/sfcta_cmp_data_2019.zip')"
-                  class="small ui right labeled icon floated yellow button"
-                  style="margin-right:5px">
+          <button v-on:click="this.window.open('/assets/sfcta_cmp_data_2019.zip')" class="small ui right labeled icon floated yellow button" style="margin-right:5px">
                   <i class="icon download"></i>
                   Download data (.zip)
           </button>
 
-          <button v-on:click="this.window.open('https://www.sfcta.org/congestion','_blank')"
-                  class="small ui right floated basic violet button"
-                  style="margin-right:5px">
+          <button v-on:click="this.window.open('https://www.sfcta.org/congestion','_blank')" class="small ui right floated basic violet button" style="margin-right:5px">
                   Learn more&hellip;
           </button>
 
@@ -399,12 +228,10 @@
 
 </div>
 
-
 <script type="application/javascript" src="/bundles/cmp.js"></script>
 
-</div>
 
     </div>
-
   </body>
+
 </html>

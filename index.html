@@ -9,7 +9,7 @@
 
   <title>
     
-      Congestion Management Program &middot; SFCTA Prospector
+      Congestion Management Program Map &middot; SFCTA Prospector
     
   </title>
 
@@ -121,14 +121,14 @@
   <div id="panel" v-bind:class="{ shrunken: isPanelHidden}">
       <div id="preheader">
         <hr />
-        <h3 class="apptitle">CONGESTION EXPLORER</h3>
+        <h3 class="apptitle">CONGESTION MANAGEMENT PROGRAM MAP</h3>
         <div id="helpbar">
             <button class="ui mini right labeled icon violet button" v-on:click="clickToggleHelp">
                     <i class="help circle icon"></i>
                     What is this?
             </button>
             &nbsp;
-            <button class="ui mini right labeled icon violet button" v-on:click="this.window.open('https://www.sfcta.org/congestion','_blank')">
+            <button class="ui mini right labeled icon violet button" v-on:click="this.window.open('https://www.sfcta.org/projects/congestion-management-program#cmpmap','_blank')">
                     <i class="arrow right icon"></i>
                     Learn More
             </button>
@@ -183,8 +183,8 @@
   <div v-cloak=""> <!-- hides everything until Vue finished loading -->
         <h2 style="margin-bottom:0px;">Congestion in San Francisco</h2>
         <hr style="margin-bottom:5px;margin-top:5px" />
-        Use this tool to explore performance metrics for both automobiles and buses on major San Francisco streets and highways.
-        These are monitored every two years, in accordance with state law for San Francisco’s Congestion Management Program.
+        Use this tool to explore performance metrics for both automobiles and buses on major San Francisco streets and highways. These metrics are monitored every two years, in accordance with state law for San Francisco's Congestion Management Program.</br>
+        Also see the <a href="https://congestion.sfcta.org">San Francisco Congestion Dashboard</a> to explore monthly changes in congestion and vehicle miles traveled (VMT) in San Francisco.
 
         <ul>
         <li><b>Auto Level-of-Service (LOS)</b> grades road segments by vehicle delay with "A" describing free flow,
@@ -216,7 +216,7 @@
                   Download data (.zip)
           </button>
 
-          <button v-on:click="this.window.open('https://www.sfcta.org/congestion','_blank')" class="small ui right floated basic violet button" style="margin-right:5px">
+          <button v-on:click="this.window.open('https://www.sfcta.org/projects/congestion-management-program#cmpmap','_blank')" class="small ui right floated basic violet button" style="margin-right:5px">
                   Learn more&hellip;
           </button>
 

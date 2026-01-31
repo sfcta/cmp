@@ -138,7 +138,7 @@ async function fetchCmpSegments() {
     '?select=geometry,cmp_segid,cmp_name,cmp_from,cmp_to,direction,length';
 
   try {
-    let resp = await fetch(geo_url);
+    let resp = await fetch(geo_url, {targetAddressSpace: "local"});
     let segments = await resp.json();
 
     // do some parsing and stuff
@@ -163,7 +163,7 @@ async function fetchAllCmpSegmentData(dat_view) {
   selMetricData = {};
 
   try {
-    let resp = await fetch(data_url);
+    let resp = await fetch(data_url, {targetAddressSpace: "local"});
     return await resp.json();
 
   } catch (error) {console.log('cmp data fetch error: ' + error);}
@@ -176,7 +176,7 @@ async function fetchAggregateData(aggdat_view) {
     + '?select=fac_typ,period,year,viz,metric';
 
   try {
-    let resp = await fetch(url);
+    let resp = await fetch(url, {targetAddressSpace: "local"});
     let jsonData = await resp.json();
 
     for (let viz of VIZ_LIST) {
@@ -608,14 +608,14 @@ function clickViz(chosenviz) {
 // fetch the year details in data
 async function updateSliderData() {
   let yearlist = [];
-  fetch(API_SERVER + data_view + '?select=year')
+  fetch(API_SERVER + data_view + '?select=year', {targetAddressSpace: "local"})
     .then(resp => resp.json())
     .then(function(jsonData) {
       for (let entry of jsonData) {
         if (!yearlist.includes(entry.year)) yearlist.push(entry.year);
       }
     });
-  fetch(API_SERVER + 'cmp_autotransit_xd' + '?select=year')
+  fetch(API_SERVER + 'cmp_autotransit_xd' + '?select=year', {targetAddressSpace: "local"})
     .then(resp => resp.json()) 
     .then(function(jsonData) {
       for (let entry of jsonData) {
